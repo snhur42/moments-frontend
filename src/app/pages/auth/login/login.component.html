@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm">
+  <label for="username">Phone:</label>
+  <br>
+  <input type="text" id="username" formControlName="username">
+  <hr>
+  <label for="password">Password:</label>
+  <br>
+  <input type="password" id="password" formControlName="password">
+  <br>
+  <hr>
+  <br>
+  <button [disabled]="loginForm.invalid" (click)="submit()">Login</button>
+</form>
