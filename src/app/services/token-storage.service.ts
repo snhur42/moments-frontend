@@ -12,19 +12,49 @@ export class TokenStorageService {
     window.localStorage.setItem(environment.tokenKey, token);
   }
 
-  public getToken(): string {
-    // @ts-ignore
-    return localStorage.getItem(environment.tokenKey);
-  }
-
   public saveUserId(userId: string): void {
     window.localStorage.removeItem(environment.userKey);
     window.localStorage.setItem(environment.userKey, JSON.stringify(userId));
   }
 
+  public saveExpiredDate(expiredDate: string): void {
+    window.localStorage.removeItem(environment.expiredDate);
+    window.localStorage.setItem(environment.expiredDate, expiredDate);
+  }
+
+  public saveRole(role: string): void {
+    window.localStorage.removeItem(environment.role);
+    window.localStorage.setItem(environment.role, role);
+  }
+
+  public saveFingerPrint(fingerPrint: string): void {
+    window.localStorage.removeItem(environment.fingerPrint);
+    window.localStorage.setItem(environment.fingerPrint, fingerPrint);
+  }
+
+  public getToken(): string {
+    // @ts-ignore
+    return localStorage.getItem(environment.tokenKey);
+  }
+
+  public getRole(): string {
+    // @ts-ignore
+    return localStorage.getItem(environment.role);
+  }
+
+  public getExpiredDate(): string {
+    // @ts-ignore
+    return localStorage.getItem(environment.expiredDate);
+  }
+
   public getUserId(): string {
     // @ts-ignore
     return JSON.parse(localStorage.getItem(environment.userKey));
+  }
+
+  public getFingerPrint(): string {
+    // @ts-ignore
+    return  localStorage.getItem(environment.fingerPrint);
   }
 
   logOut(): void {

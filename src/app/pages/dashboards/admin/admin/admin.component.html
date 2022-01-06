@@ -1,8 +1,46 @@
+<button (click)="logout()">Logout</button>
+<hr>
+<h1 style="color: cornflowerblue">Admin panel</h1>
+<div *ngIf="isAdminUploaded">
+  <div>
+  <p>{{user.firstName}} {{user.lastName}}</p>
+  <p>phone: {{user.phone}}</p>
+  <p>email: {{user.email}}</p>
+  <p>city: {{user.city}}</p>
+    <button (click)="isShowEditAdmin = !isShowEditAdmin" >Edit Admin</button>
+  <hr>
+    <ul>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/managers']">Show Managers</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/photographers']">Show Photographers</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/clients']">Show Clients</a></li>
+    </ul>
+  </div>
+</div>
 
-<h1>Admin panel</h1>
-<p>{{user.firstName}}</p>
-<p>{{user.lastName}}</p>
-<p>
-  <button (click)="logout()">Logout</button>
-</p>
+<div *ngIf="isShowEditAdmin">
+  <form [formGroup]="updateAdminForm">
+    <label  >First name: </label>
+    <br>
+    <input type="text"  formControlName="firstName" [(ngModel)]="user.firstName">
+    <br>
+    <label >Last name:</label>
+    <br>
+    <input type="text"   formControlName="lastName" [(ngModel)]="user.lastName">
+    <br>
+    <label  >Phone:</label>
+    <br>
+    <input type="text"  formControlName="phone" [(ngModel)]="user.phone">
+    <br>
+    <label  >Email:</label>
+    <br>
+    <input type="email"   formControlName="email" [(ngModel)]="user.email">
+    <br>
+    <button class="submit" [disabled]="updateAdminForm.invalid" (click)="updateAdmin()">Update</button>
+  </form>
+
+</div>
+
+<router-outlet></router-outlet>
+
+
 

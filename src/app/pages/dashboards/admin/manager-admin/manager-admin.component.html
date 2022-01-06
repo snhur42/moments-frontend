@@ -1,0 +1,86 @@
+<p>Managers</p>
+<button (click)="isShowAddManager = !isShowAddManager" >Add Manager</button>
+
+<div *ngIf="isShowAddManager" class="flex-column">
+  <form [formGroup]="createManagerForm">
+    <div class="col-5">
+      <label for="firstName">First name: </label>
+      <br>
+      <input type="text" id="firstName" formControlName="firstName">
+    </div>
+    <div class="col-5">
+      <label for="lastName">Last name:</label>
+      <br>
+      <input type="text" id="lastName" formControlName="lastName">
+    </div>
+    <div class="col-5">
+      <label for="phone">Phone:</label>
+      <br>
+      <input type="text" id="phone" formControlName="phone">
+    </div>
+    <div class="col-5">
+      <label for="email">Email:</label>
+      <br>
+      <input type="text" id="email" formControlName="email">
+    </div>
+    <div class="col-5">
+      <button class="submit" [disabled]="createManagerForm.invalid" (click)="createManager()">Create Manager</button>
+    </div>
+  </form>
+</div>
+<table class="users">
+  <thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>City</th>
+    <th>Edit</th>
+    <th>Block</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let manager of managers">
+    <td>{{manager.firstName}}</td>
+    <td>{{manager.lastName}}</td>
+    <td>{{manager.email}}</td>
+    <td>{{manager.phone}}</td>
+    <td>{{manager.city}}</td>
+    <td><button (click)="isShowEditManager = !isShowEditManager" >Edit Manager</button></td>
+    <td><button (click)="blockManager(manager.id)">Block manager</button></td>
+  </tr>
+  <tr *ngIf="isShowEditManager" >
+    <td colspan="7">
+    <form [formGroup]="updateManagerForm">
+      <div class="col-5">
+        <label for="firstName1">First name: </label>
+        <br>
+        <input type="text" id="firstName1" formControlName="firstName">
+      </div>
+      <div class="col-5">
+        <label for="lastName1">Last name:</label>
+        <br>
+        <input type="text" id="lastName1" formControlName="lastName">
+      </div>
+      <div class="col-5">
+        <label for="phone1">Phone:</label>
+        <br>
+        <input type="text" id="phone1" formControlName="phone">
+      </div>
+      <div class="col-5">
+        <label for="email1">Email:</label>
+        <br>
+        <input type="text" id="email1" formControlName="email">
+      </div>
+      <div class="col-5">
+        <button class="submit" [disabled]="updateManagerForm.invalid" (click)="updateManager()">Create Manager</button>
+      </div>
+    </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
