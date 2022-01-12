@@ -18,7 +18,7 @@ export class ManagerService {
     return this.http.get(environment.baseUrl + MANAGER_API + '/managers/' + managerId);
   }
 
-  logout(userId: string) {
-    this.auth.logout(userId);
+  logout() {
+    this.auth.logout();
   }
 }

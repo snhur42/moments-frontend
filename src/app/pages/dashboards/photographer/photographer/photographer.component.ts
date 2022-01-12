@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../../models/user/user";
-import {TokenStorageService} from "../../../../services/token-storage.service";
+import {LocalStorageService} from "../../../../services/local-storage.service";
 import {AdminService} from "../../../../services/admin.service";
 import {PhotographerService} from "../../../../services/photographer.service";
 
@@ -13,13 +13,13 @@ export class PhotographerComponent implements OnInit {
 
   user: User;
 
-  constructor(private tokenStorageService: TokenStorageService,
+  constructor(private localStorageService: LocalStorageService,
               private photographerService: PhotographerService,
   ) {
   }
 
   ngOnInit(): void {
-    this.photographerService.getPhotographerById(this.tokenStorageService.getUserId())
+    this.photographerService.getPhotographerById(this.localStorageService.getUserIdFromAccessToken())
       .subscribe(data => {
         this.user = data;
       });

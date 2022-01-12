@@ -17,7 +17,7 @@ export class PhotographerService {
     return this.http.get(environment.baseUrl + PHOTOGRAPHER_API + '/photographers/' + photographerId);
   }
 
-  logout(userId: string) {
-    this.auth.logout(userId);
+  logout() {
+    this.auth.logout();
   }
 }

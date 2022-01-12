@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {City} from "../models/user/city";
 import {Role} from "../models/user/role";
+import {CookieService} from "ngx-cookie-service";
 
 const ADMIN_API = 'admin/';
 
@@ -14,6 +15,7 @@ const ADMIN_API = 'admin/';
 export class AdminService {
 
   constructor(private http: HttpClient,
+              private cookieService: CookieService,
               private auth: AuthService) { }
 
   getAdminById(adminId: string): Observable<any> {
@@ -66,7 +68,8 @@ export class AdminService {
       userId,
       fingerPrint
     }).subscribe();
-    this.auth.logout(userId);
+    this.cookieService.deleteAll();
+    this.auth.logout();
   }
 
   updateAdmin(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: City): Observable<any> {

@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../../models/user/user";
-import {TokenStorageService} from "../../../../services/token-storage.service";
+import {LocalStorageService} from "../../../../services/local-storage.service";
 import {AdminService} from "../../../../services/admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import FingerprintJS from "@fingerprintjs/fingerprintjs-pro";
-import {environment} from "../../../../../environments/environment";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
-
-const fpPromise = FingerprintJS.load({
-  token: environment.fingerPrintToken
-})
-
+import {FingerPrintService} from "../../../../services/finger-print.service";
 
 @Component({
   selector: 'app-admin',
@@ -20,33 +14,29 @@ const fpPromise = FingerprintJS.load({
 })
 export class AdminComponent implements OnInit {
 
-  public fingerPrint: string
+  private fingerPrint: string
   isAdminUploaded: boolean;
   isShowEditAdmin: boolean;
   public updateAdminForm: FormGroup;
   user: User;
 
-  constructor(private adminService: AdminService,
-              private tokenStorageService: TokenStorageService,
+  constructor(private cookieService: CookieService,
+    private fingerPrintService: FingerPrintService,
+    private adminService: AdminService,
+              private localStorageService: LocalStorageService,
               private formBuilder: FormBuilder,
-              private router: Router,
-              private cookies: CookieService) {
+              private router: Router) {
     this.isAdminUploaded = false;
     this.isShowEditAdmin = false;
   }
 
   ngOnInit(): void {
-    fpPromise.then(fp => fp.get())
-      .then(result => {
-        this.fingerPrint = result.visitorId
-      })
 
-    this.adminService.getAdminById(this.tokenStorageService.getUserId())
+    this.adminService.getAdminById(this.localStorageService.getUserIdFromAccessToken())
       .subscribe(data => {
         this.user = data;
         this.isAdminUploaded = true;
       });
-
 
       this.updateAdminForm = this.formBuilder.group({
         firstName: ['', Validators.compose([Validators.required])],
@@ -54,9 +44,6 @@ export class AdminComponent implements OnInit {
         email: ['', Validators.compose([Validators.required, Validators.email])],
         phone: ['', Validators.compose([Validators.required])]
       })
-
-    console.log("refreshToken", this.cookies.get("refreshToken"))
-
   }
 
 
@@ -87,15 +74,11 @@ export class AdminComponent implements OnInit {
   }
 
   logout(): void{
-    this.adminService.logout(this.tokenStorageService.getUserId(), this.fingerPrint);
+    this.adminService.logout(this.localStorageService.getUserIdFromAccessToken(), this.fingerPrint);
     this.router.navigate(['']).then(r => {
       if (r) {
         window.location.reload()
       }
     })
   }
-
-
-
-
 }

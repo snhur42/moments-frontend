@@ -17,8 +17,8 @@ export class ClientService {
     return this.http.get(environment.baseUrl + CLIENT_API + '/client/' + clientId);
   }
 
-  logout(userId: string) {
-    this.auth.logout(userId);
+  logout() {
+    this.auth.logout();
   }
 
 }

@@ -5,12 +5,9 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080/api/',
-  tokenKey: 'auth-access-token',
-  userKey: 'auth-user-id',
-  expiredDate: 'auth-expired-date',
-  role: 'auth-role',
+  accessTokenKey: 'auth-access-token',
   fingerPrintToken: 'eUuBWKR9IvRV903YKBqk',
-  fingerPrint: 'fingerPrint'
+
 };
 
 /*
