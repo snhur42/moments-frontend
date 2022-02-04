@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "../../services/auth.service";
-import {LocalStorageService} from "../../services/local-storage.service";
+import {JwtTokenStorage} from "../../services/jwt-token-storage.service";
 import {Role} from "../../models/user/role";
 
 @Injectable({
@@ -11,7 +11,7 @@ import {Role} from "../../models/user/role";
 export class AuthAdminGuard implements CanActivate {
 
   constructor(private authService: AuthService,
-              private localStorageService: LocalStorageService,
+              private jwtTokenStorage: JwtTokenStorage,
               private router: Router) {
   }
 
@@ -20,15 +20,17 @@ export class AuthAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-    if (this.authService.isAuthenticated() && this.localStorageService.getRoleFromAccessToken() === Role.ADMIN.toString()){
+    if (this.authService.isAuthenticated() &&
+      this.jwtTokenStorage.getRole() === Role.ADMIN.toString()){
       return true;
     } else {
+      this.authService.logout(this.jwtTokenStorage.getUserId())
+      this.jwtTokenStorage.clear()
       this.router.navigate(['']).then(r => {
         if (r) {
           window.location.reload()
         }
       })
-      alert("You need to log in to access this page");
       return false
     }
 

@@ -16,7 +16,7 @@ export class AdminService {
 
   constructor(private http: HttpClient,
               private cookieService: CookieService,
-              private auth: AuthService) { }
+              private authService: AuthService) { }
 
   getAdminById(adminId: string): Observable<any> {
     return this.http.get(environment.baseUrl + ADMIN_API + 'admins/' + adminId);
@@ -34,17 +34,17 @@ export class AdminService {
 
   createManager(firstName: string,
                 lastName: string,
-                phone: string,
                 email: string,
+                phone: string,
                 city: City,
                 role: Role): Observable<any> {
-    return this.http.post(environment.baseUrl + ADMIN_API + 'create_manager', {firstName, lastName, phone, email, city, role});
+    return this.http.post(environment.baseUrl + ADMIN_API + 'create_manager', {firstName, lastName, email, phone, city, role});
   }
 
   createPhotographer(firstName: string,
                 lastName: string,
-                phone: string,
                 email: string,
+                phone: string,
                 city: City,
                 role: Role): Observable<any> {
     return this.http.post(environment.baseUrl + ADMIN_API + 'create_photographer', {firstName, lastName, phone, email, city, role});
@@ -61,15 +61,6 @@ export class AdminService {
 
   blockPhotographer(photographerId: string): void {
     this.http.put(environment.baseUrl+ ADMIN_API + `block_photographer/${photographerId}`,null).subscribe();
-  }
-
-  logout(userId: string, fingerPrint: string): void {
-    this.http.post(environment.baseUrl + "auth/logout", {
-      userId,
-      fingerPrint
-    }).subscribe();
-    this.cookieService.deleteAll();
-    this.auth.logout();
   }
 
   updateAdmin(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: City): Observable<any> {
@@ -91,5 +82,9 @@ export class AdminService {
   getAllClients(): Observable<any> {
     return this.http.get(environment.baseUrl + ADMIN_API + 'clients');
 
+  }
+
+  logout(userId: string): void {
+    this.authService.logout(userId);
   }
 }

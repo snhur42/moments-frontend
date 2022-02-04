@@ -1,49 +1,39 @@
 import {Injectable} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {LocalStorageService} from "../../services/local-storage.service";
+import {JwtTokenStorage} from "../../services/jwt-token-storage.service";
 import {AuthService} from "../../services/auth.service";
-import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
+import {Observable} from "rxjs";
 
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
 
-
-
-  constructor(private localStorageService: LocalStorageService,
-              private cookies: CookieService,
+  constructor(private jwtTokenStorage: JwtTokenStorage,
+              private router: Router,
               private authService: AuthService) {
 
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.authService.isAuthenticated()) {
-      if (this.localStorageService.getExpFromAccessToken() < new Date()) {
-        this.authService.refreshToken().subscribe({
-          next: data => {
-            if(data.success) {
-              this.localStorageService.saveAccessToken(data.accessToken)
-            }
-          },
-          error: err => {
-            console.log('refresh error ', err);
-          }
-        })
-      }
 
+    if(this.authService.isAuthenticated()) {
       req = req.clone({
         setHeaders: {
-          Bearer: this.localStorageService.getAccessToken()
-          // Authorization: this.tokenStorageService.getToken()
-        }
-      })
+          Authorization: environment.headerPrefix + " " + this.jwtTokenStorage.getToken()
+        }})
+    } else {
+        this.router.navigate(['']).then(r => {
+          if (r) {
+            window.location.reload()
+          }
+        })
     }
-
-    return next.handle(req);
+      return next.handle(req);
   }
-
 }
+
 
 export const authInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}

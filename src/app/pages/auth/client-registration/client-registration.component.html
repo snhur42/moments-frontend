@@ -1,0 +1,37 @@
+  <form [formGroup]="createClientForm">
+    <div class="col-5">
+      <label for="firstName">First name: </label>
+      <br>
+      <input type="text" id="firstName" formControlName="firstName">
+    </div>
+    <div class="col-5">
+      <label for="lastName">Last name:</label>
+      <br>
+      <input type="text" id="lastName" formControlName="lastName">
+    </div>
+    <div class="col-5">
+      <label for="phone">Phone:</label>
+      <br>
+      <input type="text" id="phone" formControlName="phone">
+    </div>
+    <div class="col-5">
+      <label for="email">Email:</label>
+      <br>
+      <input type="text" id="email" formControlName="email">
+    </div>
+
+    <div class="col-5">
+      <label for="password">Password:</label>
+      <br>
+      <input type="password" id="password" formControlName="password">
+    </div>
+    <div class="col-5">
+      <button class="submit" [disabled]="createClientForm.invalid" (click)="createClient()">Create Client</button>
+    </div>
+  </form>
+
+
+  <div *ngIf="isRegSuccess">
+    <p>Reg is success</p>
+    <a href="/">Login</a>
+  </div>

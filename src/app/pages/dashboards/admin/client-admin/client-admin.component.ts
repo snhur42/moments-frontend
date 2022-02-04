@@ -13,8 +13,13 @@ export class ClientAdminComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.adminService.getAllClients().subscribe({
+    console.log('this.adminService.getAllClients');
+
+    this.adminService.getAllClients()
+      .subscribe({
       next: data => {
+        console.log('this.clients = data;');
+
         this.clients = data;
       }, error: err => {
         console.log(err)

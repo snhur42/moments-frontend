@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../../models/user/user";
-import {LocalStorageService} from "../../../../services/local-storage.service";
+import {JwtTokenStorage} from "../../../../services/jwt-token-storage.service";
 import {AdminService} from "../../../../services/admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
-import {FingerPrintService} from "../../../../services/finger-print.service";
 
 @Component({
   selector: 'app-admin',
@@ -13,17 +12,14 @@ import {FingerPrintService} from "../../../../services/finger-print.service";
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
-  private fingerPrint: string
   isAdminUploaded: boolean;
   isShowEditAdmin: boolean;
   public updateAdminForm: FormGroup;
   user: User;
 
-  constructor(private cookieService: CookieService,
-    private fingerPrintService: FingerPrintService,
-    private adminService: AdminService,
-              private localStorageService: LocalStorageService,
+  constructor(private adminService: AdminService,
+              private jwtTokenStorage: JwtTokenStorage,
+              private cookies: CookieService,
               private formBuilder: FormBuilder,
               private router: Router) {
     this.isAdminUploaded = false;
@@ -31,8 +27,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.adminService.getAdminById(this.localStorageService.getUserIdFromAccessToken())
+    this.adminService.getAdminById(this.jwtTokenStorage.getUserId())
       .subscribe(data => {
         this.user = data;
         this.isAdminUploaded = true;
@@ -74,7 +69,7 @@ export class AdminComponent implements OnInit {
   }
 
   logout(): void{
-    this.adminService.logout(this.localStorageService.getUserIdFromAccessToken(), this.fingerPrint);
+    this.adminService.logout(this.user.id);
     this.router.navigate(['']).then(r => {
       if (r) {
         window.location.reload()

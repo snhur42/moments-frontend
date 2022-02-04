@@ -50,7 +50,7 @@
     <td><button (click)="isShowEditManager = !isShowEditManager" >Edit Manager</button></td>
     <td><button (click)="blockManager(manager.id)">Block manager</button></td>
   </tr>
-  <tr *ngIf="isShowEditManager" >
+  <tr>
     <td colspan="7">
     <form [formGroup]="updateManagerForm">
       <div class="col-5">
@@ -81,6 +81,5 @@
   </tr>
   </tbody>
 </table>
-
 
 

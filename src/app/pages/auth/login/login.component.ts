@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
-import {LocalStorageService} from "../../../services/local-storage.service";
-import {environment} from "../../../../environments/environment";
-import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
-import {Role} from "../../../models/user/role";
+import {JwtTokenStorage} from "../../../services/jwt-token-storage.service";
 
-const fpPromise = FingerprintJS.load({
-  token: environment.fingerPrintToken
-})
+import {Role} from "../../../models/user/role";
+import {FingerPrintService} from "../../../services/finger-print.service";
 
 @Component({
   selector: 'app-login',
@@ -18,47 +14,51 @@ const fpPromise = FingerprintJS.load({
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  public fingerPrint: string
+  public fingerPrint: string;
+  public errorLogin: boolean;
 
 constructor(
     private authService: AuthService,
+    private fingerPrintService: FingerPrintService,
     private router: Router,
-    private localStorageService: LocalStorageService,
+    private jwtTokenStorage: JwtTokenStorage,
     private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
 
     if (this.authService.isAuthenticated()) {
-      if(this.localStorageService.getRoleFromAccessToken() == Role.ADMIN){
+      if(this.jwtTokenStorage.getRole() == Role.ADMIN){
         this.router.navigate(['admin_panel']);
       }
     }
 
+    this.errorLogin = false;
+
     this.loginForm = this.createLoginForm();
 
-    fpPromise.then(fp => fp.get())
-      .then(result => {
-        this.fingerPrint = result.visitorId
-      })
+
   }
 
   createLoginForm(): FormGroup {
     return this.fb.group({
-      username: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required])],
     });
   }
 
   submit(): void {
     this.authService.login(
-      this.loginForm.value.username,
+      this.loginForm.value.email,
       this.loginForm.value.password,
+      this.fingerPrintService.getFingerPrint()
     ).subscribe({
       next: data => {
         if(data.success) {
-          this.localStorageService.saveAccessToken(data.accessToken);
-          this.router.navigate([LoginComponent.getUserRole(this.localStorageService.getRoleFromAccessToken())]);
+          this.jwtTokenStorage.saveToken(data.accessToken);
+          this.router.navigate([LoginComponent.getUserRole(this.jwtTokenStorage.getRole())]);
+        } else {
+          this.errorLogin = true;
         }
       },
       error: err =>  {
@@ -80,7 +80,4 @@ constructor(
       return "error";
     }
   }
-
-
-
 }

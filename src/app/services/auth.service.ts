@@ -1,10 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, take} from "rxjs";
 import {environment} from "../../environments/environment";
-import {LocalStorageService} from "./local-storage.service";
+import {JwtTokenStorage} from "./jwt-token-storage.service";
 import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
 import {FingerPrintService} from "./finger-print.service";
 
 
@@ -15,49 +14,39 @@ import {FingerPrintService} from "./finger-print.service";
 export class AuthService{
 
   constructor(private http: HttpClient,
-              private localStorageService: LocalStorageService,
-              private router: Router,
-              private cookieService: CookieService,
-              private fingerPrintService: FingerPrintService)
+              private cookies: CookieService,
+              private fingerPrintService: FingerPrintService,
+              private jwtTokenStorage: JwtTokenStorage)
   {
 
   }
 
 
-  public login(username: string, password: string): Observable<any> {
-
-
-    return this.http.post(environment.baseUrl + 'auth/login', {
-      username: username,
+  public login(email: string, password: string, fingerPrint: string): Observable<any> {
+    return this.http.post(environment.baseUrl + 'auth/login',{
+      email: email,
       password: password,
-      fingerPrint: this.fingerPrintService.getFingerPrint(),
+      fingerPrint: fingerPrint,
+    },{
+      withCredentials: true
     })
+  }
+
+  public logout(userId: string): void {
+    this.http.post(environment.baseUrl + 'auth/logout', {
+      userId: userId,
+      fingerPrint: this.fingerPrintService.getFingerPrint()
+    }).subscribe()
+    this.jwtTokenStorage.clear();
+    this.cookies.deleteAll();
   }
 
   public refreshToken(): Observable<any> {
-
-
-
-    return this.http.post(environment.baseUrl + 'auth/refresh_token', {
-      userId: this.localStorageService.getUserIdFromAccessToken(),
-      fingerPrint: this.fingerPrintService.getFingerPrint(),
-    })
-  }
-
-
-  public logout(): void {
-    this.http.post(environment.baseUrl + 'auth/logout', {
-      userId: this.localStorageService.getUserIdFromAccessToken(),
-      fingerPrint: this.fingerPrintService.getFingerPrint(),
-    }).subscribe()
-    this.localStorageService.clear();
+    return this.http.post(environment.baseUrl + 'auth/refresh_token',{},{withCredentials: true})
   }
 
   isAuthenticated(): boolean {
-    return !!this.localStorageService.getAccessToken();
+    return !!this.jwtTokenStorage.getToken()
   }
 
-  deleteAllRefreshToken() {
-    this.http.delete(environment.baseUrl + 'auth/delete_refresh_tokens').subscribe()
-  }
 }

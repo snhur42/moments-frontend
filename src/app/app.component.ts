@@ -11,8 +11,4 @@ export class AppComponent {
 
   constructor(private authService: AuthService) {
   }
-
-  delete() {
-    this.authService.deleteAllRefreshToken();
-  }
 }

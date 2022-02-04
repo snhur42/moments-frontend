@@ -24,8 +24,13 @@ export class PhotographerAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.adminService.getAllPhotographers().subscribe({
+    console.log('this.adminService.getAllPhotographers');
+    this.adminService.getAllPhotographers()
+
+      .subscribe({
       next: data => {
+        console.log('this.photographers = data;');
+
         this.photographers = data;
       }, error: err => {
         console.log(err)
@@ -33,10 +38,10 @@ export class PhotographerAdminComponent implements OnInit {
       }
     })
     this.createPhotographerForm = this.formBuilder.group({
-      firstName:  ['', Validators.compose([Validators.required])],
-      lastName:  ['', Validators.compose([Validators.required])],
-      email:   ['', Validators.compose([Validators.required])],
-      phone:  ['', Validators.compose([Validators.required])],
+      firstName:  ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
+      lastName:  ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+      email:   ['', Validators.compose([Validators.required, Validators.email])],
+      phone:  ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]+')])]
     });
 
     this.updatePhotographerForm = this.formBuilder.group({
@@ -57,7 +62,7 @@ export class PhotographerAdminComponent implements OnInit {
       this.createPhotographerForm.value.email,
       this.createPhotographerForm.value.phone,
       City.KYIV,
-      Role.MANAGER
+      Role.PHOTOGRAPHER
     ).subscribe({
       error: err =>  {
         console.log(err)

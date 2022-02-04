@@ -13,6 +13,10 @@ import {ManagerModule} from "./pages/dashboards/manager/manager.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {authInterceptorProviders} from "./core/interceptors/auth.interceptor";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from "./material.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {refreshTokenInterceptorProviders} from "./core/interceptors/refresh-token.interceptor";
 
 @NgModule({
   declarations: [
@@ -31,8 +35,11 @@ import {authInterceptorProviders} from "./core/interceptors/auth.interceptor";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FlexLayoutModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, refreshTokenInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

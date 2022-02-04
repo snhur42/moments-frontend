@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../../models/user/user";
-import {LocalStorageService} from "../../../../services/local-storage.service";
+import {JwtTokenStorage} from "../../../../services/jwt-token-storage.service";
 import {AdminService} from "../../../../services/admin.service";
 import {ClientService} from "../../../../services/client.service";
 
@@ -12,13 +12,13 @@ import {ClientService} from "../../../../services/client.service";
 export class ClientComponent implements OnInit {
   user: User;
 
-  constructor(private localStorageService: LocalStorageService,
+  constructor(private jwtTokenStorage: JwtTokenStorage,
               private clientService: ClientService,
   ) {
   }
 
   ngOnInit(): void {
-    this.clientService.getClientById(this.localStorageService.getUserIdFromAccessToken())
+    this.clientService.getClientById(this.jwtTokenStorage.getUserId())
       .subscribe(data => {
         this.user = data;
       });

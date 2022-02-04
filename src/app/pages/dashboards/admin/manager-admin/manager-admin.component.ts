@@ -24,19 +24,23 @@ export class ManagerAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.adminService.getAllManagers().subscribe({
+    console.log('this.adminService.getAllManagers');
+
+    this.adminService.getAllManagers()
+      .subscribe({
       next: data => {
+        console.log('this.managers = data;');
         this.managers = data;
       }, error: err => {
-        console.log(err)
+        console.log("Error ", err.value)
         this.managers = []
       }
     })
     this.createManagerForm = this.formBuilder.group({
-      firstName:  ['', Validators.compose([Validators.required])],
-      lastName:  ['', Validators.compose([Validators.required])],
-      email:   ['', Validators.compose([Validators.required])],
-      phone:  ['', Validators.compose([Validators.required])],
+      firstName:  ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
+      lastName:  ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+      email:   ['', Validators.compose([Validators.required, Validators.email])],
+      phone:  ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]{10}')])]
     });
 
     this.updateManagerForm = this.formBuilder.group({

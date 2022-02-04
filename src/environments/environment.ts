@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080/api/',
-  accessTokenKey: 'auth-access-token',
+  tokenKey: 'auth-jwt-token',
+  headerPrefix: 'Bearer',
   fingerPrintToken: 'eUuBWKR9IvRV903YKBqk',
 
 };

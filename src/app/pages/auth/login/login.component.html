@@ -1,34 +1,27 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
-<form  [formGroup]="loginForm">
-  <label for="username">Phone:</label>
-  <br>
-  <input type="email"  id="username" formControlName="username">
-  <br> <br>
-  <label for="password">Password:</label>
-  <br>
-  <input  type="password" id="password" formControlName="password">
-  <br> <br>
-  <button type="submit"  [disabled]="loginForm.invalid" (click)="submit()">Login</button>
-</form>
+  <mat-card class="box">
 
+    <mat-card-header>
+      <mat-card-title>Вхід до особистого кабінету</mat-card-title>
+    </mat-card-header>
+    <br>
+    <form [formGroup]="loginForm">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ваш email</mat-label>
+          <input type="email" matInput formControlName="email" >
+        </mat-form-field>
 
-<!--<script>-->
-<!--  // Initialize the agent at application startup.-->
-<!--  const fpPromise = new Promise((resolve, reject) => {-->
-<!--    const script = document.createElement('script');-->
-<!--    script.onload = resolve;-->
-<!--    script.onerror = reject;-->
-<!--    script.async = true;-->
-<!--    script.src = 'https://cdn.jsdelivr.net/npm/'-->
-<!--      + '@fingerprintjs/fingerprintjs-pro@3/dist/fp.min.js';-->
-<!--    document.head.appendChild(script);-->
-<!--  })-->
-<!--    .then(() => FingerprintJS.load({-->
-<!--      token: 'eUuBWKR9IvRV903YKBqk'-->
-<!--    }));-->
+        <mat-form-field class="example-full-width">
+          <mat-label>Ваш пароль</mat-label>
+          <input type="password" matInput formControlName="password">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button  [disabled]="loginForm.invalid" (click)="submit()">Увійти</button>
+      <br>
+      <mat-error *ngIf="errorLogin">Помилка авторизації. Спробуйте ще раз. </mat-error>
+    </form>
+  </mat-card>
 
-<!--  // Get the visitor identifier when you need it.-->
-<!--  fpPromise-->
-<!--    .then(fp => fp.get())-->
-<!--    .then(result => console.log(result.visitorId));-->
-<!--</script>-->
+</div>

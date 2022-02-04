@@ -1,7 +1,17 @@
+<hr>
+<h1 style="color: cornflowerblue">Photographer panel</h1>
+<div *ngIf="isPhotographerUploaded">
+  <div>
+    <p>{{photographer.firstName}} {{photographer.lastName}}</p>
+    <p>phone: {{photographer.phone}}</p>
+    <p>email: {{photographer.email}}</p>
+    <p>city: {{photographer.city}}</p>
+<!--    <hr>-->
+<!--    <ul>-->
+<!--      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/managers']">Show Managers</a></li>-->
+<!--      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/photographers']">Show Photographers</a></li>-->
+<!--      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/clients']">Show Clients</a></li>-->
+<!--    </ul>-->
+  </div>
+</div>
 
-<h1>Photographer panel</h1>
-<p>{{user.firstName}}</p>
-<p>{{user.lastName}}</p>
-<h1>
-  <a (click)="logout()">Logout</a>
-</h1>
