@@ -29,7 +29,33 @@
   </div>
 
   <div *ngIf="isShowPhotoSessionBlock">
-<!--    <button (click)="addCertificate()">Add New PhotoSession</button>-->
+    <button (click)="isAddPhotoSessionBlock = !isAddPhotoSessionBlock">Add New PhotoSession</button>
+    <form [formGroup]="photoSessionForm" *ngIf="isAddPhotoSessionBlock" (submit)="submitPhotoSession()">
+      <div class="col-5">
+        <label for="firstName1">Client: </label>
+        <br>
+        <select ng-model="prop.value" ng-options="v for v in prop.values">
+        </select>
+      </div>
+      <div class="col-5">
+        <label for="lastName1">Last name:</label>
+        <br>
+        <input formControlName="lastName" id="lastName1" type="text">
+      </div>
+      <div class="col-5">
+        <label for="phone1">Phone:</label>
+        <br>
+        <input formControlName="phone" id="phone1" type="text">
+      </div>
+      <div class="col-5">
+        <label for="email1">Email:</label>
+        <br>
+        <input formControlName="email" id="email1" type="text">
+      </div>
+      <div class="col-5">
+        <button disabled]="photoSessionForm.invalid" class="submit">Create PhotoSession</button>
+      </div>
+    </form>
 
     <table>
       <thead>

@@ -3,6 +3,7 @@ import {AdminService} from "../../../../services/admin.service";
 import {User} from "../../../../models/user/user";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Role} from "../../../../models/enum/role";
+import {City} from "../../../../models/enum/city";
 
 @Component({
   selector: 'app-manager-admin',
@@ -38,6 +39,7 @@ export class ManagerAdminComponent implements OnInit {
     this.createManagerForm = this.formBuilder.group({
       firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
       lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       phone: ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]{10}')])]
     });
@@ -59,7 +61,8 @@ export class ManagerAdminComponent implements OnInit {
       this.createManagerForm.value.lastName,
       this.createManagerForm.value.email,
       this.createManagerForm.value.phone,
-      'KYIV',
+      this.createManagerForm.value.password,
+      City.KYIV,
       Role.MANAGER
     ).subscribe({
       error: err => {

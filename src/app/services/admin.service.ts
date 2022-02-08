@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {Role} from "../models/enum/role";
 import {CookieService} from "ngx-cookie-service";
 import {CurrentBriefQuestions} from "../models/photo_session/current_brief_questions";
+import {City} from "../models/enum/city";
 
 const ADMIN_API = 'admin/';
 
@@ -27,7 +28,7 @@ export class AdminService {
               lastName: string,
               phone: string,
               email: string,
-              city: string,
+              city: City,
               role: Role): Observable<any> {
     return this.http.post(environment.baseUrl + ADMIN_API + 'create_admin', {
       firstName,
@@ -44,13 +45,15 @@ export class AdminService {
                 lastName: string,
                 email: string,
                 phone: string,
-                city: string,
+                password: string,
+                city: City,
                 role: Role): Observable<any> {
     return this.http.post(environment.baseUrl + ADMIN_API + 'create_manager', {
       firstName,
       lastName,
       email,
       phone,
+      password,
       city,
       role
     });
@@ -60,7 +63,7 @@ export class AdminService {
                      lastName: string,
                      email: string,
                      phone: string,
-                     city: string,
+                     city: City,
                      role: Role): Observable<any> {
     return this.http.post(environment.baseUrl + ADMIN_API + 'create_photographer', {
       firstName,
@@ -85,7 +88,7 @@ export class AdminService {
     this.http.put(environment.baseUrl + ADMIN_API + `block_photographer/${photographerId}`, null).subscribe();
   }
 
-  updateAdmin(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: string): Observable<any> {
+  updateAdmin(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: City): Observable<any> {
     return this.http.put(environment.baseUrl + ADMIN_API + `update_admin/${userId}`, {
       firstName,
       lastName,
@@ -96,7 +99,7 @@ export class AdminService {
     });
   }
 
-  updateManager(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: string): Observable<any> {
+  updateManager(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: City): Observable<any> {
     return this.http.put(environment.baseUrl + ADMIN_API + `update_manager/${userId}`, {
       firstName,
       lastName,
@@ -107,7 +110,7 @@ export class AdminService {
     });
   }
 
-  updatePhotographer(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: string): Observable<any> {
+  updatePhotographer(userId: string, firstName: string, lastName: string, phone: string, email: string, role: Role, city: City): Observable<any> {
     return this.http.put(environment.baseUrl + ADMIN_API + `update_photographer/${userId}`, {
       firstName,
       lastName,

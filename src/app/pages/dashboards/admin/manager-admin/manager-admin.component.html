@@ -24,6 +24,11 @@
       <input formControlName="email" id="email" type="text">
     </div>
     <div class="col-5">
+      <label for="password">Password:</label>
+      <br>
+      <input formControlName="password" id="password" type="password">
+    </div>
+    <div class="col-5">
       <button (click)="createManager()" [disabled]="createManagerForm.invalid" class="submit">Create Manager</button>
     </div>
   </form>
@@ -54,7 +59,7 @@
       <button (click)="blockManager(manager.id)">Block manager</button>
     </td>
   </tr>
-  <tr>
+  <tr *ngIf="isShowEditManager">
     <td colspan="7">
       <form [formGroup]="updateManagerForm">
         <div class="col-5">

@@ -3,6 +3,7 @@ import {User} from "../../../../models/user/user";
 import {AdminService} from "../../../../services/admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Role} from "../../../../models/enum/role";
+import {City} from "../../../../models/enum/city";
 
 @Component({
   selector: 'app-photographer-admin',
@@ -60,7 +61,7 @@ export class PhotographerAdminComponent implements OnInit {
       this.createPhotographerForm.value.lastName,
       this.createPhotographerForm.value.email,
       this.createPhotographerForm.value.phone,
-      'KYIV',
+      City.KYIV,
       Role.PHOTOGRAPHER
     ).subscribe({
       error: err => {
