@@ -1,33 +1,31 @@
-import {Injectable, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, take} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {JwtTokenStorage} from "./jwt-token-storage.service";
 import {CookieService} from "ngx-cookie-service";
 import {FingerPrintService} from "./finger-print.service";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService{
+export class AuthService {
 
   constructor(private http: HttpClient,
               private cookies: CookieService,
               private fingerPrintService: FingerPrintService,
-              private jwtTokenStorage: JwtTokenStorage)
-  {
+              private jwtTokenStorage: JwtTokenStorage) {
 
   }
 
 
   public login(email: string, password: string, fingerPrint: string): Observable<any> {
-    return this.http.post(environment.baseUrl + 'auth/login',{
+    return this.http.post(environment.baseUrl + 'auth/login', {
       email: email,
       password: password,
       fingerPrint: fingerPrint,
-    },{
+    }, {
       withCredentials: true
     })
   }
@@ -42,7 +40,7 @@ export class AuthService{
   }
 
   public refreshToken(): Observable<any> {
-    return this.http.post(environment.baseUrl + 'auth/refresh_token',{},{withCredentials: true})
+    return this.http.post(environment.baseUrl + 'auth/refresh_token', {}, {withCredentials: true})
   }
 
   isAuthenticated(): boolean {

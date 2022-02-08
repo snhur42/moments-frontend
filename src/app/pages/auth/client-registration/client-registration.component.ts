@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {City} from "../../../models/user/city";
-import {Role} from "../../../models/user/role";
+import {Role} from "../../../models/enum/role";
 import {ClientService} from "../../../services/client.service";
 
 @Component({
@@ -12,16 +11,18 @@ import {ClientService} from "../../../services/client.service";
 export class ClientRegistrationComponent implements OnInit {
   public createClientForm: FormGroup;
   public isRegSuccess: boolean;
+
   constructor(private formBuilder: FormBuilder,
-              private clientService: ClientService) { }
+              private clientService: ClientService) {
+  }
 
   ngOnInit(): void {
     this.createClientForm = this.formBuilder.group({
-      firstName:  ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
-      lastName:  ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-      email:   ['', Validators.compose([Validators.required, Validators.email])],
-      phone:  ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]{10}')])],
-      password:  ['', Validators.compose([Validators.required])]
+      firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
+      lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      phone: ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]{10}')])],
+      password: ['', Validators.compose([Validators.required])]
     });
 
     this.isRegSuccess = false;
@@ -34,10 +35,10 @@ export class ClientRegistrationComponent implements OnInit {
       this.createClientForm.value.email,
       this.createClientForm.value.phone,
       this.createClientForm.value.password,
-      City.KYIV,
+      'KYIV',
       Role.CLIENT
     ).subscribe({
-      error: err =>  {
+      error: err => {
         console.log(err)
       }
     })

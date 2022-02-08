@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ManagerComponent } from './manager/manager.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ManagerComponent} from './manager/manager.component';
 import {RouterModule} from "@angular/router";
-import {AdminComponent} from "../admin/admin/admin.component";
-
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +17,9 @@ import {AdminComponent} from "../admin/admin/admin.component";
           // {path: 'profile', component: UserProfile}
         ]
       }
-    ])
+    ]),
+    FormsModule
   ]
 })
-export class ManagerModule { }
+export class ManagerModule {
+}

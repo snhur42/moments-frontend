@@ -3,45 +3,74 @@
 <h1 style="color: cornflowerblue">Admin panel</h1>
 
 
-
 <div *ngIf="isAdminUploaded">
   <div>
-  <p>{{user.firstName}} {{user.lastName}}</p>
-  <p>phone: {{user.phone}}</p>
-  <p>email: {{user.email}}</p>
-  <p>city: {{user.city}}</p>
-    <button (click)="isShowEditAdmin = !isShowEditAdmin" >Edit Admin</button>
-  <hr>
+    <p>{{user.firstName}} {{user.lastName}}</p>
+    <p>phone: {{user.phone}}</p>
+    <p>email: {{user.email}}</p>
+    <p>city: {{user.city}}</p>
+    <button (click)="isShowEditAdmin = !isShowEditAdmin">Edit Admin</button>
+    <hr>
     <ul>
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/managers']">Show Managers</a></li>
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/photographers']">Show Photographers</a></li>
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin_panel/clients']">Show Clients</a></li>
+      <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a
+        [routerLink]="['/admin_panel/managers']">Show Managers</a></li>
+      <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a
+        [routerLink]="['/admin_panel/photographers']">Show Photographers</a></li>
+      <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a
+        [routerLink]="['/admin_panel/clients']">Show Clients</a></li>
     </ul>
   </div>
 </div>
 
 <div *ngIf="isShowEditAdmin">
   <form [formGroup]="updateAdminForm">
-    <label  >First name: </label>
+    <label>First name: </label>
     <br>
-    <input type="text"  formControlName="firstName" [(ngModel)]="user.firstName">
+    <input [(ngModel)]="user.firstName" formControlName="firstName" type="text">
     <br>
-    <label >Last name:</label>
+    <label>Last name:</label>
     <br>
-    <input type="text"   formControlName="lastName" [(ngModel)]="user.lastName">
+    <input [(ngModel)]="user.lastName" formControlName="lastName" type="text">
     <br>
-    <label  >Phone:</label>
+    <label>Phone:</label>
     <br>
-    <input type="text"  formControlName="phone" [(ngModel)]="user.phone">
+    <input [(ngModel)]="user.phone" formControlName="phone" type="text">
     <br>
-    <label  >Email:</label>
+    <label>Email:</label>
     <br>
-    <input type="email"   formControlName="email" [(ngModel)]="user.email">
+    <input [(ngModel)]="user.email" formControlName="email" type="email">
     <br>
-    <button class="submit" [disabled]="updateAdminForm.invalid" (click)="updateAdmin()">Update</button>
+    <button (click)="updateAdmin()" [disabled]="updateAdminForm.invalid" class="submit">Update</button>
   </form>
 
 </div>
+
+<button (click)="showBriefQuestions()">Edit Brief Question</button>
+
+<div *ngIf="isShowBriefQuestion">
+  <br>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Title..."
+    [(ngModel)]="question"
+  >
+  <br>
+  <button (click)="addQuestionsToBrief()">Add Question</button>
+
+  <hr>
+  <br>
+  <ul *ngFor="let question of currentBriefQuestions.questions; index as i;">
+    <li>{{question}}</li>
+    <p>{{i}}</p>
+    <button (click)="upQuestion(i)" *ngIf="i>0">Up</button>
+    <button (click)="downQuestion(i)" *ngIf="i + 1 < currentBriefQuestions.questions.length">Down</button>
+    <button (click)="deleteQuestion(question)">Delete</button>
+  </ul>
+  <hr>
+  <button (click)="updateBriefQuestion()">Update Brief Question</button>
+</div>
+
 
 <router-outlet></router-outlet>
 

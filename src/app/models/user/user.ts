@@ -1,8 +1,8 @@
 import {AbstractEntity} from "../abstract-entity";
-import {Role} from "./role";
-import {City} from "./city";
+import {Role} from "../enum/role";
+import {City} from "../enum/city";
 
-export interface User extends AbstractEntity{
+export interface User extends AbstractEntity {
   firstName: string;
   lastName: string;
   phone: string;

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {AuthService} from "../../services/auth.service";
 import {JwtTokenStorage} from "../../services/jwt-token-storage.service";
-import {Role} from "../../models/user/role";
+import {Role} from "../../models/enum/role";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AuthAdminGuard implements CanActivate {
 
 
     if (this.authService.isAuthenticated() &&
-      this.jwtTokenStorage.getRole() === Role.ADMIN.toString()){
+      this.jwtTokenStorage.getRole() === Role.ADMIN.toString()) {
       return true;
     } else {
       this.authService.logout(this.jwtTokenStorage.getUserId())

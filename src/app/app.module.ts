@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {LayersModule} from "./layers/layers.module";
 import {RouterModule} from "@angular/router";
 import {AuthModule} from "./pages/auth/auth.module";
@@ -13,7 +13,7 @@ import {ManagerModule} from "./pages/dashboards/manager/manager.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {authInterceptorProviders} from "./core/interceptors/auth.interceptor";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {refreshTokenInterceptorProviders} from "./core/interceptors/refresh-token.interceptor";
@@ -42,4 +42,5 @@ import {refreshTokenInterceptorProviders} from "./core/interceptors/refresh-toke
   providers: [authInterceptorProviders, refreshTokenInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

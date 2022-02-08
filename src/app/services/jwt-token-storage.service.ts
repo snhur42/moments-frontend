@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import jwt_decode from 'jwt-decode';
 
@@ -8,7 +8,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class JwtTokenStorage {
 
-   public saveToken(token: string): void {
+  public saveToken(token: string): void {
     window.localStorage.removeItem(environment.tokenKey);
     window.localStorage.setItem(environment.tokenKey, token);
   }
@@ -19,37 +19,34 @@ export class JwtTokenStorage {
   }
 
   public getRole(): string {
-      try{
-        // @ts-ignore
-        return jwt_decode(this.getToken()).role;
-      }
-      catch(Error){
-        console.error("RoleFromAccessTokenError")
-        return "RoleFromAccessTokenError"
-      }
+    try {
+      // @ts-ignore
+      return jwt_decode(this.getToken()).role;
+    } catch (Error) {
+      console.error("RoleFromAccessTokenError")
+      return "RoleFromAccessTokenError"
     }
+  }
 
-    public getUserId(): string {
-      try{
-        // @ts-ignore
-        return jwt_decode(this.getToken()).sub;
-      }
-      catch(Error){
-        console.error("UserIdFromAccessToken")
-        return "UserIdFromAccessToken"
-      }
+  public getUserId(): string {
+    try {
+      // @ts-ignore
+      return jwt_decode(this.getToken()).sub;
+    } catch (Error) {
+      console.error("UserIdFromAccessToken")
+      return "UserIdFromAccessToken"
     }
+  }
 
-    // @ts-ignore
+  // @ts-ignore
   public isExpired(): boolean {
 
-      try {
-        // @ts-ignore
-        return new Date(jwt_decode(this.getToken()).exp*1000 - 5000) < new Date();
-      }
-      catch(Error){
-      }
+    try {
+      // @ts-ignore
+      return new Date(jwt_decode(this.getToken()).exp * 1000 - 5000) < new Date();
+    } catch (Error) {
     }
+  }
 
   clear(): void {
     window.localStorage.clear();

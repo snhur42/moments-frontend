@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ErrorComponent } from './error/error.component';
-import { LoginComponent } from './login/login.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ErrorComponent} from './error/error.component';
+import {LoginComponent} from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../../material.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import { ClientRegistrationComponent } from './client-registration/client-registration.component';
-
+import {ClientRegistrationComponent} from './client-registration/client-registration.component';
 
 
 @NgModule({
@@ -22,4 +21,5 @@ import { ClientRegistrationComponent } from './client-registration/client-regist
     FlexLayoutModule
   ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

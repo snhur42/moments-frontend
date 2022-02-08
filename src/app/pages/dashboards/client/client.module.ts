@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ClientComponent } from './client/client.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ClientComponent} from './client/client.component';
 import {RouterModule} from "@angular/router";
-import {AdminComponent} from "../admin/admin/admin.component";
-
 
 
 @NgModule({
@@ -21,4 +19,5 @@ import {AdminComponent} from "../admin/admin/admin.component";
     ])
   ]
 })
-export class ClientModule { }
+export class ClientModule {
+}

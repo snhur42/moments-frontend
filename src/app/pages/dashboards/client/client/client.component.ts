@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../../models/user/user";
 import {JwtTokenStorage} from "../../../../services/jwt-token-storage.service";
-import {AdminService} from "../../../../services/admin.service";
 import {ClientService} from "../../../../services/client.service";
 
 @Component({
@@ -24,7 +23,7 @@ export class ClientComponent implements OnInit {
       });
   }
 
-  logout(): void{
+  logout(): void {
 
   }
 }

@@ -18,19 +18,20 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated()) {
       req = req.clone({
         setHeaders: {
           Authorization: environment.headerPrefix + " " + this.jwtTokenStorage.getToken()
-        }})
+        }
+      })
     } else {
-        this.router.navigate(['']).then(r => {
-          if (r) {
-            window.location.reload()
-          }
-        })
+      this.router.navigate(['']).then(r => {
+        if (r) {
+          window.location.reload()
+        }
+      })
     }
-      return next.handle(req);
+    return next.handle(req);
   }
 }
 

@@ -1,30 +1,32 @@
 <p>Managers</p>
-<button (click)="isShowAddPhotographer = !isShowAddPhotographer" >Add Photographer</button>
+<button (click)="isShowAddPhotographer = !isShowAddPhotographer">Add Photographer</button>
 
 <div *ngIf="isShowAddPhotographer" class="flex-column">
   <form [formGroup]="createPhotographerForm">
     <div class="col-5">
       <label for="firstName">First name: </label>
       <br>
-      <input type="text" id="firstName" formControlName="firstName">
+      <input formControlName="firstName" id="firstName" type="text">
     </div>
     <div class="col-5">
       <label for="lastName">Last name:</label>
       <br>
-      <input type="text" id="lastName" formControlName="lastName">
+      <input formControlName="lastName" id="lastName" type="text">
     </div>
     <div class="col-5">
       <label for="phone">Phone:</label>
       <br>
-      <input type="text" id="phone" formControlName="phone">
+      <input formControlName="phone" id="phone" type="text">
     </div>
     <div class="col-5">
       <label for="email">Email:</label>
       <br>
-      <input type="text" id="email" formControlName="email">
+      <input formControlName="email" id="email" type="text">
     </div>
     <div class="col-5">
-      <button class="submit" [disabled]="createPhotographerForm.invalid" (click)="createPhotographer()">Create Photographer</button>
+      <button (click)="createPhotographer()" [disabled]="createPhotographerForm.invalid" class="submit">Create
+        Photographer
+      </button>
     </div>
   </form>
 </div>
@@ -47,34 +49,40 @@
     <td>{{photographer.email}}</td>
     <td>{{photographer.phone}}</td>
     <td>{{photographer.city}}</td>
-    <td><button (click)="isShowEditPhotographer = !isShowEditPhotographer" >Edit photographer</button></td>
-    <td><button (click)="blockPhotographer(photographer.id)">Block photographer</button></td>
+    <td>
+      <button (click)="isShowEditPhotographer = !isShowEditPhotographer">Edit photographer</button>
+    </td>
+    <td>
+      <button (click)="blockPhotographer(photographer.id)">Block photographer</button>
+    </td>
   </tr>
-  <tr *ngIf="isShowEditPhotographer" >
+  <tr *ngIf="isShowEditPhotographer">
     <td colspan="7">
       <form [formGroup]="updatePhotographerForm">
         <div class="col-5">
           <label for="firstName1">First name: </label>
           <br>
-          <input type="text" id="firstName1" formControlName="firstName">
+          <input formControlName="firstName" id="firstName1" type="text">
         </div>
         <div class="col-5">
           <label for="lastName1">Last name:</label>
           <br>
-          <input type="text" id="lastName1" formControlName="lastName">
+          <input formControlName="lastName" id="lastName1" type="text">
         </div>
         <div class="col-5">
           <label for="phone1">Phone:</label>
           <br>
-          <input type="text" id="phone1" formControlName="phone">
+          <input formControlName="phone" id="phone1" type="text">
         </div>
         <div class="col-5">
           <label for="email1">Email:</label>
           <br>
-          <input type="text" id="email1" formControlName="email">
+          <input formControlName="email" id="email1" type="text">
         </div>
         <div class="col-5">
-          <button class="submit" [disabled]="updatePhotographerForm.invalid" (click)="updatePhotographer()">Create Photographer</button>
+          <button (click)="updatePhotographer()" [disabled]="updatePhotographerForm.invalid" class="submit">Create
+            Photographer
+          </button>
         </div>
       </form>
     </td>

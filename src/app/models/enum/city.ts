@@ -2,5 +2,6 @@ export enum City {
   KYIV,
   LVIV,
   DNIPRO,
-  KHARKIV
+  KHARKIV,
+  ODESA
 }

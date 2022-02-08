@@ -1,7 +1,54 @@
+<button (click)="logout()">Logout</button>
+<hr>
+<h1 style="color: cornflowerblue">Manager panel</h1>
 
-<h1>Manager panel</h1>
-<p>{{user.firstName}}</p>
-<p>{{user.lastName}}</p>
-<h1>
-  <a (click)="logout()">Logout</a>
-</h1>
+
+<div *ngIf="isManagerUploaded">
+  <div>
+    <p>{{user.firstName}} {{user.lastName}}</p>
+    <p>phone: {{user.phone}}</p>
+    <p>email: {{user.email}}</p>
+    <p>city: {{user.city}}</p>
+  </div>
+</div>
+  <hr>
+  <button (click)="showCertificatesBlock()">Certificates</button>
+  <button (click)="showPhotoSessionBlock()">Photo Session</button>
+
+  <div *ngIf="isShowCertificates">
+    <button (click)="addCertificate()">Generate new Certificate</button>
+
+    <hr>
+    <div *ngFor="let certificate of certificates">
+    <div>
+      <p>{{certificate.certificateNumber}}</p>
+      <button (click)="deleteCertificate(certificate.id)">Delete</button>
+    </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="isShowPhotoSessionBlock">
+<!--    <button (click)="addCertificate()">Add New PhotoSession</button>-->
+
+    <table>
+      <thead>
+      <tr>
+        <th>When</th>
+        <th>Where</th>
+        <th>Client</th>
+        <th>Photographer</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let photoSession of photoSessions">
+        <td>{{photoSession.willHappenAt}}</td>
+        <td>{{photoSession.location}}</td>
+        <td>{{photoSession.client.firstName}} {{photoSession.client.lastName}}</td>
+        <td>{{photoSession.photographer.firstName}} {{photoSession.photographer.lastName}}</td>
+        <td>{{photoSession.status}}</td>
+      </tr>
+      </tbody>
+      </table>
+  </div>

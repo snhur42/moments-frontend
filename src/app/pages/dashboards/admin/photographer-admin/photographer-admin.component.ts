@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../../models/user/user";
 import {AdminService} from "../../../../services/admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {City} from "../../../../models/user/city";
-import {Role} from "../../../../models/user/role";
+import {Role} from "../../../../models/enum/role";
 
 @Component({
   selector: 'app-photographer-admin',
@@ -28,30 +27,30 @@ export class PhotographerAdminComponent implements OnInit {
     this.adminService.getAllPhotographers()
 
       .subscribe({
-      next: data => {
-        console.log('this.photographers = data;');
+        next: data => {
+          console.log('this.photographers = data;');
 
-        this.photographers = data;
-      }, error: err => {
-        console.log(err)
-        this.photographers = []
-      }
-    })
+          this.photographers = data;
+        }, error: err => {
+          console.log(err)
+          this.photographers = []
+        }
+      })
     this.createPhotographerForm = this.formBuilder.group({
-      firstName:  ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
-      lastName:  ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-      email:   ['', Validators.compose([Validators.required, Validators.email])],
-      phone:  ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]+')])]
+      firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],
+      lastName: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      phone: ['', Validators.compose([Validators.required, Validators.pattern('[- +()0-9]{10}')])]
     });
 
     this.updatePhotographerForm = this.formBuilder.group({
-      id:  ['', Validators.compose([Validators.required])],
-      firstName:  ['', Validators.compose([Validators.required])],
-      lastName:  ['', Validators.compose([Validators.required])],
-      email:   ['', Validators.compose([Validators.required])],
-      phone:  ['', Validators.compose([Validators.required])],
-      city:  ['', Validators.compose([Validators.required])],
-      role:  ['', Validators.compose([Validators.required])],
+      id: ['', Validators.compose([Validators.required])],
+      firstName: ['', Validators.compose([Validators.required])],
+      lastName: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required])],
+      phone: ['', Validators.compose([Validators.required])],
+      city: ['', Validators.compose([Validators.required])],
+      role: ['', Validators.compose([Validators.required])],
     });
   }
 
@@ -61,10 +60,10 @@ export class PhotographerAdminComponent implements OnInit {
       this.createPhotographerForm.value.lastName,
       this.createPhotographerForm.value.email,
       this.createPhotographerForm.value.phone,
-      City.KYIV,
+      'KYIV',
       Role.PHOTOGRAPHER
     ).subscribe({
-      error: err =>  {
+      error: err => {
         console.log(err)
       }
     })
@@ -81,7 +80,7 @@ export class PhotographerAdminComponent implements OnInit {
       this.updatePhotographerForm.value.city,
       this.updatePhotographerForm.value.role,
     ).subscribe({
-      error: err =>  {
+      error: err => {
         console.log(err)
       }
     })
@@ -90,7 +89,7 @@ export class PhotographerAdminComponent implements OnInit {
 
   }
 
-  blockPhotographer(photographerId: string){
+  blockPhotographer(photographerId: string) {
     this.adminService.blockPhotographer(photographerId);
   }
 }
