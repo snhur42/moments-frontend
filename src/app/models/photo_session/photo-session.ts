@@ -1,26 +1,26 @@
 import {AbstractEntity} from "../abstract-entity";
-import {Chat} from "./chat";
-import {Certificate} from "./certificate";
-import {User} from "../user/user";
+import {PhotoSessionType} from "../enum/photo-session-type";
+import {PhotoSessionStatus} from "../enum/photo-session-status";
+import {Duration} from "../enum/duration";
 
 export interface PhotoSession extends AbstractEntity {
-  manager: User
-  client: User
-  photographer: User
+  managerId: string
+  clientId: string
+  photographerId: string
 
   allPhotos: string[]
   finalPhotos: string[]
 
-  chat: Chat
+  chatId: string
 
-  photoSessionType: string
-  status: string
-  duration: string
+  photoSessionType: PhotoSessionType
+  status: PhotoSessionStatus
+  duration: Duration
   location: string
 
   price: number
 
-  certificate: Certificate
+  certificateId?: string
 
   brief: string[]
 

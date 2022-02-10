@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../../models/user/user";
 import {JwtTokenStorage} from "../../../../services/jwt-token-storage.service";
 import {ManagerService} from "../../../../services/manager.service";
@@ -6,6 +6,10 @@ import {Router} from "@angular/router";
 import {Certificate} from "../../../../models/photo_session/certificate";
 import {PhotoSession} from "../../../../models/photo_session/photo-session";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PhotoSessionType} from "../../../../models/enum/photo-session-type";
+import {Duration} from "../../../../models/enum/duration";
+import {City} from "../../../../models/enum/city";
+
 
 @Component({
   selector: 'app-manager',
@@ -18,9 +22,12 @@ export class ManagerComponent implements OnInit {
   isShowPhotoSessionBlock: boolean;
   isAddPhotoSessionBlock: boolean;
 
+  photoSessionType = PhotoSessionType;
+  duration = Duration;
+  city = City;
+
   certificates: Certificate[]
   photoSessions: PhotoSession[];
-
   photographers: User[];
   clients: User[];
   user: User;
@@ -39,6 +46,8 @@ export class ManagerComponent implements OnInit {
     this.isAddPhotoSessionBlock = false;
     this.clients = []
     this.photographers = []
+    this.certificates = []
+    this.photoSessions = []
   }
 
   ngOnInit(): void {
@@ -48,18 +57,31 @@ export class ManagerComponent implements OnInit {
         this.isManagerUploaded = true;
       });
 
-    this.managerService.getAllClients().subscribe(data => {
-      this.clients = data;
-    });
+      this.managerService.getAllClients().subscribe(data => {
 
-    this.managerService.getAllPhotographers().subscribe(data => {
-      this.photographers = data;
-    });
+        this.clients = data;
+        console.log('client', this.clients)
+      });
+
+      this.managerService.getAllPhotographers().subscribe(data => {
+
+        this.photographers = data;
+        console.log('photographers', this.photographers)
+      });
+
+      this.managerService.getAllCertificates().subscribe(data => {
+        console.log('certificates data', data)
+        this.certificates = data;
+        console.log('certificates', this.certificates)
+      });
+
+      this.managerService.getAllPhotoSessions().subscribe(data => {
+        console.log('photoSessions', this.photoSessions)
+
+        this.photoSessions = data;
+      });
 
     this.photoSessionForm = this.createPhotoSessionForm();
-
-    this.certificates = []
-    this.photoSessions = []
 
   }
 
@@ -78,7 +100,6 @@ export class ManagerComponent implements OnInit {
 
   showPhotoSessionBlock(): void {
     if (!this.isShowPhotoSessionBlock) {
-      this.uploadPhotoSession()
       this.isShowPhotoSessionBlock = true;
     } else {
       this.isShowPhotoSessionBlock = false;
@@ -105,15 +126,8 @@ export class ManagerComponent implements OnInit {
     })
   }
 
-  private uploadPhotoSession() {
-    this.managerService.uploadPhotoSession().subscribe(data => {
-      this.photoSessions = data
-    });
-  }
-
   showCertificatesBlock(): void {
     if(!this.isShowCertificates) {
-      this.uploadCertificates()
       this.isShowCertificates = true;
     } else {
       this.isShowCertificates = false;
@@ -122,20 +136,10 @@ export class ManagerComponent implements OnInit {
 
   addCertificate() {
     this.managerService.addNewCertificate().subscribe()
-    this.uploadCertificates()
   }
 
   deleteCertificate(certificateId: string) {
     this.managerService.deleteCertificate(certificateId).subscribe()
-    this.uploadCertificates()
-  }
-
-
-  uploadCertificates():void {
-    this.managerService.getCertificates()
-      .subscribe(data => {
-        this.certificates = data
-      });
   }
 
   logout(): void {

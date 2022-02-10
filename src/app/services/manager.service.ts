@@ -29,7 +29,7 @@ export class ManagerService {
     this.authService.logout(userId);
   }
 
-  getCertificates(): Observable<Certificate[]> {
+  getAllCertificates(): Observable<Certificate[]> {
     return this.http.get<Certificate[]>(environment.baseUrl + MANAGER_API + '/get_all_certificates');
   }
 
@@ -64,7 +64,7 @@ export class ManagerService {
     });
   }
 
-  uploadPhotoSession(): Observable<PhotoSession[]> {
+  getAllPhotoSessions(): Observable<PhotoSession[]> {
     return this.http.get<PhotoSession[]>(environment.baseUrl + MANAGER_API + '/photo_sessions');
   }
 
