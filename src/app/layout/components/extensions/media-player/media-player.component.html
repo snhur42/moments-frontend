@@ -1,0 +1,32 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <core-card-snippet [snippetCode]="_snippetCodeVideo">
+      <h4 class="card-title">Video</h4>
+      <div class="card-body">
+        <!-- plyr video -->
+        <div
+          [plyrOptions]="plyrOptions"
+          [plyrPlaysInline]="true"
+          [plyrPoster]="poster"
+          [plyrSources]="videoSources"
+          [plyrTracks]="tracks"
+          plyr
+          plyrTitle="Video"
+        ></div>
+        <!--/ plyr video -->
+      </div>
+    </core-card-snippet>
+
+    <core-card-snippet [snippetCode]="_snippetCodeAudio">
+      <h4 class="card-title">Audio</h4>
+      <div class="card-body">
+        <!-- plyr audio -->
+        <div [plyrSources]="audioSources" plyr plyrTitle="Audio" plyrType="audio"></div>
+        <!--/ plyr audio -->
+      </div>
+    </core-card-snippet>
+  </div>
+</div>

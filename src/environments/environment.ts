@@ -1,14 +1,15 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/api/',
-  tokenKey: 'auth-jwt-token',
+  hmr: false,
+  apiUrl: 'http://localhost:8080/api/',
+  tokenKey: 'jwt-token',
+  userKey: 'current-user',
   headerPrefix: 'Bearer',
-  fingerPrintToken: 'eUuBWKR9IvRV903YKBqk',
-
+  fingerPrintToken: 'T6QyuYs6YzH4yJHUgxWU',
 };
 
 /*

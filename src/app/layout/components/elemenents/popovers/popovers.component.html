@@ -1,0 +1,317 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!--Popover Positions Starts-->
+    <section id="popover-positions">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePopoverPositions">
+            <h4 class="card-title">Popover Positions</h4>
+
+            <div class="card-body">
+              <p class="card-text mb-0">Four options are available: top, right, bottom, and left aligned.</p>
+              <div class="demo-inline-spacing">
+                <button
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  placement="top"
+                  popoverTitle="Popover on top"
+                  rippleEffect
+                  type="button"
+                >
+                  Popover on top
+                </button>
+
+                <button
+                  class="btn btn-outline-primary"
+                  container="body"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  placement="right"
+                  popoverTitle="Popover on right"
+                  rippleEffect
+                  type="button"
+                >
+                  Popover on right
+                </button>
+
+                <button
+                  class="btn btn-outline-primary"
+                  container="body"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  placement="bottom"
+                  popoverTitle="Popover on bottom"
+                  rippleEffect
+                  type="button"
+                >
+                  Popover on bottom
+                </button>
+
+                <button
+                  class="btn btn-outline-primary"
+                  container="body"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  placement="left"
+                  popoverTitle="Popover on left"
+                  rippleEffect
+                  type="button"
+                >
+                  Popover on left
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- Popover Positions Ends -->
+
+    <!-- Popover Triggers Starts-->
+    <section id="popover-triggers">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePopoverTriggers">
+            <h4 class="card-title">Popover Triggers</h4>
+
+            <div class="card-body">
+              <p class="card-text mb-0">Popover is triggered using - click | hover | manual options.</p>
+
+              <div class="demo-inline-spacing">
+                <button
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Click Triggered"
+                  rippleEffect
+                  triggers="click:blur"
+                  type="button"
+                >
+                  On Click Trigger
+                </button>
+
+                <button
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Hover Triggered"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  On Hover Trigger
+                </button>
+
+                <button
+                  #manualOpen="ngbPopover"
+                  (click)="manualOpen.open()"
+                  [autoClose]="true"
+                  class="btn btn-outline-primary manual"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Manual Triggered"
+                  rippleEffect
+                  triggers="manual"
+                  type="button"
+                >
+                  On Manual Trigger
+                </button>
+
+                <button
+                  #manualClose="ngbPopover"
+                  (click)="manualClose.close()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie"
+                  popoverTitle="Manual Triggered"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  Click me to close a popover
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- Popover Triggers Ends -->
+
+    <!-- Popover Options -->
+    <section id="popover-options">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePopoverOptions">
+            <h4 class="card-title">Popover Options</h4>
+
+            <div class="card-body">
+              <div class="demo-inline-spacing">
+                <button
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverClass="text-uppercase"
+                  popoverTitle="Text in Uppercase"
+                  rippleEffect
+                  type="button"
+                >
+                  Click to toggle
+                </button>
+
+                <button
+                  [closeDelay]="500"
+                  [openDelay]="300"
+                  class="btn btn-outline-primary delay"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="You see, I show up after 300ms and disappear after 500ms!"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  Hover 300ms here
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- Popover Options Ends -->
+
+    <!-- Popover Methods Starts-->
+    <section id="popover-methods">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePopoverMethods">
+            <h4 class="card-title">Popover Methods</h4>
+
+            <div class="card-body">
+              <div class="demo-inline-spacing">
+                <button
+                  #methodOpen="ngbPopover"
+                  (click)="methodOpen.open()"
+                  [autoClose]="false"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Open Method Popover"
+                  rippleEffect
+                  triggers="manual"
+                  type="button"
+                >
+                  Open Method <span [data-feather]="'play-circle'" class="'ml-1'"></span>
+                </button>
+
+                <button
+                  #methodClose="ngbPopover"
+                  (click)="methodClose.close()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Close Method Popover"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  Close Method <span [data-feather]="'play-circle'" class="'ml-1'"></span>
+                </button>
+
+                <button
+                  #methodToggle="ngbPopover"
+                  (click)="methodToggle.toggle()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Toggle Method Popover"
+                  rippleEffect
+                  triggers="manual"
+                  type="button"
+                >
+                  Toggle Method
+                  <span [data-feather]="'play-circle'" class="'ml-1'"></span>
+                </button>
+
+                <div class="btn-group">
+                  <button
+                    #methodIsOpen="ngbPopover"
+                    (click)="methodIsOpen.isOpen()"
+                    class="btn btn-outline-primary"
+                    ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                    popoverTitle="Dispose Method Popover"
+                    rippleEffect
+                    type="button"
+                  >
+                    Popover is : {{ methodIsOpen.isOpen() }}
+                    <span [data-feather]="'play-circle'"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- Popover Methods Ends -->
+
+    <!-- Popover Events starts -->
+    <section id="popover-events">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePopoverEvents">
+            <h4 class="card-title">Popover Events</h4>
+
+            <div class="card-body">
+              <div class="demo-inline-spacing">
+                <button
+                  #OpenEvent="ngbPopover"
+                  (click)="openEvent()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Popover Open Event"
+                  rippleEffect
+                  triggers="manual"
+                  type="button"
+                >
+                  Open Event Popover
+                </button>
+
+                <button
+                  #OpenEventAfter="ngbPopover"
+                  (click)="openEventAfter()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Popover Open Event"
+                  rippleEffect
+                  triggers="manual"
+                  type="button"
+                >
+                  Open Event Popover
+                </button>
+
+                <button
+                  #CloseEvent="ngbPopover"
+                  (click)="closeEvent()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Popover Show Event"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  Close Event Popover
+                </button>
+
+                <button
+                  #CloseEventAfter="ngbPopover"
+                  (click)="closeEventAfter()"
+                  class="btn btn-outline-primary"
+                  ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                  popoverTitle="Popover Show Event"
+                  rippleEffect
+                  triggers="mouseenter:mouseleave"
+                  type="button"
+                >
+                  Closed Event Popover
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- Popover Events Ends -->
+  </div>
+</div>

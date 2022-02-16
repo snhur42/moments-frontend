@@ -1,0 +1,453 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <p>
+      A Beautiful, Responsive, Customizable, Accessible (Wai-Aria) Replacement For Javascript'S Popup Boxes. Read the
+      official
+      <a href="https://github.com/sweetalert2/ngx-sweetalert2" target="_blank">ngx-sweetalert2 Documentation</a> for a
+      full list of instructions and other options.
+    </p>
+    <!-- sweet alert basic -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeBasic">
+            <h4 class="card-title">Basic Examples</h4>
+            <div class="card-body">
+              <p class="card-text">
+                SweetAlert automatically centers itself on the page and looks great no matter if you're using a desktop
+                computer, mobile or tablet. It's even highly customizable, as you can see below!
+              </p>
+              <!-- Sweet Alert Basic -->
+              <button [swal]="SweetAlertBasic" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Basic</button>
+              <swal
+                #SweetAlertBasic
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="Any fool can use a computer"
+              >
+              </swal>
+
+              <!-- Sweet Alert With Title -->
+              <button [swal]="SweetAlertWithTitle" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>
+                With Title
+              </button>
+              <swal
+                #SweetAlertWithTitle
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                text="That thing is still around?"
+                title="The Internet?,"
+              >
+              </swal>
+
+              <!-- Sweet Alert With Footer -->
+              <button [swal]="SweetAlertWithFooter" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>
+                With Footer
+              </button>
+
+              <!-- Swal of Sweet Alert With Footer -->
+              <swal
+                #SweetAlertWithFooter
+                [focusCancel]="true"
+                [footer]="'<a href=\'javascript:void(0)\'>Why do I have this issue?</a>'"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                icon="error"
+                text="Something went wrong!"
+                title="Oops..."
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Footer -->
+
+              <!-- Sweet Alert HTML -->
+              <button [swal]="SweetAlertHTML" class="btn btn-outline-primary mb-1" rippleEffect>HTML</button>
+
+              <!-- Swal of Sweet Alert HTML -->
+              <swal
+                #SweetAlertHTML
+                [cancelButtonText]="'<i class=\'feather icon-thumbs-down\'></i>'"
+                [confirmButtonText]="'<i class=\'feather icon-thumbs-up\' mr-25></i> Great!'"
+                [focusCancel]="true"
+                [showCancelButton]="true"
+                [showCloseButton]="true"
+                [swalOptions]="{ cancelButtonClass: 'btn btn-danger ml-1', confirmButtonClass: 'btn btn-primary' }"
+                html='You can use <b>bold text</b>, <a href="https://pixinvent.com/" target="_blank">links</a> and other HTML tags'
+                icon="info"
+                text="Something went wrong!"
+                title="<strong>HTML <u>example</u></strong>"
+              >
+              </swal>
+              <!-- Swal of Sweet Alert HTML -->
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert basic -->
+
+    <!-- sweet alert position -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodePosition">
+            <h4 class="card-title">Position</h4>
+            <div class="card-body">
+              <p class="card-text">
+                You can specify position of your alert with
+                <code>[position]=" top-start | top-end | bottom-start | bottom-end "</code> property of swal component.
+              </p>
+              <!-- Sweet Alert With Position top-start -->
+              <button [swal]="SweetAlertTopStart" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>
+                Top Start
+              </button>
+              <!-- Swal of Sweet Alert With Position top-start -->
+              <swal
+                #SweetAlertTopStart
+                [position]="'top-start'"
+                [showConfirmButton]="false"
+                [timer]="1500"
+                icon="success"
+                title="Your work has been saved"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Position top-start -->
+
+              <!-- Sweet Alert With Position top-end -->
+              <button [swal]="SweetAlertTopEnd" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Top End</button>
+              <!-- Swal of Sweet Alert With Position top-end -->
+              <swal
+                #SweetAlertTopEnd
+                [position]="'top-end'"
+                [showConfirmButton]="false"
+                [timer]="1500"
+                icon="success"
+                title="Your work has been saved"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Position top-end -->
+
+              <!-- Sweet Alert With Position bottom-start -->
+              <button [swal]="SweetAlertBottomStart" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>
+                Bottom Start
+              </button>
+              <!-- Swal of Sweet Alert With Position bottom-start -->
+              <swal
+                #SweetAlertBottomStart
+                [position]="'bottom-start'"
+                [showConfirmButton]="false"
+                [timer]="1500"
+                icon="success"
+                title="Your work has been saved"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Position bottom-start -->
+
+              <!-- Sweet Alert With Position bottom-end -->
+              <button [swal]="SweetAlertBottomEnd" class="btn btn-outline-primary mb-1" rippleEffect>Bottom End</button>
+              <!-- Swal of Sweet Alert With Position bottom-end -->
+              <swal
+                #SweetAlertBottomEnd
+                [position]="'bottom-end'"
+                [showConfirmButton]="false"
+                [timer]="1500"
+                icon="success"
+                title="Your work has been saved"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Position bottom-end -->
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert position -->
+
+    <!-- sweet alert animations -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeAnimations">
+            <h4 class="card-title">Animations</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>[customClass]</code> property of swal component to get custom animation & disable default
+                animation of alert by adding <code>[animation]="false"</code>.
+              </p>
+              <!-- Sweet Alert With Bounce In -->
+              <button [swal]="SweetAlertBounceIn" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>
+                Bounce In
+              </button>
+              <!-- Swal of Sweet Alert With Bounce In -->
+              <swal
+                #SweetAlertBounceIn
+                [animation]="true"
+                [showClass]="{ popup: 'animate__animated animate__bounceIn' }"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="BounceIn Animation"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Bounce In -->
+
+              <!-- Sweet Alert With Fade In -->
+              <button [swal]="SweetAlertFadeIn" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Fade In</button>
+              <!-- Swal of Sweet Alert With Fade In -->
+              <swal
+                #SweetAlertFadeIn
+                [animation]="true"
+                [showClass]="{ popup: 'animate__animated animate__fadeIn' }"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="FadeIn Animation"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Fade In -->
+
+              <!-- Sweet Alert With Flip In -->
+              <button [swal]="SweetAlertFlipIn" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Flip In</button>
+              <!-- Swal of Sweet Alert With Flip In -->
+              <swal
+                #SweetAlertFlipIn
+                [animation]="true"
+                [showClass]="{ popup: 'animate__animated animate__flipInX' }"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="FlipIn Animation"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Flip In -->
+
+              <!-- Sweet Alert With Tada -->
+              <button [swal]="SweetAlertTada" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Tada</button>
+              <!-- Swal of Sweet Alert With Tada -->
+              <swal
+                #SweetAlertTada
+                [animation]="true"
+                [showClass]="{ popup: 'animate__animated animate__tada' }"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="Tada Animation"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Tada -->
+
+              <!-- Sweet Alert With Shake -->
+              <button [swal]="SweetAlertShake" class="btn btn-outline-primary mr-1 mb-1" rippleEffect>Shake</button>
+              <!-- Swal of Sweet Alert With Shake -->
+              <swal
+                #SweetAlertShake
+                [animation]="true"
+                [showClass]="{ popup: 'animate__animated animate__shakeX' }"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                title="Shake Animation"
+              >
+              </swal>
+              <!--/ Swal of Sweet Alert With Shake -->
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert animations -->
+
+    <!-- sweet alert Types -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeTypes">
+            <h4 class="card-title">Types</h4>
+            <div class="card-body">
+              <p class="card-text">
+                SweetAlert comes with 4 built-in types which will show a corresponding icon animation: "warning",
+                "error", "success" and "info". It can either be put in the object under the key "icon" or passed as the
+                third parameter of <code>[swal] directive.</code>.
+              </p>
+              <!-- Sweet Alert success -->
+              <button [swal]="SweetAlertSuccess" class="btn btn-outline-success mr-1 mb-1" rippleEffect>Success</button>
+              <swal
+                #SweetAlertSuccess
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                icon="success"
+                text="You clicked the button!"
+                title="Good job!"
+              >
+              </swal>
+
+              <!-- Sweet Alert Info -->
+              <button [swal]="SweetAlertInfo" class="btn btn-outline-info mr-1 mb-1" rippleEffect>Info</button>
+              <swal
+                #SweetAlertInfo
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                icon="info"
+                text="You clicked the button!"
+                title="Good job!"
+              >
+              </swal>
+
+              <!-- Sweet Alert Warning -->
+              <button [swal]="SweetAlertWarning" class="btn btn-outline-warning mr-1 mb-1" rippleEffect>Warning</button>
+              <swal
+                #SweetAlertWarning
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                icon="warning"
+                text="You clicked the button!"
+                title="Good job!"
+              >
+              </swal>
+
+              <!-- Sweet Alert Error -->
+              <button [swal]="SweetAlertError" class="btn btn-outline-danger mr-1 mb-1" rippleEffect>Error</button>
+              <swal
+                #SweetAlertError
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary' }"
+                icon="error"
+                text="You clicked the button!"
+                title="Good job!"
+              >
+              </swal>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert Types  -->
+
+    <!-- sweet alert Options -->
+    <section>
+      <div class="row match-height">
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeCustomImage">
+            <h4 class="card-title">Custom Image</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>[swalOptions]</code> directive and pass object with
+                <code>imageUrl, imageWidth, imageHeight, imageAlt</code> keys with there respective value to get custom
+                icon or image.
+              </p>
+              <!-- Sweet Alert Custom Image -->
+              <button [swal]="SweetAlertCustomImage" class="btn btn-outline-primary mr-1" rippleEffect>
+                Custom Image
+              </button>
+              <!-- Swal of Sweet Alert Custom Image -->
+              <swal
+                #SweetAlertCustomImage
+                [swalOptions]="{
+                  imageUrl: 'assets/images/slider/04.jpg',
+                  imageWidth: 400,
+                  imageHeight: 200,
+                  imageAlt: 'Custom image',
+                  confirmButtonClass: 'btn btn-primary'
+                }"
+                text="Modal with a custom image."
+                title="Sweet!"
+              >
+              </swal>
+              <!-- Swal of Sweet Alert Custom Image -->
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeAutoClose">
+            <h4 class="card-title">Auto Close</h4>
+            <div class="card-body">
+              <!-- Sweet Alert Auto Close -->
+              <p class="card-text">
+                To auto close the alert use <code>[timer]</code> property of swal component and pass value in
+                milliSeconds.
+              </p>
+              <button [swal]="SweetAlertAutoClose" class="btn btn-outline-primary mr-1" rippleEffect>Auto Close</button>
+              <!-- Swal of Sweet Alert Auto Close -->
+              <swal
+                #SweetAlertAutoClose
+                (beforeOpen)="autoCloseBeforeOpen($event)"
+                (close)="onAutoClose()"
+                [swalOptions]="{ confirmButtonClass: 'btn btn-primary', buttonsStyling: false }"
+                [timer]="2000"
+                html="I will close in <strong></strong> seconds."
+                title="Auto close alert!"
+              >
+              </swal>
+              <!-- Swal of Sweet Alert Auto Close -->
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeQuestion">
+            <h4 class="card-title">Question</h4>
+            <div class="card-body">
+              <p class="card-text">
+                use <code>(beforeOpen)</code> event property of swal component to get called before the alert gets
+                executed & get access the modal's native DOM to customize it.
+              </p>
+              <!-- Sweet Alert Question -->
+              <button [swal]="SweetAlertQuestion" class="btn btn-outline-primary mr-1" rippleEffect>Question</button>
+              <!-- Swal of Sweet Alert Question -->
+              <swal #SweetAlertQuestion (beforeOpen)="questionBeforeOpen()"></swal>
+              <!-- Swal of Sweet Alert Question -->
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeAjax">
+            <h4 class="card-title">Ajax</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>(open)</code> event property of swal component to get called when alert gets executed& get
+                access the modal's native DOM to customize it.
+              </p>
+              <!-- Sweet Alert Ajax -->
+              <button [swal]="SweetAlertAjax" class="btn btn-outline-primary mr-1" rippleEffect>Ajax</button>
+              <!-- Swal of Sweet Alert Ajax -->
+              <swal #SweetAlertAjax (open)="ajaxOpen()"></swal>
+              <!-- Swal of Sweet Alert Ajax -->
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert Options  -->
+
+    <!-- sweet alert confirm options -->
+    <section>
+      <div class="row match-height">
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeConfirmText">
+            <h4 class="card-title">Confirm Button Text</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>confirmButtonText</code> property as argument to change the text on the "Confirm" button.
+              </p>
+
+              <!-- Sweet Alert ConfirmText -->
+              <button [swal]="SweetAlertConfirmText" class="btn btn-outline-primary mr-1" rippleEffect>
+                Confirm Text
+              </button>
+              <!-- Swal of Sweet Alert ConfirmText -->
+              <swal #SweetAlertConfirmText (open)="ConfirmTextOpen()"></swal>
+              <!-- Swal of Sweet Alert ConfirmText -->
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeConfirmColor">
+            <h4 class="card-title">Confirm Button Color</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>confirmButtonColor</code> property as argument to change the background color on the "Confirm"
+                button.
+              </p>
+
+              <!-- Sweet Alert ConfirmColor -->
+              <button [swal]="SweetAlertConfirmColor" class="btn btn-outline-primary mr-1" rippleEffect>
+                Confirm Button Color
+              </button>
+              <!-- Swal of Sweet Alert ConfirmColor -->
+              <swal #SweetAlertConfirmColor (open)="ConfirmColorOpen()"></swal>
+              <!-- Swal of Sweet Alert ConfirmColor -->
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ sweet alert confirm options -->
+  </div>
+</div>

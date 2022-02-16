@@ -1,0 +1,587 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Statistics card section start -->
+    <section id="statistics-card">
+      <!-- Miscellaneous Charts -->
+      <div class="row match-height">
+        <!-- Bar Chart -Orders -->
+        <div class="col-lg-2 col-6">
+          <div class="card">
+            <div class="card-body pb-50">
+              <h6>Orders</h6>
+              <h2 class="font-weight-bolder mb-1">{{ data.ordersChart.analyticsData.orders }}</h2>
+              <div #statisticsBarRef id="statistics-bar-chart">
+                <!-- Apexchart component-->
+
+                <apx-chart
+                  [chart]="{
+                    height: 70,
+                    width: isMenuToggled === false ? statisticsBarRef.offsetWidth : statisticsBar.chart.width,
+                    type: 'bar',
+                    stacked: true,
+                    toolbar: {
+                      show: false
+                    }
+                  }"
+                  [colors]="statisticsBar.colors"
+                  [dataLabels]="statisticsBar.dataLabels"
+                  [dataLabels]="statisticsBar.dataLabels"
+                  [grid]="statisticsBar.grid"
+                  [plotOptions]="statisticsBar.plotOptions"
+                  [series]="data.ordersChart.series"
+                  [tooltip]="statisticsBar.tooltip"
+                  [xaxis]="statisticsBar.xaxis"
+                  [yaxis]="statisticsBar.yaxis"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Bar Chart -->
+
+        <!-- Line Chart - Profit -->
+        <div class="col-lg-2 col-6">
+          <div class="card">
+            <div class="card-body pb-50">
+              <h6>Profit</h6>
+              <h2 class="font-weight-bolder mb-1">{{ data.profitChart.analyticsData.profit }}</h2>
+              <div #statisticsLineRef id="statistics-line-chart">
+                <apx-chart
+                  [chart]="{
+                    height: 70,
+                    width: isMenuToggled === false ? statisticsLineRef.offsetWidth : statisticsLine.chart.width,
+                    type: 'line',
+                    toolbar: {
+                      show: false
+                    },
+                    zoom: {
+                      enabled: false
+                    }
+                  }"
+                  [colors]="statisticsLine.colors"
+                  [grid]="statisticsLine.grid"
+                  [markers]="statisticsLine.markers"
+                  [series]="data.profitChart.series"
+                  [stroke]="statisticsLine.stroke"
+                  [tooltip]="statisticsLine.tooltip"
+                  [xaxis]="statisticsLine.xaxis"
+                  [yaxis]="statisticsLine.yaxis"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Line Chart -->
+        <div class="col-lg-8 col-12">
+          <div class="card card-statistics">
+            <div class="card-header">
+              <h4 class="card-title">Statistics</h4>
+              <div class="d-flex align-items-center">
+                <p class="card-text mr-25 mb-0">Updated 1 month ago</p>
+              </div>
+            </div>
+            <div class="card-body statistics-body">
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-12 mb-2 mb-md-0">
+                  <div class="media">
+                    <div class="avatar bg-light-primary mr-2">
+                      <div class="avatar-content">
+                        <i class="avatar-icon" data-feather="trending-up"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">{{ data.statistics.analyticsData.sales }}</h4>
+                      <p class="card-text font-small-3 mb-0">Sales</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12 mb-2 mb-md-0">
+                  <div class="media">
+                    <div class="avatar bg-light-info mr-2">
+                      <div class="avatar-content">
+                        <i class="avatar-icon" data-feather="user"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">{{ data.statistics.analyticsData.customers }}</h4>
+                      <p class="card-text font-small-3 mb-0">Customers</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                  <div class="media">
+                    <div class="avatar bg-light-danger mr-2">
+                      <div class="avatar-content">
+                        <i class="avatar-icon" data-feather="box"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">{{ data.statistics.analyticsData.products }}</h4>
+                      <p class="card-text font-small-3 mb-0">Products</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12">
+                  <div class="media">
+                    <div class="avatar bg-light-success mr-2">
+                      <div class="avatar-content">
+                        <i class="avatar-icon" data-feather="dollar-sign"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">{{ data.statistics.analyticsData.revenue }}</h4>
+                      <p class="card-text font-small-3 mb-0">Revenue</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Miscellaneous Charts -->
+
+      <!-- Stats Vertical Card -->
+      <div class="row">
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-info p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="eye"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.views.analyticsData.views }}</h2>
+              <p class="mb-0 line-ellipsis">Views</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-warning p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="message-square"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.comments.analyticsData.comments }}</h2>
+              <p class="mb-0 line-ellipsis">Comments</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-danger p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="shopping-bag"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.orders.analyticsData.orders }}</h2>
+              <p class="mb-0 line-ellipsis">Orders</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-primary p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="heart"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.bookmarks.analyticsData.bookmarks }}</h2>
+              <p class="mb-0 line-ellipsis">Bookmarks</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-success p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="award"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.reviews.analyticsData.reviews }}</h2>
+              <p class="mb-0 line-ellipsis">Reviews</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="avatar bg-light-danger p-50 m-0 mb-1">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="truck"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder">{{ data.returns.analyticsData.returns }}</h2>
+              <p class="mb-0 line-ellipsis">Returns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Stats Vertical Card -->
+
+      <!-- Stats Horizontal Card -->
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="font-weight-bolder mb-0">86%</h2>
+                <p class="card-text">CPU Usage</p>
+              </div>
+              <div class="avatar bg-light-primary p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="cpu"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="font-weight-bolder mb-0">1.2gb</h2>
+                <p class="card-text">Memory Usage</p>
+              </div>
+              <div class="avatar bg-light-success p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="server"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="font-weight-bolder mb-0">0.1%</h2>
+                <p class="card-text">Downtime Ratio</p>
+              </div>
+              <div class="avatar bg-light-danger p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="activity"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="font-weight-bolder mb-0">13</h2>
+                <p class="card-text">Issues Found</p>
+              </div>
+              <div class="avatar bg-light-warning p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="alert-octagon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Stats Horizontal Card -->
+
+      <!-- Line Area Chart Card -->
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex flex-column align-items-start pb-0">
+              <div class="avatar bg-light-primary p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="users"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder mt-1">{{ data.subscribers_gained.analyticsData.subscribers }}</h2>
+              <p class="mb-0">Subscribers Gained</p>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #gainedChartoptionsRef id="gainedChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? gainedChartoptionsRef.offsetWidth : gainedChartoptions.chart.width,
+                  type: 'area',
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="gainedChartoptions.colors"
+                [dataLabels]="gainedChartoptions.dataLabels"
+                [fill]="gainedChartoptions.fill"
+                [series]="data.subscribers_gained.series"
+                [stroke]="gainedChartoptions.stroke"
+                [tooltip]="gainedChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex flex-column align-items-start pb-0">
+              <div class="avatar bg-light-success p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="credit-card"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder mt-1">{{ data.revenueGenerated.analyticsData.revenue }}</h2>
+              <p class="mb-0">Revenue Generated</p>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #revenueChartoptionsRef id="revenueChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? revenueChartoptionsRef.offsetWidth : revenueChartoptions.chart.width,
+                  type: 'area',
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="revenueChartoptions.colors"
+                [dataLabels]="revenueChartoptions.dataLabels"
+                [fill]="revenueChartoptions.fill"
+                [series]="data.revenueGenerated.series"
+                [stroke]="revenueChartoptions.stroke"
+                [tooltip]="revenueChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex flex-column align-items-start pb-0">
+              <div class="avatar bg-light-danger p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="shopping-cart"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder mt-1">{{ data.quarterlySales.analyticsData.sales }}</h2>
+              <p class="mb-0">Quarterly Sales</p>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #salesChartoptionsRef id="revenueChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? salesChartoptionsRef.offsetWidth : salesChartoptions.chart.width,
+                  type: 'area',
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="salesChartoptions.colors"
+                [dataLabels]="salesChartoptions.dataLabels"
+                [fill]="salesChartoptions.fill"
+                [series]="data.quarterlySales.series"
+                [stroke]="salesChartoptions.stroke"
+                [tooltip]="salesChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex flex-column align-items-start pb-0">
+              <div class="avatar bg-light-warning p-50 m-0">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="package"></i>
+                </div>
+              </div>
+              <h2 class="font-weight-bolder mt-1">{{ data.ordersRecevied.analyticsData.orders }}</h2>
+              <p class="mb-0">Orders Received</p>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #orderChartoptionsRef id="orderChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? orderChartoptionsRef.offsetWidth : orderChartoptions.chart.width,
+                  type: 'area',
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="orderChartoptions.colors"
+                [dataLabels]="orderChartoptions.dataLabels"
+                [fill]="orderChartoptions.fill"
+                [series]="data.ordersRecevied.series"
+                [stroke]="orderChartoptions.stroke"
+                [tooltip]="orderChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Line Area Chart Card -->
+
+      <!-- Line Chart Card -->
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex align-items-start pb-0">
+              <div>
+                <h2 class="font-weight-bolder">{{ data.siteTraffic.analyticsData.siteTraffic }}</h2>
+                <p class="mb-0">Site Traffic</p>
+              </div>
+              <div class="avatar bg-light-primary p-50">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="monitor"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #trafficChartoptionsRef id="trafficChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? trafficChartoptionsRef.offsetWidth : trafficChartoptions.chart.width,
+                  type: 'line',
+                  dropShadow: {
+                    enabled: true,
+                    top: 5,
+                    left: 0,
+                    blur: 4,
+                    opacity: 0.1
+                  },
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="trafficChartoptions.colors"
+                [dataLabels]="trafficChartoptions.dataLabels"
+                [series]="data.siteTraffic.series"
+                [stroke]="trafficChartoptions.stroke"
+                [tooltip]="trafficChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex align-items-start pb-0">
+              <div>
+                <h2 class="font-weight-bolder">{{ data.activeUsers.analyticsData.activeUsers }}</h2>
+                <p class="mb-0">Active Users</p>
+              </div>
+              <div class="avatar bg-light-success p-50">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="user-check"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #userChartoptionsRef id="userChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width: isMenuToggled === false ? userChartoptionsRef.offsetWidth : userChartoptions.chart.width,
+                  type: 'line',
+                  dropShadow: {
+                    enabled: true,
+                    top: 5,
+                    left: 0,
+                    blur: 4,
+                    opacity: 0.1
+                  },
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="userChartoptions.colors"
+                [dataLabels]="userChartoptions.dataLabels"
+                [series]="data.activeUsers.series"
+                [stroke]="userChartoptions.stroke"
+                [tooltip]="userChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex align-items-start pb-0">
+              <div>
+                <h2 class="font-weight-bolder">{{ data.newsletter.analyticsData.newsletter }}</h2>
+                <p class="mb-0">Newsletter</p>
+              </div>
+              <div class="avatar bg-light-warning p-50">
+                <div class="avatar-content">
+                  <i class="font-medium-5" data-feather="mail"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Apexchart component-->
+            <div #newsletterChartoptionsRef id="newsletterChartoptions">
+              <apx-chart
+                [chart]="{
+                  height: 100,
+                  width:
+                    isMenuToggled === false
+                      ? newsletterChartoptionsRef.offsetWidth
+                      : newsletterChartoptions.chart.width,
+                  type: 'line',
+                  dropShadow: {
+                    enabled: true,
+                    top: 5,
+                    left: 0,
+                    blur: 4,
+                    opacity: 0.1
+                  },
+                  toolbar: {
+                    show: false
+                  },
+                  sparkline: {
+                    enabled: true
+                  }
+                }"
+                [colors]="newsletterChartoptions.colors"
+                [dataLabels]="newsletterChartoptions.dataLabels"
+                [series]="data.newsletter.series"
+                [stroke]="newsletterChartoptions.stroke"
+                [tooltip]="newsletterChartoptions.tooltip"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Line Chart Card -->
+    </section>
+
+    <!-- Statistics Card section end -->
+  </div>
+</div>

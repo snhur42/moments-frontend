@@ -1,6 +1,6 @@
-import {AbstractEntity} from "../abstract-entity";
+import {AbstractEntity} from '../abstract-entity';
 
-export interface Certificate extends AbstractEntity{
+export interface Certificate extends AbstractEntity {
   certificateNumber: string;
-  photoSessionId: string
+  photoSessionId: string;
 }

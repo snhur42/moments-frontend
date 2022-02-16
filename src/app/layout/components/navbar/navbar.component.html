@@ -1,0 +1,86 @@
+<div *ngIf="horizontalMenu" class="navbar-header d-xl-block d-none">
+  <!-- Navbar brand -->
+  <ul class="nav navbar-nav flex-row">
+    <li class="nav-item">
+      <a [routerLink]="['/']" class="navbar-brand">
+        <span class="brand-logo">
+          <img alt="brand-logo" src="{{ coreConfig.app.appLogoImage }}" width="36"/>
+        </span>
+        <h2 class="brand-text mb-0">{{ coreConfig.app.appName }}</h2>
+      </a>
+    </li>
+  </ul>
+  <!--/ Navbar brand -->
+</div>
+
+<div class="navbar-container d-flex content">
+  <div class="bookmark-wrapper d-flex align-items-center">
+    <!-- Menu Toggler | Menu icon will be hidden in case of layout without menu -->
+    <ul *ngIf="!coreConfig.layout.menu.hidden" class="nav navbar-nav d-xl-none">
+      <li class="nav-item">
+        <a (click)="toggleSidebar('menu')" class="nav-link menu-toggle">
+          <span [class]="'ficon'" [data-feather]="'menu'"></span>
+        </a>
+      </li>
+    </ul>
+    <!--/ Menu Toggler -->
+  </div>
+  <ul class="nav navbar-nav align-items-center ml-auto">
+
+    <app-navbar-search></app-navbar-search>
+
+
+
+    <!-- Notification -->
+    <app-navbar-notification></app-navbar-notification>
+    <!--/ Notification -->
+
+    <!-- User Dropdown -->
+    <li class="nav-item dropdown-user" ngbDropdown>
+      <a
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="nav-link dropdown-toggle dropdown-user-link"
+        id="dropdown-user"
+        id="navbarUserDropdown"
+        ngbDropdownToggle
+      >
+        <ng-container *ngIf="this.currentUser">
+          <div class="user-nav d-sm-flex d-none">
+            <span class="user-name font-weight-bolder"
+            >{{ this.currentUser.firstName }} {{ this.currentUser.lastName }}</span
+            ><span class="user-status">{{ this.currentUser.role }}</span>
+          </div>
+          <span class="avatar"
+          ><img
+            alt="avatar"
+            class="round"
+            height="40"
+            src="assets/images/portrait/small/avatar-s-1.jpg"
+            width="40"/><span class="avatar-status-online"></span
+          ></span>
+        </ng-container>
+      </a>
+      <div aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+        <a [routerLink]="['/dashboard/admin/profile']" ngbDropdownItem
+        ><span [class]="'mr-50'" [data-feather]="'user'"></span> Кабінет</a
+        ><a [routerLink]="['/apps/email']" ngbDropdownItem
+      ><span [class]="'mr-50'" [data-feather]="'mail'"></span> Inbox</a
+      ><a [routerLink]="['/apps/todo']" ngbDropdownItem
+      ><span [class]="'mr-50'" [data-feather]="'check-square'"></span> Task</a
+      ><a [routerLink]="['/apps/chat']" ngbDropdownItem
+      ><span [class]="'mr-50'" [data-feather]="'message-square'"></span> Chats</a
+      >
+        <div class="dropdown-divider"></div>
+        <a [routerLink]="['/pages/account-settings']" ngbDropdownItem
+        ><span [class]="'mr-50'" [data-feather]="'settings'"></span> Settings</a
+        ><a [routerLink]="['/pages/pricing']" ngbDropdownItem
+      ><span [class]="'mr-50'" [data-feather]="'credit-card'"></span> Pricing</a
+      ><a [routerLink]="['/pages/faq']" ngbDropdownItem
+      ><span [class]="'mr-50'" [data-feather]="'help-circle'"></span> FAQ</a
+      ><a (click)="logout()" ngbDropdownItem><span [class]="'mr-50'" [data-feather]="'power'"></span> Вийти</a>
+      </div>
+    </li>
+    <!--/ User Dropdown -->
+  </ul>
+</div>

@@ -1,0 +1,703 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row">
+      <div class="col-12 mt-1 mb-1">
+        <h4 class="text-uppercase">Template Driven Form Validation</h4>
+        <p>
+          Template driven forms are forms where we write
+          <strong>logic, validations, controls etc, in html code</strong>. Template driven forms are suitable for simple
+          scenarios, uses two way data binding using the <code>[(NgModel)]</code> syntax.
+        </p>
+      </div>
+    </div>
+    <!-- Template Driven Simple Validation -->
+    <section id="simple-validation">
+      <div class="row">
+        <div class="col-md-12">
+          <core-card-snippet [snippetCode]="_snippetCodeTDsimpleValidation">
+            <h4 class="card-title">Simple Form Validation</h4>
+            <div class="card-body">
+              <form #TDSimpleForm="ngForm" (ngSubmit)="(TDSimpleForm.form.valid)" class="form-horizontal">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDName">Name</label>
+                      <input
+                        #TDNameRef="ngModel"
+                        [(ngModel)]="TDNameVar"
+                        [class.error]="TDSimpleForm.submitted && TDNameRef.invalid"
+                        class="form-control input-md"
+                        id="TDName"
+                        name="TDName"
+                        placeholder="Name"
+                        required
+                        type="text"
+                      />
+                      <span *ngIf="TDSimpleForm.submitted && TDNameRef.invalid" class="invalid-form">
+                        <small *ngIf="TDNameRef.errors.required" class="form-text text-danger"
+                        >This field is required!</small
+                        >
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDEmail">Email</label>
+                      <input
+                        #TDEmailRef="ngModel"
+                        [(ngModel)]="TDEmailVar"
+                        [class.error]="TDSimpleForm.submitted && TDEmailRef.invalid"
+                        class="form-control input-md"
+                        email
+                        id="TDEmail"
+                        name="TDEmail"
+                        placeholder="Email"
+                        required
+                        type="text"
+                      />
+                      <span *ngIf="TDSimpleForm.submitted && TDEmailRef.invalid" class="invalid-form">
+                        <small *ngIf="!TDEmailRef.valid" class="form-text text-danger">email must be valid!</small>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary" rippleEffect type="submit">Submit</button>
+              </form>
+
+              <pre class="p-1 text-white mt-1">
+Username: {{ TDNameVar }}
+
+                Email: {{ TDEmailVar }}
+            </pre
+            >
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Template Driven Simple Validation -->
+    <!-- Template Driven Multiple Rules Validation -->
+    <section id="multiple-validation">
+      <div class="row">
+        <div class="col-md-12">
+          <core-card-snippet [snippetCode]="_snippetCodeTDMultiRuleValidation">
+            <h4 class="card-title">Validating Multiple Rules</h4>
+            <div class="card-body">
+              <form #TDMultiRuleForm="ngForm" (ngSubmit)="(TDMultiRuleForm.form.valid)" class="form-horizontal">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDMultiRuleName">Name</label>
+                      <input
+                        #TDMultiRuleNameRef="ngModel"
+                        [class.error]="!TDMultiRuleNameRef.valid && TDMultiRuleNameRef.touched"
+                        class="form-control input-md"
+                        id="TDMultiRuleName"
+                        name="TDMultiRuleName"
+                        ngModel
+                        placeholder="Your Name"
+                        required
+                        type="text"
+                      />
+                      <span *ngIf="!TDMultiRuleNameRef.valid && TDMultiRuleNameRef.touched" class="invalid-form">
+                        <small *ngIf="TDMultiRuleNameRef.errors.required" class="form-text text-danger"
+                        >This field is required!</small
+                        >
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDMultiRuleEmail">Email</label>
+                      <input
+                        #TDMultiRuleEmailRef="ngModel"
+                        [class.error]="!TDMultiRuleEmailRef.valid && TDMultiRuleEmailRef.touched"
+                        class="form-control input-md"
+                        email
+                        id="TDMultiRuleEmail"
+                        name="TDMultiRuleEmail"
+                        ngModel
+                        placeholder="Your Email"
+                        required
+                        type="text"
+                      />
+                      <span *ngIf="!TDMultiRuleEmailRef.valid && TDMultiRuleEmailRef.touched" class="invalid-form">
+                        <small class="form-text text-danger">email must be valid!</small>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDMultiRulePassword">Password</label>
+                      <input
+                        #TDMultiRulePasswordRef="ngModel"
+                        [class.error]="TDMultiRulePasswordRef.invalid && TDMultiRulePasswordRef.touched"
+                        class="form-control"
+                        id="TDMultiRulePassword"
+                        minlength="6"
+                        name="TDMultiRulePassword"
+                        ngModel
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        placeholder="Your Password"
+                        required
+                        type="password"
+                      />
+                      <div
+                        *ngIf="TDMultiRulePasswordRef.invalid && TDMultiRulePasswordRef.touched"
+                        class="form-text text-danger"
+                      >
+                        <small *ngIf="TDMultiRulePasswordRef.errors.required"> Password is required. </small>
+                        <small *ngIf="TDMultiRulePasswordRef.errors.pattern">
+                          Must contain at least one number and one uppercase and lowercase letter, and at least 8 or
+                          more characters.</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDMultiRuleConfPassword">Confirm Password</label>
+                      <input
+                        #TDMultiRuleConfPasswordRef="ngModel"
+                        [class.error]="TDMultiRuleConfPasswordRef.invalid && TDMultiRuleConfPasswordRef.touched"
+                        class="form-control"
+                        class="form-control"
+                        id="TDMultiRuleConfPassword"
+                        minlength="6"
+                        name="TDMultiRuleConfPassword"
+                        ngModel
+                        pattern="{{ TDMultiRulePasswordRef.value }}"
+                        placeholder="Confirm Password"
+                        placeholder="Confirm Password"
+                        required
+                        type="password"
+                      />
+                      <div
+                        *ngIf="TDMultiRuleConfPasswordRef.invalid && TDMultiRuleConfPasswordRef.touched"
+                        class="form-text text-danger"
+                      >
+                        <small *ngIf="TDMultiRuleConfPasswordRef.errors.required">
+                          Confirm password is required.
+                        </small>
+                        <small *ngIf="TDMultiRuleConfPasswordRef.errors.pattern">
+                          Password & Confirm Password does not match.</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button [disabled]="!TDMultiRuleForm.form.valid" class="btn btn-primary" rippleEffect type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Template Driven Multiple Rules Validation -->
+    <!-- Template Driven Input Validation -->
+    <section class="input-validation">
+      <div class="row">
+        <div class="col-md-12">
+          <core-card-snippet [snippetCode]="_snippetCodeInputValidation">
+            <h4 class="card-title">Inputs Validation</h4>
+            <div class="card-body">
+              <form #TDValidationForm="ngForm" (ngSubmit)="(TDValidationForm.form.valid)" class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDRequiredField">This field is required</label>
+                      <input
+                        #TDRequiredFieldRef="ngModel"
+                        [class.error]="TDRequiredFieldRef.invalid && TDValidationForm.submitted"
+                        class="form-control input-md"
+                        id="TDRequiredField"
+                        name="TDRequiredField"
+                        ngModel
+                        required
+                        type="text"
+                      />
+                      <small
+                        *ngIf="TDRequiredFieldRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >This field is required!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDNumberOnly">Must only consist of numbers</label>
+                      <input
+                        #TDNumberOnlyRef="ngModel"
+                        [class.error]="TDNumberOnlyRef.invalid && TDValidationForm.submitted"
+                        class="form-control input-md"
+                        id="TDNumberOnly"
+                        name="TDNumberOnly"
+                        ngModel
+                        pattern="[0-9]+"
+                        required
+                        type="text"
+                      />
+                      <small *ngIf="TDNumberOnlyRef.invalid && TDValidationForm.submitted" class="form-text text-danger"
+                      >The numeric field may only contain numeric characters.</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDAlphabetOnly">Only alphabetic characters</label>
+                      <input
+                        #TDAlphabetOnlyRef="ngModel"
+                        [class.error]="TDAlphabetOnlyRef.invalid && TDValidationForm.submitted"
+                        class="form-control input-md"
+                        id="TDAlphabetOnly"
+                        name="TDAlphabetOnly"
+                        ngModel
+                        pattern="[a-zA-Z]+$"
+                        required
+                        type="text"
+                      />
+                      <small
+                        *ngIf="TDAlphabetOnlyRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >The alphabetic field may only contain alphabet characters.</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDPasswordOnly">Password Input Field</label>
+                      <input
+                        #TDPasswordOnlyRef="ngModel"
+                        [class.error]="TDPasswordOnlyRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDPasswordOnly"
+                        minlength="6"
+                        name="TDPasswordOnly"
+                        ngModel
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        placeholder="Your Password"
+                        required
+                        type="password"
+                      />
+                      <div
+                        *ngIf="TDPasswordOnlyRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >
+                        <small *ngIf="TDPasswordOnlyRef.errors.required"> password is required. </small>
+                        <small *ngIf="TDPasswordOnlyRef.errors.pattern">
+                          Must contain at least one number and one uppercase and lowercase letter, and at least 8 or
+                          more characters.</small
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDRepeatPassword">Repeat password must match</label>
+                      <input
+                        #TDRepeatPasswordRef="ngModel"
+                        [class.error]="TDRepeatPasswordRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDRepeatPassword"
+                        minlength="6"
+                        name="TDRepeatPassword"
+                        ngModel
+                        pattern="{{ TDPasswordOnlyRef.value }}"
+                        placeholder="Confirm Password"
+                        placeholder="Confirm Password"
+                        required
+                        type="password"
+                      />
+                      <div
+                        *ngIf="TDRepeatPasswordRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >
+                        <small *ngIf="TDRepeatPasswordRef.errors.required"> Confirm password is required. </small>
+                        <small *ngIf="TDRepeatPasswordRef.errors.pattern">
+                          Password & Confirm Password does not match.</small
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDValidEmail">Must be a valid email</label>
+                      <input
+                        #TDValidEmailRef="ngModel"
+                        [class.error]="TDValidEmailRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDValidEmail"
+                        name="TDValidEmail"
+                        ngModel
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        placeholder="Email"
+                        required
+                        type="email"
+                      />
+                      <small *ngIf="TDValidEmailRef.invalid && TDValidationForm.submitted" class="form-text text-danger"
+                      >Must be a valid email!</small
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDNumBtwTenTwenty">Enter Number between 10 & 20</label>
+                      <input
+                        #TDNumBtwTenTwentyRef="ngModel"
+                        [class.error]="TDNumBtwTenTwentyRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDNumBtwTenTwenty"
+                        max="20"
+                        min="10"
+                        name="TDNumBtwTenTwenty"
+                        ngModel
+                        pattern="\b([1][0-9]|2[0])\b"
+                        placeholder="Enter Number between 10 & 20"
+                        required
+                        type="text"
+                      />
+                      <small
+                        *ngIf="TDNumBtwTenTwentyRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >Enter Number between 10 & 20!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDRegex"
+                      >Must match the specified regular expression : ^([0-9]+)$ - numbers only</label
+                      >
+                      <input
+                        #TDRegexRef="ngModel"
+                        [class.error]="TDRegexRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDRegex"
+                        name="TDRegex"
+                        ngModel
+                        pattern="^([0-9]+)$"
+                        placeholder="Enter specified regular expression"
+                        required
+                        type="text"
+                      />
+                      <small *ngIf="TDRegexRef.invalid && TDValidationForm.submitted" class="form-text text-danger"
+                      >The regex field format is invalid!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDLengthLessThree"
+                      >Length should not be less than the specified length : 3</label
+                      >
+                      <input
+                        #TDLengthLessThreeRef="ngModel"
+                        [class.error]="TDLengthLessThreeRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDLengthLessThree"
+                        minlength="3"
+                        name="TDLengthLessThree"
+                        ngModel
+                        placeholder="Enter minimum 3 characters"
+                        required
+                        type="text"
+                      />
+                      <small
+                        *ngIf="TDLengthLessThreeRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >The min field must be at least 3 characters!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDNumThreeDigit"
+                      >The digits field must be numeric and exactly contain 3 digits</label
+                      >
+                      <input
+                        #TDNumThreeDigitRef="ngModel"
+                        [class.error]="TDNumThreeDigitRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDNumThreeDigit"
+                        maxlength="3"
+                        minlength="3"
+                        name="TDNumThreeDigit"
+                        ngModel
+                        pattern="[1-9][0-9]{0,2}"
+                        placeholder="Enter Exactly 3 digits"
+                        required
+                        type="text"
+                      />
+                      <small
+                        *ngIf="TDNumThreeDigitRef.invalid && TDValidationForm.submitted"
+                        class="form-text text-danger"
+                      >The digits field must be numeric and exactly contain 3 digits!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDCharNumDU"
+                      >Only alphabetic characters, numbers, dashes or underscores</label
+                      >
+                      <input
+                        #TDCharNumDURef="ngModel"
+                        [class.error]="TDCharNumDURef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDCharNumDU"
+                        name="TDCharNumDU"
+                        ngModel
+                        pattern="^[-a-zA-Z_\d]+$"
+                        placeholder="Enter Character, Numbers, Dash, Uderscore"
+                        required
+                        type="text"
+                      />
+                      <small *ngIf="TDCharNumDURef.invalid && TDValidationForm.submitted" class="form-text text-danger"
+                      >Must Enter Character, Number, Dash or Uderscore!</small
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="TDUrl">Must be a valid url</label>
+                      <input
+                        #TDUrlRef="ngModel"
+                        [class.error]="TDUrlRef.invalid && TDValidationForm.submitted"
+                        class="form-control"
+                        id="TDUrl"
+                        name="TDUrl"
+                        ngModel
+                        pattern="^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                        placeholder="Enter valid url"
+                        required
+                        type="text"
+                      />
+                      <small *ngIf="TDUrlRef.invalid && TDValidationForm.submitted" class="form-text text-danger"
+                      >Must be a valid url!</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary" rippleEffect type="submit">Submit</button>
+              </form>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Template Driven Input Validation -->
+    <section id="reactive-forms">
+      <div class="row">
+        <div class="col-12 mt-1 mb-1">
+          <h4 class="text-uppercase">Reactive Form Validation</h4>
+          <p>
+            Reactive forms provide a model-driven approach to handling form inputs whose values change over time.
+            Validate form values, and create dynamic forms where you can add or remove controls at run time.
+          </p>
+          <p>
+            Reactive forms are more robust: they’re more scalable, reusable, and testable. If forms are a key part of
+            your application, use reactive forms
+          </p>
+        </div>
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeReactiveForms">
+            <h4 class="card-title">User Details Form with Validation</h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <form (ngSubmit)="ReactiveUDFormOnSubmit()" [formGroup]="ReactiveUserDetailsForm">
+                    <h6 class="mb-2">1. Account Details</h6>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDUserName">Username</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.userName.errors }"
+                            class="form-control"
+                            formControlName="userName"
+                            id="UDUserName"
+                            type="text"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.userName.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.userName.errors.required">Username is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDEmail">Email</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.email.errors }"
+                            class="form-control"
+                            formControlName="email"
+                            id="UDEmail"
+                            type="text"
+                          />
+                          <div *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.email.errors" class="invalid-feedback">
+                            <div *ngIf="ReactiveUDForm.email.errors.required">Email is required</div>
+                            <div *ngIf="ReactiveUDForm.email.errors.email">Email must be a valid email address</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDPassword">Password</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.password.errors }"
+                            class="form-control"
+                            formControlName="password"
+                            id="UDPassword"
+                            type="password"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.password.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.password.errors.required">Password is required</div>
+                            <div *ngIf="ReactiveUDForm.password.errors.minlength">
+                              Password must be at least 6 characters
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDConfPassword">Confirm Password</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.confPassword.errors }"
+                            class="form-control"
+                            formControlName="confPassword"
+                            id="UDConfPassword"
+                            type="password"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.confPassword.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.confPassword.errors.required">Confirm Password is required</div>
+                            <div *ngIf="ReactiveUDForm.confPassword.errors.minlength">
+                              Confirm Password must be at least 6 characters
+                            </div>
+                            <div *ngIf="ReactiveUDForm.confPassword.errors.mustMatch">Passwords must match</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <h6 class="mb-2">2. Personal Info</h6>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDFirstName">First Name</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.firstName.errors }"
+                            class="form-control"
+                            formControlName="firstName"
+                            id="UDFirstName"
+                            type="text"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.firstName.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.firstName.errors.required">First Name is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDLastName">Last Name</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.lastName.errors }"
+                            class="form-control"
+                            formControlName="lastName"
+                            id="UDLastName"
+                            type="text"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.lastName.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.lastName.errors.required">Last Name is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDCountry">Country</label>
+                          <select
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.country.errors }"
+                            class="form-control"
+                            formControlName="country"
+                            id="UDCountry"
+                          >
+                            <option value="USA">USA</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Russia">Russia</option>
+                            <option value="UK">UK</option>
+                          </select>
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.country.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.country.errors.required">country is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDLanguage">Language</label>
+                          <select
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.language.errors }"
+                            class="form-control"
+                            formControlName="language"
+                            id="UDLanguage"
+                          >
+                            <option selected value="English">English</option>
+                            <option value="Germany">Germany</option>
+                            <option value="French">French</option>
+                            <option value="Portuguese">Portuguese</option>
+                          </select>
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.language.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.language.errors.required">language is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDAge">Age</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.age.errors }"
+                            class="form-control"
+                            formControlName="age"
+                            id="UDAge"
+                            type="number"
+                          />
+                          <div *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.age.errors" class="invalid-feedback">
+                            <div *ngIf="ReactiveUDForm.age.errors.required">Age is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="UDPhoneNumber">Phone Number</label>
+                          <input
+                            [ngClass]="{ 'is-invalid': ReactiveUDFormSubmitted && ReactiveUDForm.phoneNumber.errors }"
+                            class="form-control"
+                            formControlName="phoneNumber"
+                            id="UDPhoneNumber"
+                            type="number"
+                          />
+                          <div
+                            *ngIf="ReactiveUDFormSubmitted && ReactiveUDForm.phoneNumber.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="ReactiveUDForm.phoneNumber.errors.required">Phone Number is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <button class="btn btn-primary" rippleEffect>Register</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+<!-- Right Sidebar -->
+<div class="modal-dialog sidebar-lg">
+  <div class="modal-content p-0">
+    <form
+      #todoForm="ngForm"
+      (ngSubmit)="(todoForm.form.valid)"
+      class="todo-modal needs-validation"
+      id="form-modal-todo"
+    >
+      <div class="modal-header align-items-center mb-1">
+        <h5 *ngIf="isDataEmpty === true; else updateTodosRef" class="modal-title">Add Task</h5>
+        <ng-template #updateTodosRef>
+          <button
+            (click)="toggleComplete()"
+            [ngClass]="todo.completed ? 'btn-outline-success' : 'btn-outline-secondary'"
+            class="btn btn-sm"
+            rippleEffect
+          >
+            {{ todo.completed ? 'Complete' : 'Mark Complete' }}
+          </button>
+        </ng-template>
+        <div class="todo-item-action d-flex align-items-center justify-content-between ml-auto">
+          <button
+            (click)="deleteTodo()"
+            *ngIf="isDataEmpty === false"
+            class="todo-item-favorite cursor-pointer mr-75 btn p-0"
+            type="button"
+          >
+            <i [size]="18" data-feather="trash"></i>
+          </button>
+
+          <button (click)="toggleImportant()" class="todo-favorite btn pr-75 p-0">
+            <i
+              [ngClass]="{ 'fa-star text-warning': todo.important === true, 'fa-star-o': todo.important === false }"
+              class="fa font-medium-3"
+            ></i>
+          </button>
+          <button
+            (click)="closeSidebar()"
+            aria-label="Close"
+            class="close font-large-1 font-weight-normal py-0"
+            data-dismiss="modal"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+        <div class="action-tags">
+          <div class="form-group">
+            <label class="form-label" for="todoTitleAdd">Title</label>
+            <input
+              #TDNameRef="ngModel"
+              [(ngModel)]="todo.title"
+              [class.error]="todoForm.submitted && TDNameRef.invalid"
+              class="new-todo-item-title form-control"
+              id="todoTitleAdd"
+              name="addTitle"
+              placeholder="Title"
+              required
+              type="text"
+            />
+            <span *ngIf="todoForm.submitted && TDNameRef.invalid" class="invalid-form">
+              <small *ngIf="TDNameRef.errors.required" class="form-text text-danger">This field is required!</small>
+            </span>
+          </div>
+          <div class="form-group position-relative">
+            <label class="form-label d-block" for="task-assigned">Assignee</label>
+            <ng-select [(ngModel)]="todo.assignee" [items]="selectAssignee" bindLabel="fullName" name="selectAssignee">
+              <ng-template let-item="item" ng-option-tmp>
+                <div class="media align-items-center">
+                  <img
+                    [alt]="item.fullName"
+                    [src]="item.avatar"
+                    class="d-block rounded-circle mr-50"
+                    height="26"
+                    width="26"
+                  />
+                  <div class="media-body">
+                    <p class="mb-0">{{ item.fullName }}</p>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="form-group position-relative">
+            <label class="form-label" for="task-due-date">Due Date</label>
+            <ng2-flatpickr
+              #dueDateRef
+              [config]="dueDateOptions"
+              [setDate]="todo.dueDate"
+              name="addDueDate"
+            ></ng2-flatpickr>
+          </div>
+          <div class="form-group">
+            <label class="form-label d-block" for="task-tag">Tag</label>
+            <ng-select
+              [(ngModel)]="todo.tags"
+              [closeOnSelect]="false"
+              [items]="selectTags"
+              [multiple]="true"
+              [searchable]="false"
+              bindLabel="name"
+              name="addTag"
+            >
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+
+            <quill-editor
+              [(ngModel)]="todo.description"
+              class="border-bottom-0"
+              customToolbarPosition="'bottom'"
+              name="addDescription"
+              placeholder="Write Your Description"
+            >
+              <div quill-editor-toolbar>
+                <div class="d-flex justify-content-end desc-toolbar border-top-0">
+                  <span class="ql-formats mr-0">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-align"></button>
+                    <button class="ql-link"></button>
+                  </span>
+                </div>
+              </div>
+            </quill-editor>
+          </div>
+        </div>
+        <div class="form-group my-1">
+          <button
+            (click)="addTodo(todoForm)"
+            *ngIf="isDataEmpty === true"
+            class="btn btn-primary add-todo-item mr-1"
+            rippleEffect
+            type="submit"
+          >
+            Add
+          </button>
+          <button
+            (click)="updateTodo()"
+            *ngIf="isDataEmpty === false"
+            class="btn btn-primary update-btn update-todo-item mr-1"
+            rippleEffect
+            type="button"
+          >
+            Update
+          </button>
+          <button
+            (click)="closeSidebar()"
+            class="btn btn-outline-secondary add-todo-item"
+            data-dismiss="modal"
+            rippleEffect
+            type="button"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--/ Right Sidebar -->

@@ -1,3 +1,3 @@
 export interface CurrentBriefQuestions {
-  questions: string[]
+  questions: string[];
 }

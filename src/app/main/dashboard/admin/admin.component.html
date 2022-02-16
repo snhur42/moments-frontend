@@ -1,0 +1,34 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- Card Advance -->
+    <div class="row match-height">
+      <!-- Congratulations Card -->
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="card card-congratulations">
+          <div class="card-body text-center">
+            <img alt="card-img-left" class="congratulations-img-left" src="assets/images/elements/decore-left.png"/>
+            <img alt="card-img-right" class="congratulations-img-right" src="assets/images/elements/decore-right.png"/>
+            <div class="avatar avatar-xl bg-primary shadow">
+              <div class="avatar-content">
+                <i class="font-large-1" data-feather="award"></i>
+              </div>
+            </div>
+            <div class="text-center">
+              <h1 class="mb-1 text-white">Congratulations {{ currentUser?.firstName }},</h1>
+              <p class="card-text m-auto w-75">This page can be accessed <strong>only by administrators</strong>.</p>
+
+              <p class="card-text m-auto w-75">
+                All users from secure (admin only) api end point.
+                <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                <ng-container *ngIf="users">
+                  <span *ngFor="let user of users">{{ user.firstName }} {{ user.lastName }} ({{ user.role }}), </span>
+                </ng-container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Congratulations Card -->
+    </div>
+  </div>
+</div>

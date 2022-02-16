@@ -1,0 +1,128 @@
+<div class="body-content-overlay"></div>
+<!-- Main chat area -->
+<section class="chat-app-window">
+  <!-- To load Conversation -->
+  <div [ngClass]="{ 'd-none': activeChat === true }" class="start-chat-area">
+    <div class="mb-1 start-chat-icon">
+      <i data-feather="message-square"></i>
+    </div>
+    <h4 (click)="toggleSidebar('chat-sidebar')" class="sidebar-toggle start-chat-text">Start Conversation</h4>
+  </div>
+  <!--/ To load Conversation -->
+
+  <!-- Active Chat -->
+  <div *ngIf="activeChat === true" [ngClass]="{ 'd-none': activeChat !== true }" class="active-chat">
+    <!-- Chat Header -->
+    <div class="chat-navbar">
+      <header class="chat-header">
+        <div class="d-flex align-items-center">
+          <button (click)="toggleSidebar('chat-sidebar')" class="btn sidebar-toggle d-block d-lg-none mr-1 p-0">
+            <i class="font-medium-5" data-feather="menu"></i>
+          </button>
+          <button
+            (click)="toggleSidebar('chat-active-sidebar')"
+            class="btn avatar avatar-border user-profile-toggle bg-transparent m-0 mr-1 p-0"
+          >
+            <img [src]="chatUser.avatar" alt="avatar" height="36" width="36"/>
+            <span
+              [ngClass]="{
+                'avatar-status-offline': chatUser.status == 'offline',
+                'avatar-status-online': chatUser.status == 'online',
+                'avatar-status-busy': chatUser.status == 'busy',
+                'avatar-status-away': chatUser.status == 'away'
+              }"
+            ></span>
+          </button>
+          <h6 class="mb-0">{{ chatUser.fullName }}</h6>
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="cursor-pointer d-sm-block d-none font-medium-2 mr-1" data-feather="phone-call"></i>
+          <i class="cursor-pointer d-sm-block d-none font-medium-2 mr-1" data-feather="video"></i>
+          <i class="cursor-pointer d-sm-block d-none font-medium-2" data-feather="search"></i>
+          <div ngbDropdown>
+            <button
+              aria-expanded="false"
+              aria-haspopup="true"
+              class="btn-icon btn btn-transparent hide-arrow btn-sm"
+              ngbDropdownToggle
+              type="button"
+            >
+              <i class="font-medium-2" data-feather="more-vertical" id="chat-header-actions"></i>
+            </button>
+            <div aria-labelledby="chat-header-actions" class="dropdown-menu-right" ngbDropdownMenu>
+              <a href="javascript:void(0);" ngbDropdownItem>View Contact</a>
+              <a href="javascript:void(0);" ngbDropdownItem>Mute Notifications</a>
+              <a href="javascript:void(0);" ngbDropdownItem>Block Contact</a>
+              <a href="javascript:void(0);" ngbDropdownItem>Clear Chat</a>
+              <a href="javascript:void(0);" ngbDropdownItem>Report</a>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!--/ Chat Header -->
+
+    <!-- User Chat messages -->
+    <div #scrollMe [perfectScrollbar] [scrollTop]="scrolltop" class="user-chats">
+      <div class="chats">
+        <div
+          *ngFor="let chatRef of chats.chat"
+          [ngClass]="{ 'chat-left': chatRef.senderId === chats.userId }"
+          class="chat"
+        >
+          <div class="chat-avatar">
+            <span class="avatar box-shadow-1 cursor-pointer">
+              <img
+                *ngIf="chatRef.senderId === chats.userId; else alternateAvatar"
+                [src]="chatUser.avatar"
+                alt="avatar"
+                height="36"
+                width="36"
+              />
+              <ng-template #alternateAvatar>
+                <img [src]="userProfile.avatar" alt="avatar" height="36" width="36"/>
+              </ng-template>
+            </span>
+          </div>
+          <div class="chat-body">
+            <div class="chat-content">
+              <p>{{ chatRef.message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- User Chat messages -->
+
+    <!-- Submit Chat form -->
+    <form action="javascript:void(0);" class="chat-app-form">
+      <div class="input-group input-group-merge mr-1 form-send-message">
+        <div class="input-group-prepend">
+          <span class="speech-to-text input-group-text"><i class="cursor-pointer" data-feather="mic"></i></span>
+        </div>
+        <input
+          (keydown.enter)="updateChat()"
+          [(ngModel)]="chatMessage"
+          class="form-control message"
+          name="chat-message"
+          placeholder="Type your message or use speech to text"
+          type="text"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <label class="attachment-icon mb-0" for="attach-doc">
+              <i class="cursor-pointer lighten-2 text-secondary" data-feather="image"></i>
+              <input hidden id="attach-doc" type="file"/> </label
+            ></span>
+        </div>
+      </div>
+      <button (click)="updateChat()" class="btn btn-primary send" rippleEffect type="button">
+        <i class="d-lg-none" data-feather="send"></i>
+        <span class="d-none d-lg-block">Send</span>
+      </button>
+    </form>
+    <!--/ Submit Chat form -->
+  </div>
+  <!--/ Active Chat -->
+</section>
+<!--/ Main chat area -->

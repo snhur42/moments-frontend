@@ -1,0 +1,23 @@
+<!-- Error page-->
+<div class="misc-wrapper">
+  <a class="brand-logo" href="javascript:void(0);">
+    <img alt="brand-logo" height="28" src="{{ coreConfig.app.appLogoImage }}"/>
+    <h2 class="brand-text text-primary ml-1">Instacafe Moments</h2></a
+  >
+  <div class="misc-inner p-2 p-sm-3">
+    <div class="w-100 text-center">
+      <h2 class="mb-1">Щось пішло не так 🕵🏻‍♀️</h2>
+      <p class="mb-2">Ой! 😖 Даної сторінки не існує.</p>
+      <a class="btn btn-primary mb-2 btn-sm-block" rippleEffect routerLink=""
+      >Повернутись на сторінку авторизації</a
+      ><img
+      [src]="
+          coreConfig.layout.skin === 'dark' ? 'assets/images/pages/error-dark.svg' : 'assets/images/pages/error.svg'
+        "
+      alt="Error page"
+      class="img-fluid"
+    />
+    </div>
+  </div>
+</div>
+<!-- / Error page-->

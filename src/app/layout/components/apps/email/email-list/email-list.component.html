@@ -1,0 +1,146 @@
+<!-- Email list Area -->
+<div class="email-app-list">
+  <!-- Email search starts -->
+  <div class="app-fixed-search d-flex align-items-center">
+    <div class="sidebar-toggle d-block d-lg-none ml-1">
+      <button (click)="toggleSidebar('email-sidebar')" class="btn p-0"><i [size]="21" data-feather="menu"></i></button>
+    </div>
+    <div class="d-flex align-content-center justify-content-between w-100">
+      <div class="input-group input-group-merge">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="text-muted" data-feather="search"></i></span>
+        </div>
+        <input
+          (keyup)="queryUpdate($event)"
+          aria-describedby="email-search"
+          aria-label="Search..."
+          class="form-control"
+          id="email-search"
+          placeholder="Search email"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- Email search ends -->
+
+  <!-- Email actions starts -->
+  <div class="app-action">
+    <div class="action-left">
+      <div class="custom-control custom-checkbox selectAll">
+        <input
+          (click)="toggleSelectAll()"
+          [checked]="hasSelectedMails"
+          [indeterminate]="isIndeterminate"
+          class="custom-control-input"
+          id="selectAllCheck"
+          type="checkbox"
+        />
+        <label class="custom-control-label font-weight-bolder pl-25" for="selectAllCheck">Select All</label>
+      </div>
+    </div>
+    <div *ngIf="hasSelectedMails > 0" class="action-right">
+      <ul class="list-inline m-0">
+        <li class="list-inline-item">
+          <div ngbDropdown>
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              data-toggle="dropdown"
+              href="javascript:void(0);"
+              id="folder"
+              ngbDropdownToggle
+            >
+              <i [size]="18" data-feather="folder"></i>
+            </a>
+            <div aria-labelledby="folder" class="dropdown-menu-right" ngbDropdownMenu>
+              <a
+                (click)="updateFolderOnSelectedMails('draft')"
+                class="d-flex align-items-center"
+                href="javascript:void(0);"
+                ngbDropdownItem
+              >
+                <i class="font-small-4 mr-50" data-feather="edit-2"></i>
+                <span>Draft</span>
+              </a>
+              <a
+                (click)="updateFolderOnSelectedMails('spam')"
+                class="d-flex align-items-center"
+                href="javascript:void(0);"
+                ngbDropdownItem
+              >
+                <i class="font-small-4 mr-50" data-feather="info"></i>
+                <span>Spam</span>
+              </a>
+              <a
+                (click)="updateFolderOnSelectedMails('trash')"
+                class="d-flex align-items-center"
+                href="javascript:void(0);"
+                ngbDropdownItem
+              >
+                <i class="font-small-4 mr-50" data-feather="trash"></i>
+                <span>Trash</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="list-inline-item">
+          <div ngbDropdown>
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              data-toggle="dropdown"
+              href="javascript:void(0);"
+              id="tag"
+              ngbDropdownToggle
+            >
+              <i [size]="18" data-feather="tag"></i>
+            </a>
+            <div aria-labelledby="tag" class="dropdown-menu-right" ngbDropdownMenu>
+              <a (click)="updateLabelOnSelectedEmails('personal')" href="javascript:void(0);" ngbDropdownItem
+              ><span class="mr-50 bullet bullet-success bullet-sm"></span>Personal</a
+              >
+              <a (click)="updateLabelOnSelectedEmails('company')" href="javascript:void(0);" ngbDropdownItem
+              ><span class="mr-50 bullet bullet-primary bullet-sm"></span>Company</a
+              >
+              <a (click)="updateLabelOnSelectedEmails('important')" href="javascript:void(0);" ngbDropdownItem
+              ><span class="mr-50 bullet bullet-warning bullet-sm"></span>Important</a
+              >
+              <a (click)="updateLabelOnSelectedEmails('private')" href="javascript:void(0);" ngbDropdownItem
+              ><span class="mr-50 bullet bullet-danger bullet-sm"></span>Private</a
+              >
+            </div>
+          </div>
+        </li>
+        <li class="list-inline-item mail-unread">
+          <button (click)="unRead()" class="action-icon btn p-0"><i [size]="18" data-feather="mail"></i></button>
+        </li>
+        <li class="list-inline-item mail-delete">
+          <button (click)="updateFolderOnSelectedMails('trash')" class="action-icon btn p-0">
+            <i [size]="18" data-feather="trash-2"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Email actions ends -->
+
+  <!-- Email list starts -->
+  <div [perfectScrollbar] class="email-user-list">
+    <ul class="email-media-list">
+      <email-list-item
+        (click)="openEmail(email.id); $event.stopPropagation()"
+        *ngFor="let email of emails; let i = index"
+        [email]="email"
+      ></email-list-item>
+      <ng-container *ngIf="emails.length; else noResults"></ng-container>
+    </ul>
+    <ng-template #noResults>
+      <div class="no-results show">
+        <h5>No Items Found</h5>
+      </div>
+    </ng-template>
+  </div>
+  <!-- Email list ends -->
+</div>
+<!--/ Email list Area -->

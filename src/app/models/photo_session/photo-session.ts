@@ -1,29 +1,29 @@
-import {AbstractEntity} from "../abstract-entity";
-import {PhotoSessionType} from "../enum/photo-session-type";
-import {PhotoSessionStatus} from "../enum/photo-session-status";
-import {Duration} from "../enum/duration";
+import {AbstractEntity} from '../abstract-entity';
+import {PhotoSessionType} from '../enum/photo-session-type';
+import {PhotoSessionStatus} from '../enum/photo-session-status';
+import {Duration} from '../enum/duration';
 
 export interface PhotoSession extends AbstractEntity {
-  managerId: string
-  clientId: string
-  photographerId: string
+  managerId: string;
+  clientId: string;
+  photographerId: string;
 
-  allPhotos: string[]
-  finalPhotos: string[]
+  allPhotos: string[];
+  finalPhotos: string[];
 
-  chatId: string
+  chatId: string;
 
-  photoSessionType: PhotoSessionType
-  status: PhotoSessionStatus
-  duration: Duration
-  location: string
+  photoSessionType: PhotoSessionType;
+  status: PhotoSessionStatus;
+  duration: Duration;
+  location: string;
 
-  price: number
+  price: number;
 
-  certificateId?: string
+  certificateId?: string;
 
-  brief: string[]
+  brief: string[];
 
-  willHappenAt: Date
+  willHappenAt: Date;
 
 }

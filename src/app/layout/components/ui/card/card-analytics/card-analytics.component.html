@@ -1,0 +1,784 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Analytics card section start -->
+    <section id="analytics-card">
+      <div class="row match-height">
+        <!-- Support Tracker Card -->
+        <div class="col-lg-6 col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between pb-0">
+              <h4 class="card-title">Support Tracker</h4>
+              <div class="chart-dropdown" ngbDropdown>
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  class="btn btn-sm border-0 p-50"
+                  data-toggle="dropdown"
+                  id="dropdownItem4"
+                  ngbDropdownToggle
+                  type="button"
+                >
+                  Last 7 Days
+                </button>
+                <div aria-labelledby="dropdownItem4" class="dropdown-menu-right" ngbDropdownMenu>
+                  <a href="javascript:void(0);" ngbDropdownItem>Last 28 Days</a>
+                  <a href="javascript:void(0);" ngbDropdownItem>Last Month</a>
+                  <a href="javascript:void(0);" ngbDropdownItem>Last Year</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-2 col-12 d-flex flex-column flex-wrap text-center">
+                  <h1 class="font-large-2 font-weight-bolder mt-2 mb-0">
+                    {{ data.supportTracker.analyticsData.tickets }}
+                  </h1>
+                  <p class="card-text">Tickets</p>
+                </div>
+                <div #supportChartoptionsRef class="col-sm-10 col-12 d-flex justify-content-center">
+                  <div id="supportChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        height: 290,
+                        width:
+                          isMenuToggled === false
+                            ? supportChartoptionsRef.offsetWidth
+                            : supportChartoptions.chart.width,
+                        type: 'radialBar',
+                        sparkline: {
+                          enabled: false
+                        }
+                      }"
+                      [colors]="supportChartoptions.colors"
+                      [fill]="supportChartoptions.fill"
+                      [labels]="supportChartoptions.labels"
+                      [plotOptions]="supportChartoptions.plotOptions"
+                      [series]="data.supportTracker.series"
+                      [stroke]="supportChartoptions.stroke"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="text-center">
+                  <p class="card-text mb-50">New Tickets</p>
+                  <span class="font-large-1 font-weight-bold">{{ data.supportTracker.analyticsData.newTickets }}</span>
+                </div>
+                <div class="text-center">
+                  <p class="card-text mb-50">Open Tickets</p>
+                  <span class="font-large-1 font-weight-bold">{{ data.supportTracker.analyticsData.openTickets }}</span>
+                </div>
+                <div class="text-center">
+                  <p class="card-text mb-50">Response Time</p>
+                  <span class="font-large-1 font-weight-bold">{{
+                    data.supportTracker.analyticsData.responseTime
+                    }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Support Tracker Card -->
+        <!-- Average Sessions Card -->
+        <div class="col-lg-6 col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row pb-50">
+                <div class="col-lg-6 col-12 d-flex justify-content-between flex-column order-lg-1 order-2 mt-1 mt-lg-0">
+                  <div class="mb-1 mb-lg-0">
+                    <h2 class="font-weight-bolder mb-25">{{ data.avgSessions.analyticsData.avgSessions }}</h2>
+                    <p class="card-text font-weight-bold mb-2">Avg Sessions</p>
+                    <div class="font-medium-2">
+                      <span class="text-success mr-25">{{ data.avgSessions.analyticsData.vsLastSevenDays }}</span>
+                      <span>vs last 7 days</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" rippleEffect type="button">View Details</button>
+                </div>
+                <div class="col-lg-6 col-12 d-flex justify-content-between flex-column text-right order-lg-2 order-1">
+                  <div class="chart-dropdown" ngbDropdown>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="btn btn-sm border-0 p-50"
+                      data-toggle="dropdown"
+                      id="dropdownItem5"
+                      ngbDropdownToggle
+                      type="button"
+                    >
+                      Last 7 Days
+                    </button>
+                    <div aria-labelledby="dropdownItem5" ngbDropdownMenu>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last 28 Days</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Month</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Year</a>
+                    </div>
+                  </div>
+                  <div #avgsessionChartoptionsRef id="avgsessionChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        type: 'bar',
+                        height: 200,
+                        width:
+                          isMenuToggled === false
+                            ? avgsessionChartoptionsRef.offsetWidth
+                            : avgsessionChartoptions.chart.width,
+                        sparkline: { enabled: true },
+                        toolbar: { show: false }
+                      }"
+                      [colors]="avgsessionChartoptions.colors"
+                      [plotOptions]="avgsessionChartoptions.plotOptions"
+                      [series]="data.avgSessions.series"
+                      [states]="avgsessionChartoptions.states"
+                      [tooltip]="avgsessionChartoptions.tooltip"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                </div>
+              </div>
+              <hr/>
+              <div class="row avg-sessions pt-50">
+                <div class="col-6 mb-2">
+                  <p class="mb-50">Goal: {{ data.avgSessions.analyticsData.goal }}</p>
+
+                  <ngb-progressbar
+                    [height]="'6px'"
+                    [value]="data.avgSessions.analyticsData.goalProgressbar"
+                    type="primary"
+                  ></ngb-progressbar>
+                </div>
+                <div class="col-6 mb-2">
+                  <p class="mb-50">Users: {{ data.avgSessions.analyticsData.users }}</p>
+
+                  <ngb-progressbar
+                    [height]="'6px'"
+                    [value]="data.avgSessions.analyticsData.retentionProgressbar"
+                    type="warning"
+                  ></ngb-progressbar>
+                </div>
+                <div class="col-6">
+                  <p class="mb-50">Retention: {{ data.avgSessions.analyticsData.retention }}</p>
+
+                  <ngb-progressbar
+                    [height]="'6px'"
+                    [value]="data.avgSessions.analyticsData.usersProgressbar"
+                    type="danger"
+                  ></ngb-progressbar>
+                </div>
+                <div class="col-6">
+                  <p class="mb-50">Duration: {{ data.avgSessions.analyticsData.duration }}</p>
+
+                  <ngb-progressbar
+                    [height]="'6px'"
+                    [value]="data.avgSessions.analyticsData.durationProgressbar"
+                    type="success"
+                  ></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Average Sessions Card -->
+      </div>
+
+      <div class="row match-height">
+        <!-- Revenue Report Card -->
+        <div class="col-lg-8 col-12">
+          <!-- Revenue Report Card -->
+          <div class="card card-revenue-budget">
+            <div class="row mx-0">
+              <div class="col-md-8 col-12 revenue-report-wrapper">
+                <div class="d-sm-flex justify-content-between align-items-center mb-3">
+                  <h4 class="card-title mb-50 mb-sm-0">Revenue Report</h4>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center mr-2">
+                      <span class="bullet bullet-primary font-small-3 mr-50 cursor-pointer"></span>
+                      <span>Earning</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <span class="bullet bullet-warning font-small-3 mr-50 cursor-pointer"></span>
+                      <span>Expense</span>
+                    </div>
+                  </div>
+                </div>
+                <div #revenueReportChartoptionsRef id="revenue-report-chart">
+                  <apx-chart
+                    [chart]="{
+                      height: 230,
+                      width:
+                        isMenuToggled === false
+                          ? revenueReportChartoptionsRef.offsetWidth
+                          : revenueReportChartoptions.chart.width,
+                      stacked: true,
+                      type: 'bar',
+                      toolbar: { show: false }
+                    }"
+                    [colors]="revenueReportChartoptions.colors"
+                    [dataLabels]="revenueReportChartoptions.dataLabels"
+                    [grid]="revenueReportChartoptions.grid"
+                    [legend]="revenueReportChartoptions.legend"
+                    [plotOptions]="revenueReportChartoptions.plotOptions"
+                    [series]="data.revenueReport.earningExpenseChart.series"
+                    [xaxis]="revenueReportChartoptions.xaxis"
+                    [yaxis]="revenueReportChartoptions.yaxis"
+                  ></apx-chart>
+                </div>
+              </div>
+              <div class="col-md-4 col-12 budget-wrapper">
+                <div class="btn-group">
+                  <div ngbDropdown>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="btn btn-outline-primary btn-sm budget-dropdown"
+                      data-toggle="dropdown"
+                      ngbDropdownToggle
+                      ngbDropdownToggle
+                      type="button"
+                    >
+                      2020
+                    </button>
+                    <div ngbDropdownMenu>
+                      <a href="javascript:void(0);" ngbDropdownItem>2020</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>2019</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>2018</a>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="mb-25">{{ data.revenueReport.analyticsData.currentBudget }}</h2>
+                <div class="d-flex justify-content-center">
+                  <span class="font-weight-bolder mr-25">Budget:</span>
+                  <span>{{ data.revenueReport.analyticsData.totalBudget }}</span>
+                </div>
+                <div #budgetChartoptionsRef id="budget-chart">
+                  <apx-chart
+                    [chart]="{
+                      height: 80,
+                      width:
+                        isMenuToggled === false ? budgetChartoptionsRef.offsetWidth : budgetChartoptions.chart.width,
+                      toolbar: { show: false },
+                      zoom: { enabled: false },
+                      type: 'line',
+                      sparkline: { enabled: true }
+                    }"
+                    [colors]="budgetChartoptions.colors"
+                    [series]="data.revenueReport.budgetChart.series"
+                    [stroke]="budgetChartoptions.stroke"
+                    [tooltip]="budgetChartoptions.tooltip"
+                  ></apx-chart>
+                </div>
+                <button class="btn btn-primary" rippleEffect type="button">Increase Budget</button>
+              </div>
+            </div>
+          </div>
+          <!--/ Revenue Report Card -->
+        </div>
+        <!--/ Revenue Report Card -->
+
+        <!-- Goal Overview Card -->
+        <div class="col-lg-4 col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Goal Overview</h4>
+              <i class="font-medium-3 text-muted cursor-pointer" data-feather="help-circle"></i>
+            </div>
+            <div class="card-body p-0">
+              <div #goalChartoptionsRef class="mb-2 pb-75" id="goalChartoptions">
+                <!-- Apexchart component-->
+                <apx-chart
+                  [chart]="{
+                    height: 245,
+                    width: isMenuToggled === false ? goalChartoptionsRef.offsetWidth : goalChartoptions.chart.width,
+                    type: 'radialBar',
+                    sparkline: {
+                      enabled: true
+                    },
+                    dropShadow: {
+                      enabled: true,
+                      blur: 3,
+                      left: 1,
+                      top: 1,
+                      opacity: 0.1
+                    }
+                  }"
+                  [colors]="goalChartoptions.colors"
+                  [fill]="goalChartoptions.fill"
+                  [grid]="goalChartoptions.grid"
+                  [plotOptions]="goalChartoptions.plotOptions"
+                  [series]="data.goalOverview.series"
+                  [stroke]="goalChartoptions.stroke"
+                ></apx-chart>
+                <!-- / Apexchart component-->
+              </div>
+              <div class="row border-top text-center mx-0">
+                <div class="col-6 border-right py-1">
+                  <p class="card-text text-muted mb-0">Completed</p>
+                  <h3 class="font-weight-bolder mb-0">{{ data.goalOverview.analyticsData.completed }}</h3>
+                </div>
+                <div class="col-6 py-1">
+                  <p class="card-text text-muted mb-0">In Progress</p>
+                  <h3 class="font-weight-bolder mb-0">{{ data.goalOverview.analyticsData.inProgress }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Goal Overview Card -->
+      </div>
+
+      <div class="row match-height">
+        <!-- Revenue Card -->
+        <div class="col-lg-8 col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Revenue</h4>
+              <i class="font-medium-3 text-muted cursor-pointer" data-feather="settings"></i>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-start mb-2">
+                <div class="mr-2">
+                  <p class="card-text mb-50">This Month</p>
+                  <h3 class="font-weight-bolder">
+                    <sup class="font-medium-1 font-weight-bold">$</sup>
+                    <span class="text-primary"> {{ data.revenue.analyticsData.thisMonth }}</span>
+                  </h3>
+                </div>
+                <div>
+                  <p class="card-text mb-50">Last Month</p>
+                  <h3 class="font-weight-bolder">
+                    <sup class="font-medium-1 font-weight-bold">$</sup>
+                    <span> {{ data.revenue.analyticsData.lastMonth }}</span>
+                  </h3>
+                </div>
+              </div>
+              <div #revenueChartoptionsRef id="revenueChartoptions">
+                <!-- Apexchart component-->
+                <apx-chart
+                  [chart]="{
+                    height: 260,
+                    width:
+                      isMenuToggled === false ? revenueChartoptionsRef.offsetWidth : revenueChartoptions.chart.width,
+                    toolbar: { show: false },
+                    type: 'line'
+                  }"
+                  [colors]="revenueChartoptions.colors"
+                  [fill]="revenueChartoptions.fill"
+                  [grid]="revenueChartoptions.grid"
+                  [legend]="revenueChartoptions.legend"
+                  [markers]="revenueChartoptions.markers"
+                  [series]="data.revenue.series"
+                  [stroke]="revenueChartoptions.stroke"
+                  [tooltip]="revenueChartoptions.tooltip"
+                  [xaxis]="revenueChartoptions.xaxis"
+                  [yaxis]="revenueChartoptions.yaxis"
+                ></apx-chart>
+                <!-- / Apexchart component-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Revenue Card -->
+
+        <!-- Sales Polygon Chart Card -->
+        <div class="col-lg-4 col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-start pb-1">
+              <div>
+                <h4 class="card-title mb-25">Sales</h4>
+                <p class="card-text">Last 6 months</p>
+              </div>
+              <i class="font-medium-3 cursor-pointer" data-feather="more-vertical"></i>
+            </div>
+            <div class="card-body">
+              <div class="d-inline-block mr-1">
+                <div class="d-flex align-items-center">
+                  <i class="font-small-3 text-primary mr-50" data-feather="circle"></i>
+                  <h6 class="mb-0">Sales</h6>
+                </div>
+              </div>
+              <div class="d-inline-block">
+                <div class="d-flex align-items-center">
+                  <i class="font-small-3 text-info mr-50" data-feather="circle"></i>
+                  <h6 class="mb-0">Visits</h6>
+                </div>
+              </div>
+              <div #salesChartoptionsRef id="salesChartoptions">
+                <!-- Apexchart component-->
+                <apx-chart
+                  [chart]="{
+                    height: 325,
+                    width: isMenuToggled === false ? salesChartoptionsRef.offsetWidth : salesChartoptions.chart.width,
+                    type: 'radar',
+                    dropShadow: {
+                      enabled: true,
+                      blur: 8,
+                      left: 1,
+                      top: 1,
+                      opacity: 0.2
+                    },
+                    toolbar: {
+                      show: false
+                    }
+                  }"
+                  [colors]="salesChartoptions.colors"
+                  [dataLabels]="salesChartoptions.dataLabels"
+                  [dataLabels]="salesChartoptions.dataLabels"
+                  [fill]="salesChartoptions.fill"
+                  [labels]="salesChartoptions.labels"
+                  [legend]="salesChartoptions.legend"
+                  [markers]="salesChartoptions.markers"
+                  [plotOptions]="salesChartoptions.plotOptions"
+                  [series]="data.salesLastSixMonths.series"
+                  [stroke]="salesChartoptions.stroke"
+                  [yaxis]="salesChartoptions.yaxis"
+                ></apx-chart>
+                <!-- / Apexchart component-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Sales Polygon Chart Card -->
+      </div>
+
+      <div class="row match-height">
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <!-- Sales Line Chart Card -->
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header align-items-start">
+                  <div>
+                    <h4 class="card-title mb-25">Sales</h4>
+                    <p class="card-text mb-0">2020 Total Sales: {{ data.sales.analyticsData.totalSales }}</p>
+                  </div>
+                  <i class="font-medium-3 text-muted cursor-pointer" data-feather="settings"></i>
+                </div>
+                <div class="card-body pb-0">
+                  <div #salesavgChartoptionsRef id="salesavgChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        height: 270,
+                        width:
+                          isMenuToggled === false
+                            ? salesavgChartoptionsRef.offsetWidth
+                            : salesavgChartoptions.chart.width,
+                        toolbar: { show: false },
+                        type: 'line',
+                        dropShadow: {
+                          enabled: true,
+                          top: 20,
+                          left: 2,
+                          blur: 6,
+                          opacity: 0.2
+                        }
+                      }"
+                      [colors]="salesavgChartoptions.colors"
+                      [fill]="salesavgChartoptions.fill"
+                      [grid]="salesavgChartoptions.grid"
+                      [legend]="salesavgChartoptions.legend"
+                      [series]="data.sales.series"
+                      [stroke]="salesavgChartoptions.stroke"
+                      [tooltip]="salesavgChartoptions.tooltip"
+                      [xaxis]="salesavgChartoptions.xaxis"
+                      [yaxis]="salesavgChartoptions.yaxis"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Sales Line Chart Card -->
+
+            <!-- Sessions Card -->
+            <div class="col-md-6 col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-end">
+                  <h4>Sessions By Device</h4>
+                  <div class="chart-dropdown" ngbDropdown>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="btn btn-sm border-0 px-50"
+                      data-toggle="dropdown"
+                      id="dropdownItem1"
+                      ngbDropdownToggle
+                      type="button"
+                    >
+                      Last 7 Days
+                    </button>
+                    <div aria-labelledby="dropdownItem1" class="dropdown-menu-right" ngbDropdownMenu>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last 28 Days</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Month</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Year</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div #sessionChartoptionsRef class="mb-1" id="sessionChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        type: 'donut',
+                        height: 320,
+                        width:
+                          isMenuToggled === false
+                            ? sessionChartoptionsRef.offsetWidth
+                            : sessionChartoptions.chart.width,
+                        toolbar: {
+                          show: false
+                        }
+                      }"
+                      [colors]="sessionChartoptions.colors"
+                      [dataLabels]="sessionChartoptions.dataLabels"
+                      [fill]="sessionChartoptions.fill"
+                      [labels]="sessionChartoptions.labels"
+                      [legend]="sessionChartoptions.legend"
+                      [series]="data.sessionsByDevice.series"
+                      [stroke]="sessionChartoptions.stroke"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                  <div class="d-flex justify-content-between mb-1">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-2 text-primary" data-feather="monitor"></i>
+                      <span class="font-weight-bold ml-75 mr-25">Desktop</span>
+                      <span>- {{ data.sessionsByDevice.analyticsData.desktop.desktopPercentage }}</span>
+                    </div>
+                    <div>
+                      <span>{{ data.sessionsByDevice.analyticsData.desktop.changePercentage }}</span>
+                      <i class="text-success" data-feather="arrow-up"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-1">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-2 text-warning" data-feather="tablet"></i>
+                      <span class="font-weight-bold ml-75 mr-25">Mobile</span>
+                      <span>- {{ data.sessionsByDevice.analyticsData.mobile.mobilePercentage }}</span>
+                    </div>
+                    <div>
+                      <span>{{ data.sessionsByDevice.analyticsData.mobile.changePercentage }}</span>
+                      <i class="text-success" data-feather="arrow-up"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-2 text-danger" data-feather="tablet"></i>
+                      <span class="font-weight-bold ml-75 mr-25">Tablet</span>
+                      <span>- {{ data.sessionsByDevice.analyticsData.tablet.tabletPercentage }}</span>
+                    </div>
+                    <div>
+                      <span>{{ data.sessionsByDevice.analyticsData.tablet.changePercentage }}</span>
+                      <i class="text-danger" data-feather="arrow-down"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Sessions Card -->
+
+            <!-- Customers Chart Card -->
+            <div class="col-md-6 col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-end">
+                  <h4 class="card-title">Customers</h4>
+                  <div class="chart-dropdown" ngbDropdown>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="btn btn-sm border-0 px-50"
+                      data-toggle="dropdown"
+                      id="dropdownItem3"
+                      ngbDropdownToggle
+                      type="button"
+                    >
+                      Last 7 Days
+                    </button>
+                    <div aria-labelledby="dropdownItem3" class="dropdown-menu-right" ngbDropdownMenu>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last 28 Days</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Month</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Year</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div #customerChartoptionsRef id="customerChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        type: 'pie',
+                        height: 345,
+                        width:
+                          isMenuToggled === false
+                            ? customerChartoptionsRef.offsetWidth
+                            : customerChartoptions.chart.width,
+                        toolbar: {
+                          show: false
+                        }
+                      }"
+                      [colors]="customerChartoptions.colors"
+                      [dataLabels]="customerChartoptions.dataLabels"
+                      [labels]="customerChartoptions.labels"
+                      [legend]="customerChartoptions.legend"
+                      [series]="data.customers.series"
+                      [stroke]="customerChartoptions.stroke"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                  <div class="pt-25">
+                    <div class="d-flex justify-content-between mb-1">
+                      <div class="d-flex align-items-center">
+                        <i class="font-medium-1 text-primary" data-feather="circle"></i>
+                        <span class="font-weight-bold ml-75">New</span>
+                      </div>
+                      <span>{{ data.customers.analyticsData.new }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                      <div class="d-flex align-items-center">
+                        <i class="font-medium-1 text-warning" data-feather="circle"></i>
+                        <span class="font-weight-bold ml-75">Returning</span>
+                      </div>
+                      <span>{{ data.customers.analyticsData.returning }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <i class="font-medium-1 text-danger" data-feather="circle"></i>
+                        <span class="font-weight-bold ml-75">Referrals</span>
+                      </div>
+                      <span>{{ data.customers.analyticsData.referrals }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Customers Chart Card -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="row">
+            <!-- Product Order Card -->
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                  <h4 class="card-title">Product Orders</h4>
+                  <div class="chart-dropdown" ngbDropdown>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="btn btn-sm border-0 px-50"
+                      data-toggle="dropdown"
+                      id="dropdownItem2"
+                      ngbDropdownToggle
+                      type="button"
+                    >
+                      Last 7 Days
+                    </button>
+                    <div aria-labelledby="dropdownItem2" class="dropdown-menu-right" ngbDropdownMenu>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last 28 Days</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Month</a>
+                      <a href="javascript:void(0);" ngbDropdownItem>Last Year</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div #orderChartoptionsRef id="orderChartoptions">
+                    <!-- Apexchart component-->
+                    <apx-chart
+                      [chart]="{
+                        height: 345,
+                        width:
+                          isMenuToggled === false ? orderChartoptionsRef.offsetWidth : orderChartoptions.chart.width,
+                        type: 'radialBar'
+                      }"
+                      [colors]="orderChartoptions.colors"
+                      [fill]="orderChartoptions.fill"
+                      [labels]="orderChartoptions.labels"
+                      [plotOptions]="orderChartoptions.plotOptions"
+                      [series]="data.productOrders.series"
+                      [stroke]="orderChartoptions.stroke"
+                    ></apx-chart>
+                    <!-- / Apexchart component-->
+                  </div>
+                  <div class="d-flex justify-content-between mb-1">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-1 text-primary" data-feather="circle"></i>
+                      <span class="font-weight-bold ml-75">Finished</span>
+                    </div>
+                    <span>{{ data.productOrders.analyticsData.finished }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-1">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-1 text-warning" data-feather="circle"></i>
+                      <span class="font-weight-bold ml-75">Pending</span>
+                    </div>
+                    <span>{{ data.productOrders.analyticsData.pending }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <i class="font-medium-1 text-danger" data-feather="circle"></i>
+                      <span class="font-weight-bold ml-75">Rejected</span>
+                    </div>
+                    <span>{{ data.productOrders.analyticsData.rejected }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Product Order Card -->
+            <!-- Earnings Card -->
+            <div class="col-12">
+              <div class="card earnings-card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <h4 class="card-title mb-1">Earnings</h4>
+                      <div class="font-small-2">This Month</div>
+                      <h5 class="mb-1">$4055.56</h5>
+                      <p class="card-text text-muted font-small-2">
+                        <span class="font-weight-bolder">68.2%</span><span> more earnings than last month.</span>
+                      </p>
+                    </div>
+                    <div class="col-6">
+                      <div #earningChartoptionsRef id="earnings-donut-chart">
+                        <!-- Apexchart component-->
+                        <apx-chart
+                          [chart]="{
+                            type: 'donut',
+                            height: 120,
+                            width:
+                              isMenuToggled === false
+                                ? earningChartoptionsRef.offsetWidth
+                                : earningChartoptions.chart.width,
+                            toolbar: {
+                              show: false
+                            }
+                          }"
+                          [colors]="earningChartoptions.colors"
+                          [dataLabels]="earningChartoptions.dataLabels"
+                          [grid]="earningChartoptions.grid"
+                          [labels]="earningChartoptions.labels"
+                          [legend]="earningChartoptions.legend"
+                          [plotOptions]="earningChartoptions.plotOptions"
+                          [series]="data.earnings.series"
+                          [stroke]="earningChartoptions.stroke"
+                        ></apx-chart>
+                        <!-- / Apexchart component-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Earnings Card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Analytics Card section end-->
+  </div>
+</div>

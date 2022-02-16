@@ -1,0 +1,43 @@
+<!-- Main Sidebar -->
+<div class="sidebar-wrapper">
+  <div class="card-body d-flex justify-content-center">
+    <button (click)="AddEvent()" class="btn btn-primary btn-toggle-sidebar btn-block" rippleEffect>
+      <span class="align-middle">Add Event</span>
+    </button>
+  </div>
+  <div class="card-body pb-0">
+    <h5 class="section-label mb-1">
+      <span class="align-middle">Filter</span>
+    </h5>
+    <div class="custom-control custom-checkbox mb-1">
+      <input
+        (change)="toggleCheckboxAll($event)"
+        [checked]="checkAll"
+        class="custom-control-input select-all"
+        id="select-all"
+        type="checkbox"
+      />
+      <label class="custom-control-label" for="select-all">View All</label>
+    </div>
+    <div class="calendar-events-filter">
+      <div
+        *ngFor="let calendar of calendarRef"
+        class="custom-control  custom-checkbox mb-1 custom-control-{{ calendar.color }}"
+      >
+        <input
+          (change)="checkboxChange($event, calendar.id)"
+          [checked]="calendar.checked"
+          class="custom-control-input input-filter"
+          id="calendar-{{ calendar.id }}"
+          type="checkbox"
+        />
+        <label class="custom-control-label" for="calendar-{{ calendar.id }}">{{ calendar.filter }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-auto">
+  <img alt="Calendar illustration" class="img-fluid"
+       src="../../../../../../../assets/images/pages/calendar-illustration.png"/>
+</div>
+<!--/ Main Sidebar -->

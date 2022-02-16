@@ -1,0 +1,66 @@
+<!-- Todo List Item -->
+<li [class.completed]="todo.completed" class="todo-item">
+  <div class="todo-title-wrapper">
+    <div class="todo-title-area">
+      <i class="drag-icon" data-feather="more-vertical"></i>
+      <div class="title-wrapper">
+        <div class="custom-control custom-checkbox">
+          <input
+            (click)="$event.stopPropagation()"
+            (ngModelChange)="checkboxStateChange($event)"
+            [(ngModel)]="todo.completed"
+            [checked]="todo.completed"
+            class="custom-control-input todo-checkbox"
+            id="customCheck{{ todo.id }}"
+            name="customCheck{{ todo.id }}"
+            type="checkbox"
+          />
+          <label class="custom-control-label" for="customCheck{{ todo.id }}"></label>
+        </div>
+        <span class="todo-title">{{ todo.title }}</span>
+      </div>
+    </div>
+    <div class="todo-item-action">
+      <div class="badge-wrapper mr-1">
+        <div
+          *ngFor="let tag of todo.tags; let i = index"
+          [ngClass]="{
+            'badge-light-primary': tag == 'team',
+            'badge-light-success': tag == 'low',
+            'badge-light-danger': tag == 'high',
+            'badge-light-warning': tag == 'medium',
+            'badge-light-info': tag == 'update'
+          }"
+          class="badge badge-pill badge-light-primary text-capitalize"
+        >
+          {{ tag }}
+        </div>
+      </div>
+      <small class="text-nowrap text-muted mr-1">{{ todo.dueDate | date: ' MMM d' }}</small>
+      <div *ngIf="todo.assignee?.avatar.length > 0; else customAvatar" class="avatar">
+        <img alt="user-avatar" height="32" src="{{ todo.assignee.avatar }}" width="32"/>
+      </div>
+      <ng-template #customAvatar>
+        <div
+          *ngIf="todo.assignee; else noAvatar"
+          [ngClass]="{
+            'bg-light-primary': todo?.tags[0] == 'team',
+            'bg-light-success': todo?.tags[0] == 'low',
+            'bg-light-danger': todo?.tags[0] == 'high',
+            'bg-light-warning': todo?.tags[0] == 'medium',
+            'bg-light-info': todo?.tags[0] == 'update'
+          }"
+          class="avatar"
+        >
+          <div class="avatar-content">{{ todo.assignee?.fullName | initials }}</div>
+        </div>
+        <ng-template #noAvatar>
+          <div class="avatar bg-light-secondary">
+            <div class="avatar-content"><i data-feather="user"></i></div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</li>
+<!--/ Todo List Item -->

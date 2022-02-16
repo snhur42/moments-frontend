@@ -1,0 +1,69 @@
+<!-- Todo List -->
+<div class="todo-app-list">
+  <!-- Todo search -->
+  <div class="app-fixed-search d-flex align-items-center">
+    <div class="sidebar-toggle d-block d-lg-none ml-1">
+      <button (click)="toggleSidebar('todo-sidebar-main')" class="btn p-0">
+        <i [size]="23" data-feather="menu"></i>
+      </button>
+    </div>
+
+    <div class="d-flex align-content-center justify-content-between w-100">
+      <div class="input-group input-group-merge">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="text-muted" data-feather="search"></i></span>
+        </div>
+        <input
+          (keyup)="updateQuery($event)"
+          aria-describedby="todo-search"
+          aria-label="Search..."
+          class="form-control"
+          id="todo-search"
+          placeholder="Search todo"
+          type="text"
+        />
+      </div>
+    </div>
+    <div ngbDropdown>
+      <a
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="hide-arrow mr-1"
+        data-toggle="dropdown"
+        href="javascript:void(0);"
+        id="todoActions"
+        ngbDropdownToggle
+      >
+        <i [size]="18" class="text-body" data-feather="more-vertical"></i>
+      </a>
+      <div aria-labelledby="todoActions" class="dropdown-menu-right" ngbDropdownMenu>
+        <a (click)="updateSort('')" class="sort-asc" ngbDropdownItem routerLink="/apps/todo">Reset Sort</a>
+        <a (click)="updateSort('title-asc')" class="sort-asc" ngbDropdownItem>Sort A - Z</a>
+        <a (click)="updateSort('title-desc')" class="sort-desc" ngbDropdownItem>Sort Z - A</a>
+        <a (click)="updateSort('assignee')" class="" ngbDropdownItem>Sort Assignee</a>
+        <a (click)="updateSort('due-date')" class="" ngbDropdownItem>Sort Due Date</a>
+      </div>
+    </div>
+  </div>
+  <!--/ Todo search -->
+
+  <!-- Todo List -->
+  <div [perfectScrollbar] class="todo-task-list-wrapper list-group">
+    <ul class="todo-task-list media-list" dragula="todo-tasks-drag-area" id="todo-task-list">
+      <app-todo-list-item
+        (click)="openTodo(todo.id); $event.stopPropagation()"
+        *ngFor="let todo of todos; let i = index"
+        [todo]="todo"
+      ></app-todo-list-item>
+      <ng-container *ngIf="todos.length; else noResults"></ng-container>
+    </ul>
+
+    <ng-template #noResults>
+      <div class="no-results show">
+        <h5>No Items Found</h5>
+      </div>
+    </ng-template>
+  </div>
+  <!--/ Todo List -->
+</div>
+<!--/ Todo List -->

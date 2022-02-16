@@ -1,0 +1,178 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Toastr Types & Options -->
+    <section>
+      <div class="row match-height">
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeTypes">
+            <h4 class="card-title">Types</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Use method <code>success() | info() | warning() | error() </code> to get different type of toastr.
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrSuccess()" class="btn btn-outline-success" rippleEffect>Success</button>
+                <button (click)="toastrInfo()" class="btn btn-outline-info" rippleEffect>Info</button>
+                <button (click)="toastrWarning()" class="btn btn-outline-warning" rippleEffect>Warning</button>
+                <button (click)="toastrError()" class="btn btn-outline-danger" rippleEffect>Error</button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeOptions">
+            <h4 class="card-title">Options</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Use <code>closeButton</code> option to get close button, <code>progressBar</code> option to get progress
+                bar & <code>enableHtml</code> to display message in html.
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrProgressBar()" class="btn btn-outline-primary" rippleEffect>Progress Bar</button>
+                <button (click)="toastrClearToastButton()" class="btn btn-outline-danger" rippleEffect>
+                  Clear Toast
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Toastr Types & Options -->
+
+    <!-- Toastr Position -->
+    <section>
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeTopPositions">
+            <h4 class="card-title">Top Positions</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Use <code>positionClass = "toast-top- left | center | right | full-width"</code> property to position
+                Toastr on top.
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrTopLeft()" class="btn btn-outline-primary" rippleEffect>Top Left</button>
+                <button (click)="toastrTopCenter()" class="btn btn-outline-primary" rippleEffect>Top Center</button>
+                <button (click)="toastrTopRight()" class="btn btn-outline-primary" rippleEffect>Top Right</button>
+                <button (click)="toastrTopFullWidth()" class="btn btn-outline-primary" rippleEffect>
+                  Top Full Width
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeBottomPositions">
+            <h4 class="card-title">Bottom Positions</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Use <code>positionClass = "toast-bottom- left | center | right | full-width"</code> options to position
+                Toastr on bottom.
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrBottomLeft()" class="btn btn-outline-primary" rippleEffect>Bottom Left</button>
+                <button (click)="toastrBottomCenter()" class="btn btn-outline-primary" rippleEffect>
+                  Bottom Center
+                </button>
+                <button (click)="toastrBottomRight()" class="btn btn-outline-primary" rippleEffect>Bottom Right</button>
+                <button (click)="toastrBottomFullWidth()" class="btn btn-outline-primary" rippleEffect>
+                  Bottom Full Width
+                </button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Toastr Position -->
+
+    <!-- Toastr Remove / Clear -->
+    <section>
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeRemove">
+            <h4 class="card-title">Remove</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">Immediately remove current toasts without using animation.</p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrRShow()" class="btn btn-outline-primary" rippleEffect>Show Toast</button>
+                <button (click)="toastrRemove()" class="btn btn-outline-danger" rippleEffect>Remove Toast</button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-sm-6">
+          <core-card-snippet [snippetCode]="_snippetCodeClear">
+            <h4 class="card-title">Clear</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">Remove current toasts using animation.</p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrCShow()" class="btn btn-outline-primary" rippleEffect>Show Toast</button>
+                <button (click)="toastrClear()" class="btn btn-outline-danger" rippleEffect>Clear Toast</button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Toastr Remove / Clear -->
+
+    <!-- Toastr Ease & Timeout -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeEaseTimeout">
+            <h4 class="card-title">Ease & Timeout</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Use options like <code>easeTime</code> to set ease-in time in ms & <code>timeOut</code> to set time to
+                live in milliseconds for your toasts. To create a sticky toast set the <code>timeout</code> to
+                <code>0</code>
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrEaseTime()" class="btn btn-outline-primary" rippleEffect>Ease 1s</button>
+                <button (click)="toastrTimeout3()" class="btn btn-outline-primary" rippleEffect>Timeout 3s</button>
+                <button (click)="toastrTimeout5()" class="btn btn-outline-primary" rippleEffect>Timeout 5s</button>
+                <button (click)="toastrStickey()" class="btn btn-outline-primary" rippleEffect>Sticky Toast</button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Toastr Ease & Timeout -->
+
+    <!-- Toastr Animation  -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeCustomToastr">
+            <h4 class="card-title">Custom toastr</h4>
+            <div class="card-body">
+              <p class="card-text mb-0">
+                Build your custom toastr component with angular animation to get your desired toastr.
+              </p>
+              <div class="demo-inline-spacing">
+                <button (click)="toastrCustomSuccess()" class="btn btn-outline-success" rippleEffect>
+                  Custom Success
+                </button>
+                <button (click)="toastrCustomWarning()" class="btn btn-outline-warning" rippleEffect>
+                  Custom Warning
+                </button>
+                <button (click)="toastrCustomDanger()" class="btn btn-outline-danger" rippleEffect>
+                  Custom Danger
+                </button>
+                <button (click)="toastrCustomInfo()" class="btn btn-outline-info" rippleEffect>Custom Info</button>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Toastr Animation -->
+  </div>
+</div>

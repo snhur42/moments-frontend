@@ -1,0 +1,354 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- default swiper start -->
+    <section id="component-swiper-default">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperDefault">
+        <h4 class="card-title">Default</h4>
+        <div class="card-body">
+          <div [swiper] class="swiper-default swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-1.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-2.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-4.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-13.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- default swiper ends -->
+
+    <!-- navigations swiper start -->
+    <section id="component-swiper-navigations">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperNavigations">
+        <h4 class="card-title">Navigations</h4>
+
+        <div class="card-body">
+          <div [swiper]="swiperNavigations" class="swiper-navigations swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-4.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-14.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-3.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-2.jpg"/>
+              </div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- navigations swiper ends -->
+
+    <!-- pagination swiper start -->
+    <section id="component-swiper-pagination">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperPaginations">
+        <h4 class="card-title">Pagination</h4>
+
+        <div class="card-body">
+          <swiper [config]="swiperPaginations" class="swiper-paginations swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-12.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-9.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-8.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-20.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- pagination swiper ends -->
+
+    <!-- progress swiper start -->
+    <section id="component-swiper-progress">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperProgress">
+        <h4 class="card-title">Progress</h4>
+
+        <div class="card-body">
+          <swiper [config]="swiperProgress" class="swiper-progress swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-8.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-20.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-5.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-4.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- progress swiper ends -->
+
+    <!-- Multiple Slides Per View swiper start -->
+    <section id="component-swiper-multiple">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperMultiple">
+        <h4 class="card-title">Multiple Slides Per View</h4>
+        <div class="card-body">
+          <swiper [config]="swiperMultiple" class="swiper-multiple swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-31.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-32.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-33.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-34.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-35.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- Multiple Slides Per View swiper ends -->
+
+    <!-- centered-slides swiper option-1 start -->
+    <section id="component-swiper-centered-slides">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperCenteredSlides1">
+        <h4 class="card-title">Centered Slides option-1</h4>
+        <div class="card-body"></div>
+      </core-card-snippet>
+
+      <swiper
+        [(index)]="centeredSlideIndex"
+        [config]="swiperswiperCenteredSlides"
+        class="swiper-centered-slides swiper-container p-1"
+      >
+        <div class="swiper-slide rounded swiper-shadow">
+          <i class="font-large-1" data-feather="gitlab"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Getting Started</div>
+        </div>
+        <div class="swiper-slide rounded swiper-shadow">
+          <i class="font-large-1" data-feather="facebook"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Pricing & Plans</div>
+        </div>
+        <div class="swiper-slide rounded swiper-shadow">
+          <i class="font-large-1" data-feather="twitter"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Sales Question</div>
+        </div>
+        <div class="swiper-slide rounded swiper-shadow">
+          <i class="font-large-1" data-feather="instagram"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Usage Guides</div>
+        </div>
+        <div class="swiper-slide rounded swiper-shadow">
+          <i class="font-large-1" data-feather="github"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">General Guide</div>
+        </div>
+      </swiper>
+    </section>
+    <!-- centered-slides swiper option-1 ends -->
+
+    <!-- centered-slides option-2 swiper start -->
+    <section id="component-swiper-centered-slides-2">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperCenteredSlides2">
+        <h4 class="card-title">Centered Slides option-2</h4>
+        <div class="card-body pt-0">
+          <swiper
+            [(index)]="centeredSlide2Index"
+            [config]="swiperCenteredSlides2"
+            class="swiper-centered-slides-2 swiper-container"
+          >
+            <div class="swiper-slide rounded swiper-shadow py-1 px-3 mb-1 d-flex">
+              <i class="mr-50 font-medium-3" data-feather="twitter"></i>
+              <div class="swiper-text">Getting Started</div>
+            </div>
+            <div class="swiper-slide rounded swiper-shadow py-1 px-3 mb-1 d-flex">
+              <i class="mr-50 font-medium-3" data-feather="facebook"></i>
+              <div class="swiper-text">Pricing & Plans</div>
+            </div>
+            <div class="swiper-slide rounded swiper-shadow py-1 px-3 mb-1 d-flex">
+              <i class="mr-50 font-medium-3" data-feather="gitlab"></i>
+              <div class="swiper-text">Sales Question</div>
+            </div>
+            <div class="swiper-slide rounded swiper-shadow py-1 px-3 mb-1 d-flex">
+              <i class="mr-50 font-medium-3" data-feather="instagram"></i>
+              <div class="swiper-text">Usage Guides</div>
+            </div>
+            <div class="swiper-slide rounded swiper-shadow py-1 px-3 mb-1 d-flex">
+              <i class="mr-50 font-medium-3" data-feather="github"></i>
+              <div class="swiper-text">General Guide</div>
+            </div>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- centered-slides option-2 swiper ends -->
+
+    <!-- Fade Effect swiper start -->
+    <section id="component-swiper-fade-effect">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperFadeEffect">
+        <h4 class="card-title">Fade Effect</h4>
+        <div class="card-body">
+          <swiper [config]="swiperFadeEffect" class="swiper-fade-effect swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-20.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-19.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-18.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-17.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-16.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- Fade Effect swiper ends -->
+
+    <!-- 3d cube effect swiper start -->
+    <section id="component-swiper-cube-effect">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperCubeEffect">
+        <h4 class="card-title">3-D cube Effect</h4>
+        <div class="card-body">
+          <swiper [config]="swiperCubeEffect" class="swiper-cube-effect swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-21.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-22.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-23.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-24.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- 3d cube effect swiper ends -->
+
+    <!-- coverflow effect swiper start -->
+    <section id="component-swiper-coverflow">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperCoverflow">
+        <h4 class="card-title">3d Effect Coverflow Effect</h4>
+        <div class="card-body">
+          <swiper [config]="swiperCoverflow" class="swiper-coverflow swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-35.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-39.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-38.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-37.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-36.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-34.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-33.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-32.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-31.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- coverflow effect swiper ends -->
+
+    <!-- autoplay swiper start -->
+    <section id="component-swiper-autoplay">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperAutoplay">
+        <h4 class="card-title">Autoplay</h4>
+        <div class="card-body">
+          <swiper [config]="swiperAutoplay" class="swiper-autoplay swiper-container">
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-20.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-8.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-9.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-10.jpg"/>
+            <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-11.jpg"/>
+          </swiper>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- autoplay swiper ends -->
+
+    <!-- Lazy loading swiper start -->
+    <section id="component-swiper-lazy">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperLazy">
+        <h4 class="card-title">Lazy Loading</h4>
+        <div class="card-body">
+          <div [swiper]="swiperLazy" class="swiper-lazy-loading swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                <img alt="banner" class="swiper-lazy img-fluid" src="../../../../../assets/images/banner/banner-9.jpg"/>
+                <!-- Preloader image -->
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="swiper-lazy img-fluid" src="../../../../../assets/images/banner/banner-8.jpg"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="swiper-lazy img-fluid" src="../../../../../assets/images/banner/banner-7.jpg"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="swiper-lazy img-fluid"
+                     src="../../../../../assets/images/banner/banner-20.jpg"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="swiper-lazy img-fluid" src="../../../../../assets/images/banner/banner-5.jpg"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="swiper-lazy img-fluid" src="../../../../../assets/images/banner/banner-4.jpg"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- Lazy loading swiper ends -->
+
+    <!-- Responsive Breakpoints swiper start -->
+    <section id="component-swiper-responsive-breakpoints">
+      <core-card-snippet [snippetCode]="_snippetCodeSwiperResponsive">
+        <h4 class="card-title">Responsive Breakpoints</h4>
+        <div class="card-body">
+          <div [swiper]="swiperResponsive" class="swiper-responsive-breakpoints swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-30.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-31.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-32.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-33.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-34.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-35.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-36.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-37.jpg"/>
+              </div>
+              <div class="swiper-slide">
+                <img alt="banner" class="img-fluid" src="../../../../../assets/images/banner/banner-38.jpg"/>
+              </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </core-card-snippet>
+    </section>
+    <!-- Responsive Breakpoints swiper ends -->
+  </div>
+</div>

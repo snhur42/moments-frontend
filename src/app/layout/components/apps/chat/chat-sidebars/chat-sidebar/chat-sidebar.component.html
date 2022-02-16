@@ -1,0 +1,108 @@
+<!-- Chat Sidebar area -->
+<div class="chat-sidebar bg-white">
+  <button (click)="toggleSidebar('chat-sidebar')" class="btn sidebar-close-icon">
+    <i data-feather="x"></i>
+  </button>
+  <!-- Sidebar header start -->
+  <div class="chat-fixed-search">
+    <div class="d-flex align-items-center w-100">
+      <div class="sidebar-profile-toggle">
+        <button (click)="toggleSidebar('chat-user-sidebar')" class="btn avatar avatar-border bg-transparent p-0">
+          <img [src]="userProfile.avatar" alt="user_avatar" height="42" width="42"/>
+          <span
+            [ngClass]="{
+              'avatar-status-offline': userProfile.status == 'offline',
+              'avatar-status-online': userProfile.status == 'online',
+              'avatar-status-busy': userProfile.status == 'busy',
+              'avatar-status-away': userProfile.status == 'away'
+            }"
+          ></span>
+        </button>
+      </div>
+      <div class="input-group input-group-merge ml-1 w-100">
+        <div class="input-group-prepend">
+          <span class="input-group-text round"><i class="text-muted" data-feather="search"></i></span>
+        </div>
+        <input
+          [(ngModel)]="searchText"
+          aria-describedby="chat-search"
+          aria-label="Search..."
+          class="form-control round"
+          id="chat-search"
+          placeholder="Search or start a new chat"
+          type="text"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- Sidebar header end -->
+
+  <!-- Sidebar Users start -->
+  <div [perfectScrollbar] class="chat-user-list-wrapper list-group" id="users-list">
+    <h4 class="chat-list-title">Chats</h4>
+    <ng-container *ngIf="(chatUsers | filter: searchText:'fullName').length; else noResultsChats"></ng-container>
+    <ul class="chat-users-list chat-list media-list">
+      <li
+        (click)="openChat(chatUser.id); toggleSidebar('chat-sidebar'); setIndex(i)"
+        *ngFor="let chatUser of chatUsers | filter: searchText:'fullName'; let i = index"
+        [class.active]="selectedIndex === i"
+      >
+        <span class="avatar"
+        ><img [src]="chatUser.avatar" alt="Generic placeholder image" height="42" width="42"/>
+          <span
+            [ngClass]="{
+              'avatar-status-offline': chatUser.status == 'offline',
+              'avatar-status-online': chatUser.status == 'online',
+              'avatar-status-busy': chatUser.status == 'busy',
+              'avatar-status-away': chatUser.status == 'away'
+            }"
+          ></span>
+        </span>
+        <div class="chat-info flex-grow-1">
+          <h5 class="mb-0">{{ chatUser.fullName }}</h5>
+          <p class="card-text text-truncate">
+            {{ chatUser.about }}
+          </p>
+        </div>
+        <div class="chat-meta text-nowrap">
+          <small class="float-right mb-25 chat-time">4:14 PM</small>
+          <span *ngIf="chatUser.unseenMsgs >= 1" class="float-right badge badge-danger badge-pill">{{
+            chatUser.unseenMsgs
+            }}</span>
+        </div>
+      </li>
+
+      <ng-template #noResultsChats>
+        <li [ngClass]="{ show: (chatUsers | filter: searchText:'fullName').length <= 0 }" class="no-results">
+          <h6 class="mb-0">No Chats Found</h6>
+        </li>
+      </ng-template>
+    </ul>
+    <h4 class="chat-list-title">Contacts</h4>
+    <ng-container *ngIf="(contacts | filter: searchText:'fullName').length; else noResultsContacts"></ng-container>
+    <ul class="chat-users-list contact-list media-list">
+      <li
+        (click)="openChat(contact.id); toggleSidebar('chat-sidebar')"
+        *ngFor="let contact of contacts | filter: searchText:'fullName'"
+      >
+        <span class="avatar"
+        ><img [src]="contact.avatar" alt="Generic placeholder image" height="42" width="42"/>
+        </span>
+        <div class="chat-info">
+          <h5 class="mb-0">{{ contact.fullName }}</h5>
+          <p class="card-text text-truncate">
+            {{ contact.about }}
+          </p>
+        </div>
+      </li>
+
+      <ng-template #noResultsContacts>
+        <li [ngClass]="{ show: (contacts | filter: searchText:'fullName').length <= 0 }" class="no-results">
+          <h6 class="mb-0">No Contacts Found</h6>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+  <!-- Sidebar Users end -->
+</div>
+<!--/ Chat Sidebar area -->

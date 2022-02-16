@@ -1,0 +1,301 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- basic progress -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeBasicProgress">
+            <h4 class="card-title">Basic Progress</h4>
+            <div class="card-body">
+              <div class="demo-vertical-spacing">
+                <div class="progress-wrapper">
+                  <div class="mb-25">Reticulating splines&hellip; 0%</div>
+                  <ngb-progressbar [value]="0" type="primary"></ngb-progressbar>
+                </div>
+                <div class="progress-wrapper">
+                  <div class="mb-25">Reticulating splines&hellip; 25%</div>
+                  <ngb-progressbar [value]="25" type="primary"></ngb-progressbar>
+                </div>
+                <div class="progress-wrapper">
+                  <div class="mb-25">Reticulating splines&hellip; 50%</div>
+                  <ngb-progressbar [value]="50" type="primary"></ngb-progressbar>
+                </div>
+                <div class="progress-wrapper">
+                  <div class="mb-25">Reticulating splines&hellip; 75%</div>
+                  <ngb-progressbar [value]="75" type="primary"></ngb-progressbar>
+                </div>
+                <div class="progress-wrapper">
+                  <div class="mb-25">Reticulating splines&hellip; 100%</div>
+                  <ngb-progressbar [value]="100" type="primary"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ basic progress -->
+
+    <!-- colored progress -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeColoredProgress">
+            <h4 class="card-title">Colored Progress</h4>
+            <div class="card-body">
+              <p class="card-text">Use <code>type="colorName"</code> property to get color of your choice.</p>
+
+              <div class="demo-vertical-spacing">
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="15" class="progress-bar-primary" type="primary"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="30" class="progress-bar-secondary" type="secondary"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="45" class="progress-bar-success" type="success"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="60" class="progress-bar-danger" type="danger"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="75" class="progress-bar-warning" type="warning"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="90" class="progress-bar-info" type="info"></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar [value]="100" class="progress-bar-dark" type="dark"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ colored progress -->
+
+    <!-- labeled progress -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeLabeledProgress">
+            <h4 class="card-title">Labeled Progress</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>showValue="true"</code> property of <code>ngb-progressbar</code> to get labeled progress. By
+                default <code>showValue</code> is <strong>false</strong>.
+              </p>
+
+              <div class="demo-vertical-spacing">
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [value]="20"
+                    class="progress-bar-primary"
+                    showValue="true"
+                    type="primary"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [value]="40"
+                    class="progress-bar-success"
+                    showValue="true"
+                    type="success"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [value]="60"
+                    class="progress-bar-danger"
+                    showValue="true"
+                    type="danger"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [value]="80"
+                    class="progress-bar-info"
+                    showValue="true"
+                    type="info"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [value]="100"
+                    class="progress-bar-warning"
+                    showValue="true"
+                    type="warning"
+                  ></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ labeled progress -->
+
+    <!-- striped progress -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeStripedProgress">
+            <h4 class="card-title">Striped Progress</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>[striped]="true"</code> property of <code>ngb-progressbar</code> to get striped progress. By
+                default <code>[striped]</code> property is <strong>false</strong>.
+              </p>
+
+              <div class="demo-vertical-spacing">
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="20"
+                    class="progress-bar-primary"
+                    type="primary"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="40"
+                    class="progress-bar-success"
+                    type="success"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="60"
+                    class="progress-bar-danger"
+                    type="danger"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="80"
+                    class="progress-bar-info"
+                    type="info"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="100"
+                    class="progress-bar-warning"
+                    type="warning"
+                  ></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ striped progress -->
+
+    <!-- animated progress -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeAnimatedProgress">
+            <h4 class="card-title">Animated Progress</h4>
+            <div class="card-body">
+              <p class="card-text">
+                Use <code>[animated]="true"</code> property of <code>ngb-progressbar</code> to get animated progress. By
+                default <code>[animated]</code> property is <strong>false</strong>.
+              </p>
+
+              <div class="demo-vertical-spacing">
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [animated]="true"
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="20"
+                    class="progress-bar-primary"
+                    type="primary"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [animated]="true"
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="40"
+                    class="progress-bar-success"
+                    type="success"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [animated]="true"
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="60"
+                    class="progress-bar-danger"
+                    type="danger"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [animated]="true"
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="80"
+                    class="progress-bar-info"
+                    type="info"
+                  ></ngb-progressbar>
+                </div>
+
+                <div class="progress-wrapper">
+                  <ngb-progressbar
+                    [animated]="true"
+                    [height]="progressbarHeight"
+                    [striped]="true"
+                    [value]="100"
+                    class="progress-bar-warning"
+                    type="warning"
+                  ></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ animated progress -->
+  </div>
+</div>
