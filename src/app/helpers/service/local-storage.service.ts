@@ -1,17 +1,35 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import jwt_decode from 'jwt-decode';
 import {Role} from '../../models/enum/role';
+import {UserRestService} from './user-rest.service';
+import {User} from '../../models/user/user';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageService {
+export class LocalStorageService{
+
+  constructor(private userService: UserRestService) {
+  }
 
   public saveToken(token: string): void {
     window.localStorage.removeItem(environment.tokenKey);
     window.localStorage.setItem(environment.tokenKey, token);
+
+  }
+
+  public saveUser(user: User): void {
+    window.localStorage.removeItem(environment.userKey);
+    window.localStorage.setItem(environment.userKey, JSON.stringify(user));
+
+  }
+
+  public getUser(): User {
+    // @ts-ignore
+    return JSON.parse(localStorage.getItem(environment.userKey));
+
   }
 
   public getToken(): string {
@@ -30,10 +48,10 @@ export class LocalStorageService {
 
   public getUserId(): string {
     try {
-      if(this.isAuthenticated()){
+      if (this.isAuthenticated()) {
         // @ts-ignore
         return jwt_decode(this.getToken()).sub;
-      }else {
+      } else {
         return;
       }
     } catch (Error) {
@@ -51,12 +69,13 @@ export class LocalStorageService {
     }
   }
 
-  clear(): void {
-    window.localStorage.clear();
-  }
 
   isAuthenticated(): boolean {
-    return this.getToken() && !this.isExpired();
+    return this.getToken() && !this.isExpired() && this.getUser() != null;
+  }
+
+  clear(): void {
+    window.localStorage.clear();
   }
 
 }

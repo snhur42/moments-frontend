@@ -44,6 +44,8 @@ export class CoreMenuComponent implements OnInit {
   ngOnInit(): void {
     // Set the menu either from the input or from the service
     this.menu = menu;
-    this.currentUserRole = this._localStorageService.getRole();
+    if(this._localStorageService.isAuthenticated()){
+      this.currentUserRole = this._localStorageService.getRole();
+    }
   }
 }

@@ -1,0 +1,218 @@
+<div class="auth-wrapper auth-v1 px-2">
+  <div class="auth-inner py-2">
+    <!-- Register v1 -->
+    <div class="card mb-0">
+      <div class="card-body">
+        <a class="brand-logo" href="javascript:void(0);">
+          <img alt="brand-logo" height="28" src="{{ coreConfig.app.appLogoImage }}"/>
+          <h2 class="brand-text text-primary ml-1">Instacafe Moments</h2>
+        </a>
+
+        <h4 class="card-title mb-1">Форма реєстрації 🚀</h4>
+        <p class="card-text mb-2">Створіть новий аккаунт і отримуєте свої фотографії в зручному сервісі</p>
+
+        <form (ngSubmit)="onSubmit(modalSuccess)" [formGroup]="registerForm" class="auth-register-form mt-2" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label" for="firstName">Імʼя</label>
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+              autocomplete="off"
+              id="firstName"
+              class="form-control"
+              formControlName="firstName"
+              tabindex="1"
+              type="text"
+            />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">Це поле обовʼязкове!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Прізвище</label>
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+              autocomplete="off"
+              autofocus
+              id="lastName"
+              class="form-control"
+              formControlName="lastName"
+              tabindex="1"
+              type="text"
+            />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Це поле обовʼязкове!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              autocomplete="off"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              tabindex="2"
+              type="email"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Це поле обовʼязкове!</div>
+              <div *ngIf="f.email.errors.email">Введений текст не є елктроною почтою!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Телефон</label>
+            <br>
+            <small class="text-muted">Будь-ласка введіть номер в форматі(380ХХХХХХХХХ)</small>
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
+              autocomplete="off"
+              class="form-control"
+              id="phone"
+              formControlName="phone"
+              value="380"
+              tabindex="2"
+              type="phone"
+            />
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">Це поле обовʼязкове!</div>
+              <div *ngIf="f.phone.errors?.['pattern']">Введений текст не є телефоном!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="basicSelect" for="city">Місто</label>
+              <select class="form-control" formControlName="city" id="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                <option value="{{ city.KYIV }}">Київ</option>
+                <option value="{{ city.LVIV }}">Львів</option>
+                <option value="{{ city.ODESA }}">Дніпро</option>
+                <option value="{{ city.DNIPRO }}">Одеса</option>
+              </select>
+            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+              <div *ngIf="f.city.errors.required">Це поле обовʼязкове!</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Пароль</label>
+
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+                [type]="passwordTextType ? 'text' : 'password'"
+                autocomplete="off"
+                class="form-control form-control-merge"
+                formControlName="password"
+                id="password"
+                tabindex="3"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                ><i
+                  (click)="togglePasswordTextType()"
+                  [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }"
+                  class="feather font-small-4"
+                ></i
+                ></span>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && f.password.errors"
+              [ngClass]="{ 'd-block': submitted && f.password.errors }"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password.errors.required">Це поле обовʼязкове!</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password_check">Повторіть пароль ще раз</label>
+
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [ngClass]="{ 'is-invalid error': submitted && f.password_check.errors }"
+                [ngClass]="{ 'is-invalid error': submitted && isPasswordNotSame  }"
+                [type]="passwordCheckTextType ? 'text' : 'password'"
+                autocomplete="off"
+                class="form-control form-control-merge"
+                formControlName="password_check"
+                id="password_check"
+                tabindex="3"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                ><i
+                  (click)="togglePasswordCheckTextType()"
+                  [ngClass]="{
+                      'icon-eye-off': passwordCheckTextType,
+                      'icon-eye': !passwordCheckTextType
+                    }"
+                  class="feather font-small-4"
+                ></i
+                ></span>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && f.password_check.errors "
+              [ngClass]="{ 'd-block': submitted && f.password_check.errors }"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password_check.errors.required">Це поле обовʼязкове!</div>
+            </div>
+            <div
+              *ngIf="submitted && isPasswordNotSame"
+              [ngClass]="{ 'd-block': submitted && isPasswordNotSame }"
+              class="invalid-feedback"
+            >
+              <div *ngIf="isPasswordNotSame">Паролі не співпадають</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="register-privacy-policy" tabindex="4" type="checkbox" checked="checked" formControlName="accept"/>
+              <label class="custom-control-label fs" for="register-privacy-policy"
+                     [ngClass]="{ 'error': submitted && !this.registerForm.value.accept }"
+              >
+                Я погоджуюсь з <a [routerLink]="['/privacy-policy']">Політикою конфіденційності та обробки персональних даних.
+              </a>
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" rippleEffect tabindex="5">Зареєструватись</button>
+        </form>
+
+        <p class="text-center mt-2">
+          <span>Ви вже маєте аккаунт? </span>
+          <a [routerLink]="['']">
+            <span> Перейти на сторінку авторизації</span>
+          </a>
+        </p>
+      </div>
+    </div>
+    <!-- /Register v1 -->
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #modalSuccess let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="myModalLabel160">Ви успішно зареєструвались!</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    Tart lemon drops macaroon oat cake chocolate toffee chocolate bar icing. Pudding jelly beans
+    carrot cake pastry gummies cheesecake lollipop. I love cookie lollipop cake I love sweet gummi
+    bears cupcake dessert.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="modal.dismiss('Cross click')" [routerLink]="['']" rippleEffect>
+      Увійти в особистий кабінет
+    </button>
+  </div>
+</ng-template>
+<!-- / Modal -->
+

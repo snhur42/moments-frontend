@@ -5,7 +5,7 @@ import {CoreSidebarService} from '@core/components/core-sidebar/core-sidebar.ser
 import {TodoService} from 'app/layout/components/apps/todo/todo.service';
 
 @Component({
-  selector: 'app-todo-main-sidebar',
+  selector: 'app-todo-pages-sidebar',
   templateUrl: './todo-main-sidebar.component.html'
 })
 export class TodoMainSidebarComponent implements OnInit {

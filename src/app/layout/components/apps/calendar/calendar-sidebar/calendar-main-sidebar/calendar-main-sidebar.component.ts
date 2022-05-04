@@ -5,7 +5,7 @@ import {CoreSidebarService} from '@core/components/core-sidebar/core-sidebar.ser
 import {CalendarService} from 'app/layout/components/apps/calendar/calendar.service';
 
 @Component({
-  selector: 'app-calendar-main-sidebar',
+  selector: 'app-calendar-pages-sidebar',
   templateUrl: './calendar-main-sidebar.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -40,7 +40,7 @@ export class CalendarMainSidebarComponent implements OnInit {
    */
   AddEvent() {
     this.toggleEventSidebar();
-    this._coreSidebarService.getSidebarRegistry('calendar-main-sidebar').toggleOpen();
+    this._coreSidebarService.getSidebarRegistry('calendar-pages-sidebar').toggleOpen();
     this._calendarService.createNewEvent();
   }
 

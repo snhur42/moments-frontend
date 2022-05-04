@@ -5,7 +5,7 @@ import { CoreMenu } from '@core/types';
 export const menu: CoreMenu[] = [
   // Dashboard
   {
-    id: 'dashboard',
+    id: 'dashboards',
     title: 'Dashboard',
     translate: 'MENU.DASHBOARD.COLLAPSIBLE',
     type: 'collapsible',
@@ -158,7 +158,7 @@ export const menu: CoreMenu[] = [
             ]
           },
           {
-            id: 'account-settings',
+            id: 'profile',
             title: 'Account Settings',
             translate: 'MENU.PAGES.ACCOUNTSETTINGS',
             type: 'item',

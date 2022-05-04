@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 import {LocalStorageService} from '../service/local-storage.service';
 import {AuthenticationService} from '../service/authentication.service';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class RefreshJwtInterceptor implements HttpInterceptor {
@@ -23,8 +24,9 @@ export class RefreshJwtInterceptor implements HttpInterceptor {
    * @param next
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const isApiUrl = request.url.startsWith(environment.apiUrl);
 
-    if (this._localStorageService.isAuthenticated() && this._localStorageService.isExpired() && !this.refreshTokenInProgress) {
+    if (isApiUrl && !this.refreshTokenInProgress && this._localStorageService.isAuthenticated() && this._localStorageService.isExpired()) {
       this.refreshTokenInProgress = true;
 
       request = request.clone({

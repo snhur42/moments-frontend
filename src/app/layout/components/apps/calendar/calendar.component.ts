@@ -153,7 +153,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       sidebarToggle: {
         text: '',
         click() {
-          _this.toggleSidebar('calendar-main-sidebar');
+          _this.toggleSidebar('calendar-pages-sidebar');
         }
       }
     };

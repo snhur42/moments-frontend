@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {CoreConfigService} from '@core/services/config.service';
+
 
 @Component({
   selector: 'horizontal-layout',
@@ -38,6 +39,7 @@ export class HorizontalLayoutComponent implements OnInit, OnDestroy {
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {
       this.coreConfig = config;
     });
+
   }
 
   /**

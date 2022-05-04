@@ -1,9 +1,10 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
 import {CoreConfigService} from '@core/services/config.service';
+import {User} from '../../models/user/user';
 
 @Component({
   selector: 'vertical-layout',
@@ -12,6 +13,7 @@ import {CoreConfigService} from '@core/services/config.service';
   encapsulation: ViewEncapsulation.None
 })
 export class VerticalLayoutComponent implements OnInit, OnDestroy {
+
   coreConfig: any;
 
   // Private
@@ -21,6 +23,7 @@ export class VerticalLayoutComponent implements OnInit, OnDestroy {
    * Constructor
    *
    * @param {CoreConfigService} _coreConfigService
+   * @param _elementRef
    */
   constructor(private _coreConfigService: CoreConfigService, private _elementRef: ElementRef) {
     // Set the private defaults

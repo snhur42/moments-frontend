@@ -64,21 +64,10 @@
       <div aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
         <a [routerLink]="['/dashboard/admin/profile']" ngbDropdownItem
         ><span [class]="'mr-50'" [data-feather]="'user'"></span> Кабінет</a
-        ><a [routerLink]="['/apps/email']" ngbDropdownItem
-      ><span [class]="'mr-50'" [data-feather]="'mail'"></span> Inbox</a
-      ><a [routerLink]="['/apps/todo']" ngbDropdownItem
-      ><span [class]="'mr-50'" [data-feather]="'check-square'"></span> Task</a
-      ><a [routerLink]="['/apps/chat']" ngbDropdownItem
-      ><span [class]="'mr-50'" [data-feather]="'message-square'"></span> Chats</a
-      >
+        >
         <div class="dropdown-divider"></div>
-        <a [routerLink]="['/pages/account-settings']" ngbDropdownItem
-        ><span [class]="'mr-50'" [data-feather]="'settings'"></span> Settings</a
-        ><a [routerLink]="['/pages/pricing']" ngbDropdownItem
-      ><span [class]="'mr-50'" [data-feather]="'credit-card'"></span> Pricing</a
-      ><a [routerLink]="['/pages/faq']" ngbDropdownItem
-      ><span [class]="'mr-50'" [data-feather]="'help-circle'"></span> FAQ</a
-      ><a (click)="logout()" ngbDropdownItem><span [class]="'mr-50'" [data-feather]="'power'"></span> Вийти</a>
+        <a (click)="logout()" ngbDropdownItem><span [class]="'mr-50'" [data-feather]="'power'"></span> Вийти</a>
+
       </div>
     </li>
     <!--/ User Dropdown -->

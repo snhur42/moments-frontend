@@ -4,7 +4,7 @@
     <div [perfectScrollbar] class="todo-app-menu">
       <div class="add-task">
         <button
-          (click)="createNewTodo('todo-sidebar-right', 'todo-sidebar-main')"
+          (click)="createNewTodo('todo-sidebar-right', 'todo-sidebar-pages')"
           class="btn btn-primary btn-block"
           rippleEffect
           type="button"
@@ -15,7 +15,7 @@
       <div class="sidebar-menu-list">
         <div class="list-group list-group-filters">
           <a
-            (click)="toggleSidebar('todo-sidebar-main')"
+            (click)="toggleSidebar('todo-sidebar-pages')"
             *ngFor="let filter of filters"
             [routerLinkActive]="'active'"
             [routerLink]="'/apps/todo/' + filter.handle"
@@ -31,7 +31,7 @@
         </div>
         <div class="list-group list-group-labels">
           <a
-            (click)="toggleSidebar('todo-sidebar-main')"
+            (click)="toggleSidebar('todo-sidebar-pages')"
             *ngFor="let tag of tags"
             [routerLinkActive]="'active'"
             [routerLink]="'/apps/todo/tag/' + tag.handle"

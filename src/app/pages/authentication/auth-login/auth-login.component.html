@@ -1,0 +1,93 @@
+<div class="auth-wrapper auth-v1 px-2">
+  <div class="auth-inner py-2">
+    <div class="card mb-0">
+      <div class="card-body">
+        <a class="brand-logo" href="javascript:void(0);">
+          <img alt="brand-logo" height="28" src="{{ coreConfig.app.appLogoImage }}"/>
+          <h2 class="brand-text text-primary ml-1">Instacafe Moments</h2>
+        </a>
+
+        <h4 class="card-title mb-1">Вітаємо! 👋</h4>
+        <p class="card-text mb-2">Будь ласка, увійдіть у свій обліковий запис.</p>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="auth-login-form mt-2">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email</label>
+            <input
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              aria-describedby="login-email"
+              autofocus
+              autocomplete="on"
+              class="form-control"
+              formControlName="email"
+              id="login-email"
+              tabindex="1"
+              type="email"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Це поле обовʼязкове!</div>
+              <div *ngIf="f.email.errors.email">Введені некоректні дані</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="login-password">Пароль</label>
+              <a [routerLink]="['/forgot-password']">
+                <small>Забули пароль?</small>
+              </a>
+            </div>
+            <div class="input-group input-group-merge form-password-toggle">
+              <input
+                [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+                [type]="passwordTextType ? 'text' : 'password'"
+                aria-describedby="login-password"
+                class="form-control form-control-merge"
+                formControlName="password"
+                id="login-password"
+                tabindex="2"
+                autocomplete="on"
+              />
+
+              <div class="input-group-append">
+                <span class="input-group-text cursor-pointer"
+                ><i
+                  (click)="togglePasswordTextType()"
+                  [ngClass]="{
+                      'icon-eye-off': passwordTextType,
+                      'icon-eye': !passwordTextType
+                    }"
+                  class="feather font-small-4"
+                ></i
+                ></span>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && f.password.errors"
+              [ngClass]="{ 'd-block': submitted && f.password.errors }"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password.errors.required">Це поле обовʼязкове!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="remember-me" tabindex="3" type="checkbox"/>
+              <label class="custom-control-label" for="remember-me"> Запамʼятати мене </label>
+            </div>
+          </div>
+          <!-- ngb-alert component -->
+          <ngb-alert *ngIf="submitted && isLoginFalse" [type]="'danger'" [dismissible]="false">
+            <h4 class="alert-heading">Помилка входу. </h4>
+            <div class="alert-body">
+              Кабінету з такими даними не існує. <br> Спробуйте ще раз!
+            </div>
+          </ngb-alert>
+          <!--/ ngb-alert component -->
+          <button class="btn btn-primary btn-block" rippleEffect tabindex="4">Увійти</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

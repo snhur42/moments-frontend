@@ -6,7 +6,7 @@ import {CoreConfig} from '@core/types';
  * ? TIP:
  *
  * Change app config based on your preferences.
- * You can also change them on each component basis. i.e `app/main/pages/authentication/helpers-login/helpers-login.component.ts`
+ * You can also change them on each component basis. i.e `app/pages/pages/authentication/helpers-login/helpers-login.component.ts`
  *
  * ! IMPORTANT: If the enableLocalStorage option is true then make sure you clear the browser local storage(https://developers.google.com/web/tools/chrome-devtools/storage/localstorage#delete).
  *  ! Otherwise, it will not take the below config changes and use stored config from local storage.

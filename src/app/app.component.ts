@@ -12,6 +12,7 @@ import {CoreConfigService} from '@core/services/config.service';
 import {CoreLoadingScreenService} from '@core/services/loading-screen.service';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

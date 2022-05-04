@@ -1,4 +1,4 @@
-import {Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {MediaObserver} from '@angular/flex-layout';
 
 import * as _ from 'lodash';
@@ -13,7 +13,7 @@ import {CoreMediaService} from '@core/services/media.service';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user/user';
 import {AuthenticationService} from '../../../helpers/service/authentication.service';
-import {UserService} from '../../../helpers/service/user.service';
+import {UserRestService} from '../../../helpers/service/user-rest.service';
 import {LocalStorageService} from '../../../helpers/service/local-storage.service';
 
 @Component({
@@ -23,6 +23,7 @@ import {LocalStorageService} from '../../../helpers/service/local-storage.servic
   encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
   public horizontalMenu: boolean;
   public hiddenMenu: boolean;
 
@@ -30,7 +31,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public currentSkin: string;
   public prevSkin: string;
 
-  public currentUser: User;
+  public currentUser: User
 
   public navigation: any;
   public selectedLanguage: any;
@@ -47,9 +48,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * Constructor
    *
    * @param {Router} _router
-   * @param {UserService} _userService
-   * @param {LocalStorageService} _localStorageStorage
-   * @param {UserService} _authenticationService
+   * @param {UserRestService} _userService
+   * @param {LocalStorageService} _localStorageService
+   * @param {UserRestService} _authenticationService
    * @param {CoreConfigService} _coreConfigService
    * @param {CoreSidebarService} _coreSidebarService
    * @param {CoreMediaService} _coreMediaService
@@ -58,8 +59,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
    */
   constructor(
     private _router: Router,
-    private _userService: UserService,
-    private _localStorageStorage: LocalStorageService,
+    private _userService: UserRestService,
+    private _localStorageService: LocalStorageService,
     private _authenticationService: AuthenticationService,
     private _coreConfigService: CoreConfigService,
     private _coreMediaService: CoreMediaService,
@@ -117,12 +118,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    if (this._localStorageStorage.isAuthenticated()){
-      this._userService.getUserById().subscribe(x => (this.currentUser = x));
-    }
-
     // get the currentUser details from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    this.currentUser = this._localStorageService.getUser()
 
     // Subscribe to the config changes
     this._coreConfigService.config.pipe(takeUntil(this._unsubscribeAll)).subscribe(config => {

@@ -1,8 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {CoreConfigService} from '@core/services/config.service';
 import {fadeIn, fadeInLeft, zoomIn} from '@core/animations/core.animation';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {User} from '../../../models/user/user';
 
 @Component({
   selector: 'content',
@@ -11,6 +12,7 @@ import {takeUntil} from 'rxjs/operators';
   animations: [fadeInLeft, zoomIn, fadeIn]
 })
 export class ContentComponent {
+
   public coreConfig: any;
   public animate;
 

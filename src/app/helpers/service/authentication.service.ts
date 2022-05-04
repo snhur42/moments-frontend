@@ -7,8 +7,8 @@ import {environment} from 'environments/environment';
 import {ToastrService} from 'ngx-toastr';
 import {FingerPrintService} from './finger-print.service';
 import {CookieService} from 'ngx-cookie-service';
-import {User} from '../../models/user/user';
 import {LocalStorageService} from './local-storage.service';
+import {Role} from '../../models/enum/role';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -64,4 +64,27 @@ export class AuthenticationService {
     return this._httpClient.post(environment.apiUrl + 'auth/refresh_token', {}, {withCredentials: true});
   }
 
+  createClient(firstName: string,
+               lastName: string,
+               email: string,
+               phone: string,
+               city: string,
+               password: string,
+               role: Role): Observable<boolean> {
+    return this._httpClient.post<boolean>(environment.apiUrl + 'auth/create_client', {
+      firstName,
+      lastName,
+      phone,
+      password,
+      email,
+      city,
+      role
+    });
+  }
+
+  resetPassword( email: string): Observable<boolean> {
+    return this._httpClient.post<boolean>(environment.apiUrl + 'auth/reset_password', {
+      email
+    });
+  }
 }

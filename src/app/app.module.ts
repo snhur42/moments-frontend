@@ -34,7 +34,6 @@ import {AppRoutingModule} from './app-routing.service';
 import {AccessJwtInterceptor} from './helpers/interceptors/access-jwt.interceptor';
 import {RefreshJwtInterceptor} from './helpers/interceptors/refresh-jwt.interceptor';
 import {ErrorInterceptor} from './helpers/interceptors/error.interceptor';
-import {AuthenticationModule} from './main/pages/authentication/authentication.module';
 
 @NgModule({
   declarations: [
